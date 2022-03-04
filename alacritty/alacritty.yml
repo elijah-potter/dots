@@ -1,0 +1,30 @@
+font:
+  # Normal (roman) font face
+  normal:
+    family: FiraCode Nerd Font Mono
+    style: Regular
+
+  # Bold font face
+  bold:
+    family: FiraCode Nerd Font Mono
+    style: Bold
+
+  # Italic font face
+  italic:
+    family: FiraCode Nerd Font Mono
+    style: Italic
+
+  # Bold italic font face
+  bold_italic:
+    family: FiraCode Nerd Font Mono
+    style: Bold Italic
+
+  size: 8
+
+window:
+  opacity: 0.8
+  title: Terminal
+
+colors:
+  primary:
+    background: '#030914'

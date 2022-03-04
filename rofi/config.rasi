@@ -1,0 +1,8 @@
+configuration {
+  modi: [drun];
+  font: "FiraCode Nerd Font Mono 15";
+  show-icons: true;
+  display-run: "Search";
+}
+
+@theme "main"
