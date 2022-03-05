@@ -188,7 +188,7 @@ gaps outer 15
 
 default_border none
 
-exec --no-startup-id exec xrandr --output DP3 --auto --right-of eDP1
+exec --no-startup-id exec xrandr --output DP3 --auto --right-of eDP1 
 exec --no-startup-id picom --config ~/.config/picom/picom.conf --experimental-backends
 exec --no-startup-id exec bash ~/.fehbg
 exec --no-startup-id exec polybar main
