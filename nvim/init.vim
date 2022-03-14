@@ -14,11 +14,12 @@ set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
-set clipboard=unnamedplus   " using system clipboard
-filetype plugin on
+set clipboard=unnamedplus   " using system clipboard filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
-set spell                 
+set spelllang=en
+set spellsuggest=best,9
+set spell
 set backupdir=~/.cache/vim " Directory to store backup files.
 set signcolumn=number
 
@@ -38,14 +39,14 @@ let g:airline_powerline_fonts = 1
 
 " Configure COC
 " Install necessary extensions
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-prettier', 'coc-css', 'coc-html', 'coc-eslint']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-prettier', 'coc-css', 'coc-html', 'coc-eslint', 'coc-texlab', 'coc-tsserver', 'coc-tslint-plugin']
 
-" use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
+" Use <tab> for trigger completion and navigate to the next complete item.
 inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
@@ -53,14 +54,25 @@ inoremap <silent><expr> <Tab>
 
 " Add `:Format` command to format current buffer and add format on save.
 command! -nargs=0 Format :call CocActionAsync('format')
+:map <C-F> :Format<CR>
 
-" COC show signatures
+" COC show function signatures
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
+" Enable highlighting
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Switch tabs using Control + Move Keys
+map <C-H> :bp<CR>
+map <C-L> :bn<CR>
 
 if (has("termguicolors"))
     set termguicolors
 endif
+
 syntax enable
 colorscheme monokai_soda
 hi Normal guibg=NONE ctermbg=NONE

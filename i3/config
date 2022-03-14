@@ -182,8 +182,8 @@ bindsym $mod+r mode "resize"
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-gaps inner 15
-gaps outer 15
+gaps inner 8
+gaps outer 8
 
 default_border none
 exec --no-startup-id xrandr --listactivemonitors | grep DP-3 && echo Xft.dpi: 120 | xrdb -merge
