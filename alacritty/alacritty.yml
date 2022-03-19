@@ -19,7 +19,7 @@ font:
     family: FiraCode Nerd Font Mono
     style: Bold Italic
 
-  size: 9
+  size: 11
 
 window:
   opacity: 0.8
