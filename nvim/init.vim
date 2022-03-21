@@ -40,7 +40,7 @@ let g:airline_powerline_fonts = 1
 
 " Configure COC
 " Install necessary extensions
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-rust-analyzer', 'coc-prettier', 'coc-css', 'coc-html', 'coc-eslint', 'coc-tsserver', 'coc-tslint-plugin', 'coc-ltex']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-prettier', 'coc-css', 'coc-html', 'coc-eslint', 'coc-tsserver', 'coc-tslint-plugin', 'coc-ltex']
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -59,6 +59,19 @@ nmap <slient> gd <Plug>(coc-definition)
 command! -nargs=0 Format :call CocActionAsync('format')
 :map <silent> <C-F> :Format<CR>
 
+" Show documentation with K
+nnoremap K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim', 'help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+endfunction
+
 " COC show function signatures
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
@@ -66,7 +79,10 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <C-T> <Plug>(coc-rename)
+
+" Apply Autofix to problem on current line
+nmap <C-O> <Plug>(coc-fix-current)
 
 " Switch tabs using Control + Move Keys
 map <silent> <C-H> :bp<CR>
