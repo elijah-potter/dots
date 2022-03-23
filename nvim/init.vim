@@ -22,7 +22,7 @@ set spellsuggest=best,9
 set spell
 set backupdir=~/.cache/vim " Directory to store backup files.
 set signcolumn=number
-set guifont=FiraCode\ Nerd\ Font\ Mono:h11 " Set Neovide font color and size
+set guifont=FiraCode\ Nerd\ Font\ Mono:h12 " Set Neovide font color and size
 let g:neovide_cursor_vfx_mode = "torpedo"
 
 call plug#begin(stdpath('data'))
@@ -31,58 +31,100 @@ call plug#begin(stdpath('data'))
  Plug 'tanvirtin/monokai.nvim'
  Plug 'ryanoasis/vim-devicons'
  Plug 'scrooloose/nerdtree'
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'neovim/nvim-lspconfig'
+ Plug 'hrsh7th/nvim-cmp'
+ Plug 'hrsh7th/cmp-nvim-lsp'
+ Plug 'hrsh7th/cmp-vsnip'
+ Plug 'hrsh7th/cmp-path'
+ Plug 'hrsh7th/cmp-buffer'
+ Plug 'simrat39/rust-tools.nvim'
+ Plug 'hrsh7th/vim-vsnip'
+ Plug 'lukas-reineke/lsp-format.nvim'
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'filipdutescu/renamer.nvim'
 call plug#end()
 
-" Configure Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+" Setup LSP
+lua << EOF
+local nvim_lsp = require'lspconfig'
+require("lsp-format").setup {}
 
-" Configure COC
-" Install necessary extensions
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-prettier', 'coc-css', 'coc-html', 'coc-eslint', 'coc-tsserver', 'coc-tslint-plugin', 'coc-ltex']
+local on_attach = function(client)
+    require "lsp-format".on_attach(client)
+end
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 
-" Use <tab> for trigger completion and navigate to the next complete item.
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+require('rust-tools').setup{
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
 
-nmap <slient> gd <Plug>(coc-definition)
+    -- All the opts to send to nvim-lspconfig
+    -- These override the settings set by rust-tools.nvim
+    server = {
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                },
+            },
+        },
+    },
+    on_attach = on_attach
+}
 
-" Add `:Format` command to format current buffer and add format on save.
-command! -nargs=0 Format :call CocActionAsync('format')
-:map <silent> <C-F> :Format<CR>
+local mappings_utils = require('renamer.mappings.utils');
+require('renamer').setup{}
 
-" Show documentation with K
-nnoremap K :call <SID>show_documentation()<CR>
+EOF
 
-function! s:show_documentation()
-    if (index(['vim', 'help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
-endfunction
+" Setup completions
+set completeopt=menuone,noinsert,noselect
 
-" COC show function signatures
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+lua << EOF
+local cmp = require'cmp'
+cmp.setup({
+    -- Enable LSP Snippets
+    snippet = {
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
+    },
+    mapping = {
+        -- Use Tab to navigate completions
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<C-D>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-F>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        })
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' },
+        { name = 'path' },
+        { name = 'buffer' },
+    }
+})
+EOF
 
-" Enable highlighting
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Map keys for LSP
+" Do code action on ga
+nnoremap <silent> <C-F> <cmd>lua vim.lsp.buf.code_action()<CR>
 
-" Symbol renaming.
-nmap <C-T> <Plug>(coc-rename)
+" Show hover menu with Control + A
+nnoremap <C-A> <cmd>lua vim.lsp.buf.hover()<CR>
 
-" Apply Autofix to problem on current line
-nmap <C-O> <Plug>(coc-fix-current)
+inoremap <silent> <C-R> <cmd>lua require('renamer').rename()<CR>
 
 " Switch tabs using Control + Move Keys
 map <silent> <C-H> :bp<CR>
@@ -106,8 +148,9 @@ map <silent> <C-B> :NERDTreeToggle<CR>
 " Make Nerd Tree open on right side
 let g:NERDTreeWinPos = "right"
 
-" Define location of LanguageTool
-let g:languagetool_server_jar="/usr/share/java/languagetool/languagetool-server.jar"
+" Configure Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 if (has("termguicolors"))
     set termguicolors
