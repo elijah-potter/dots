@@ -1,122 +1,96 @@
-/**
- * Author: Primetoxinz
- */
 * {
-    text-color:                  #fff;
-    background-color:            #1e3654;
-    lightbg:                     #534c48;
-    red:                         #f15d22;
-    orange:                      #faa41a; 
-    blue:                        #48b9c7; 
+   maincolor:        #D65D0E;
+   highlight:        bold #FE8019;
+   urgentcolor:      #e53714;
 
-    selected-normal-foreground:  @foreground;
-    normal-foreground:           @foreground;
-    alternate-normal-background: @background;
-    selected-urgent-foreground:  @foreground;
-    urgent-foreground:           @foreground;
-    alternate-urgent-background: @background;
-    active-foreground:           @foreground;
-    selected-active-foreground:  @foreground;
-    alternate-normal-foreground: @foreground;
-    alternate-active-background: @blue;
-    bordercolor:                 @foreground;
-    normal-background:           @background;
-    selected-normal-background:  @blue;
-    separatorcolor:              @orange;
-    spacing:                     2;
-    urgent-background:           @red;
-    alternate-urgent-foreground: @foreground;
-    selected-urgent-background:  @red;
-    alternate-active-foreground: @foreground;
-    selected-active-background:  @blue;
-    active-background:           @orange;
-}
-#window {
-    border:     0;
-    text-color: @foreground;
-    background-color: rgba ( 0, 0, 0, 0 % );
-    padding:    5;
-    text-color: @bordercolor;
-    background-color: @background;
-}
-#mainbox {
-    border:  0;
-    padding: 0;
-}
-#message {
-    border:     1px dash 0px 0px ;
-    text-color: @separatorcolor;
-    padding:    2px 0px 0px ;
-}
-#textbox {
-    text-color: @foreground;
-}
-#listview {
-    fixed-height: 0;
-    border:       2px 0px 0px ;
-    padding:      2px 0px 0px ;
-    text-color: @separatorcolor;
-}
-#element {
-    border: 0;
-}
-#element.normal.normal {
-    text-color: @normal-foreground;
-    background-color: @normal-background;
-}
-#element.normal.urgent {
-    text-color: @urgent-foreground;
-    background-color: @urgent-background;
-}
-#element.normal.active {
-    text-color: @active-foreground;
-    background-color: @active-background;
-}
-#element.selected.normal {
-    text-color: @selected-normal-foreground;
-    background-color: @selected-normal-background;
-}
-#element.selected.urgent {
-    text-color: @selected-urgent-foreground;
-    background-color: @selected-urgent-background;
-}
-#element.selected.active {
-    text-color: @selected-active-foreground;
-    background-color: @selected-active-background;
-}
-#element.alternate.normal {
-    text-color: @alternate-normal-foreground;
-    background-color: @alternate-normal-background;
-}
-#element.alternate.urgent {
-    text-color: @alternate-urgent-foreground;
-    background-color: @alternate-urgent-background;
-}
-#element.alternate.active {
-    text-color: @alternate-active-foreground;
-    background-color: @alternate-active-background;
-}
-#mode-switcher {
-    border: 1px dash 0px 0px ;
-}
-#button selected {
-    text-color: @selected-normal-foreground;
-    background-color: @selected-normal-background;
-}
-#inputbar {
-    spacing: 0;
-    border: 0px ;
-}
-#button normal {
-    text-color: @foreground;
+   fgwhite:          #FFFFFF;
+   blackdarkest:     #282828;
+   blackwidget:      #282828;
+   blackentry:       #282828;
+   blackselect:      #3C3836;
+   darkgray:         #504945;
+   scrollbarcolor:   @blackselect;
+   font: "Hack Nerd Font 12";
+   background-color: @blackdarkest;
 }
 
-#inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+window {
+   background-color: @blackdarkest;
 }
-#textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @normal-foreground;
+
+mainbox {
+   background-color: @blackdarkest;
+   spacing:0px;
+   children: [inputbar, message, mode-switcher, listview];
+}
+
+message {
+   padding: 6px 10px;
+   background-color:@blackwidget;
+}
+
+textbox {
+   text-color:@darkgray;
+   background-color:@blackwidget;
+}
+
+listview {
+   fixed-height: true;
+   dynamic: true;
+   scrollbar: true;
+   spacing: 0px;
+   padding: 1px 0px 0px 0px;
+   margin: 0px 0px 1px 0px;
+   background: @blackdarkest;
+}
+
+element {
+   padding: 2px 15px;
+   text-color: @fgwhite;
+}
+
+element selected{
+   background-color: @blackwidget;
+}
+
+scrollbar {
+   background-color: @blackwidget;
+   handle-color: @darkgray;
+   handle-width: 15px;
+}
+
+mode-switcher {
+   background-color: @blackwidget;
+}
+
+button {
+   background-color: @blackwidget;
+   text-color:       @darkgray;
+}
+
+button selected {
+    text-color:       @maincolor;
+}
+
+inputbar {
+   background-color: @blackdarkest;
+   spacing: 0px;
+}
+
+prompt {
+   padding:6px 9px;
+   background-color: @maincolor;
+   text-color:@blackwidget;
+}
+
+entry {
+   padding:6px 10px;
+   background-color:@blackwidget;
+   text-color:@fgwhite;
+}
+
+case-indicator {
+   padding:6px 10px;
+   text-color:@maincolor;
+   background-color:@blackwidget;
 }

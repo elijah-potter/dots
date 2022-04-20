@@ -1,35 +1,36 @@
-set nocompatible            " disable compatibility to old-time vi
-set showmatch               " show matching 
-set ignorecase              " case insensitive 
-set mouse=v                 " middle-click paste with 
-set hlsearch                " highlight search 
-set incsearch               " incremental search
-set tabstop=4               " number of columns occupied by a tab 
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
-set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
-set autoindent              " indent a new line the same amount as the line just typed
-set number                  " add line numbers
-set wildmode=longest,list   " get bash-like tab completions
-filetype plugin indent on   "allow auto-indenting depending on file type
-syntax on                   " syntax highlighting
-set mouse=a                 " enable mouse click
-set clipboard=unnamedplus   " using system clipboard filetype plugin on
-set cursorline              " highlight current cursorline
-set ttyfast                 " Speed up scrolling in Vim
+set nocompatible            
+set showmatch               
+set ignorecase              
+set mouse=v                 
+set hlsearch                
+set incsearch               
+set tabstop=4               
+set softtabstop=4           
+set expandtab               
+set shiftwidth=4            
+set autoindent              
+set number                  
+set wildmode=longest,list   
+filetype plugin indent on   
+syntax on                   
+set mouse=a                 
+set clipboard=unnamedplus   
+set cursorline              
+set ttyfast                 
 set spelllang=en
 set spellsuggest=best,9
 set spell
-set backupdir=~/.cache/vim " Directory to store backup files.
+set backupdir=~/.cache/vim 
 set signcolumn=number
-set guifont=FiraCode\ Nerd\ Font\ Mono:h12 " Set Neovide font color and size
-let g:neovide_cursor_vfx_mode = "torpedo"
+set completeopt=menuone,noinsert,noselect
+set clipboard=unnamedplus
 
+" Install Plugins
 call plug#begin(stdpath('data'))
  Plug 'vim-airline/vim-airline'
  Plug 'vim-airline/vim-airline-themes'
- Plug 'tanvirtin/monokai.nvim'
  Plug 'ryanoasis/vim-devicons'
+ Plug 'morhetz/gruvbox'
  Plug 'scrooloose/nerdtree'
  Plug 'neovim/nvim-lspconfig'
  Plug 'hrsh7th/nvim-cmp'
@@ -44,7 +45,6 @@ call plug#begin(stdpath('data'))
  Plug 'filipdutescu/renamer.nvim'
 call plug#end()
 
-" Setup LSP
 lua << EOF
 local nvim_lsp = require'lspconfig'
 require("lsp-format").setup {}
@@ -53,7 +53,7 @@ local on_attach = function(client)
     require "lsp-format".on_attach(client)
 end
 
-
+-- Setup Language Servers
 require('rust-tools').setup{
     tools = {
         autoSetHints = true,
@@ -65,8 +65,6 @@ require('rust-tools').setup{
         },
     },
 
-    -- All the opts to send to nvim-lspconfig
-    -- These override the settings set by rust-tools.nvim
     server = {
         settings = {
             ["rust-analyzer"] = {
@@ -79,15 +77,14 @@ require('rust-tools').setup{
     on_attach = on_attach
 }
 
+require'lspconfig'.eslint.setup{}
+require'lspconfig'.ltex.setup{}
+
+-- Setup renamer
 local mappings_utils = require('renamer.mappings.utils');
 require('renamer').setup{}
 
-EOF
-
-" Setup completions
-set completeopt=menuone,noinsert,noselect
-
-lua << EOF
+-- Setup Autocompletion
 local cmp = require'cmp'
 cmp.setup({
     -- Enable LSP Snippets
@@ -118,12 +115,11 @@ cmp.setup({
 EOF
 
 " Map keys for LSP
-" Do code action on ga
 nnoremap <silent> <C-F> <cmd>lua vim.lsp.buf.code_action()<CR>
-
-" Show hover menu with Control + A
 nnoremap <C-A> <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <C-D> <cmd>lua vim.lsp.buf.definition()<CR>
 
+" Set rename hotkey
 inoremap <silent> <C-R> <cmd>lua require('renamer').rename()<CR>
 
 " Switch tabs using Control + Move Keys
@@ -139,8 +135,20 @@ nnoremap <silent> <S-L> <C-W>l
 " Close window with Shift + C
 nnoremap <silent> <S-C> <C-W>c
 
-" Make windows side-by-side with Shift + H
+" Make windows side-by-side with Shift + A
 nnoremap <silent> <S-A> <C-W>H
+
+" Move around twice as fast with Alt + Movement Keys
+nnoremap <silent> <A-h> hh
+nnoremap <silent> <A-j> jj
+nnoremap <silent> <A-k> kk
+nnoremap <silent> <A-l> ll
+
+vnoremap <silent> <A-h> hh
+vnoremap <silent> <A-j> jj
+vnoremap <silent> <A-k> kk
+vnoremap <silent> <A-l> ll
+
 
 " Toggle Nerd Tree with Control + B
 map <silent> <C-B> :NERDTreeToggle<CR>
@@ -148,7 +156,11 @@ map <silent> <C-B> :NERDTreeToggle<CR>
 " Make Nerd Tree open on right side
 let g:NERDTreeWinPos = "right"
 
-" Configure Airline
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Make everything look pretty
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -157,9 +169,4 @@ if (has("termguicolors"))
 endif
 
 syntax enable
-colorscheme monokai_soda
-" hi Normal guibg=NONE ctermbg=NONE
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+colorscheme gruvbox
