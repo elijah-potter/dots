@@ -105,6 +105,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Screenshot and copy to clipboard with Print Screenshot
+bindsym $mod+p exec 'grim - | wl-copy'
+
 # Cosmetics
 default_border pixel
 
