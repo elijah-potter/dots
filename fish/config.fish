@@ -1,5 +1,5 @@
 # Stop .lesshst from appearing
-export LESSHISTFILE=-
+set -x LESSHISTFILE -
 
 # Remove blacklisted folders from $HOME/.config/
 set blacklist gtk-3.0 dconf
@@ -8,6 +8,11 @@ for file in $blacklist
         rm -r $HOME/.config/$file
     end
 end
+
+function fish_greeting
+end
+
+set -x vault /mnt/vault/
 
 set -x EDITOR nvim
 
