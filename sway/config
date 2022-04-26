@@ -87,12 +87,11 @@ bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent container
-bindsym $mod+a focus parent
-
-# Scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+# Configure keyboard input
+input * {
+   repeat_rate 45
+   repeat_delay 250
+}
 
 mode "resize" {
     bindsym $left resize shrink width 30px
