@@ -15,9 +15,10 @@ end
 function fish_greeting
 end
 
-function n
-    nvim $argv
-end
+alias n="nvim"
+alias s="sway"
+alias connhome="ssh 73.229.56.138 -p 8822"
+alias connjellyfun="connhome -f -N -L 8096:10.0.0.40:8096 >/dev/null 2>&1 &"
 
 set -x vault /mnt/vault/
 
