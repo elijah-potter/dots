@@ -27,74 +27,60 @@ set clipboard=unnamedplus
 
 " Install Plugins
 call plug#begin(stdpath('data'))
- Plug 'vim-airline/vim-airline'
- Plug 'vim-airline/vim-airline-themes'
+ Plug 'nvim-lualine/lualine.nvim'
  Plug 'ryanoasis/vim-devicons'
- Plug 'morhetz/gruvbox'
  Plug 'scrooloose/nerdtree'
+ Plug 'eddyekofo94/gruvbox-flat.nvim'
  Plug 'neovim/nvim-lspconfig'
  Plug 'hrsh7th/nvim-cmp'
  Plug 'hrsh7th/cmp-nvim-lsp'
  Plug 'hrsh7th/cmp-vsnip'
  Plug 'hrsh7th/cmp-path'
  Plug 'hrsh7th/cmp-buffer'
- Plug 'simrat39/rust-tools.nvim'
+ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
  Plug 'hrsh7th/vim-vsnip'
- Plug 'lukas-reineke/lsp-format.nvim'
- Plug 'nvim-lua/plenary.nvim'
- Plug 'filipdutescu/renamer.nvim'
+ Plug 'hrsh7th/vim-vsnip-integ'
+ Plug 'rafamadriz/friendly-snippets'
+ Plug 'windwp/nvim-autopairs'
+ Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 lua << EOF
-local nvim_lsp = require'lspconfig'
-require("lsp-format").setup {}
+require('nvim-autopairs').setup()
 
-local on_attach = function(client)
-    require "lsp-format".on_attach(client)
-end
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lsp_args = {capabilities = capabilities}
 
 -- Setup Language Servers
-require('rust-tools').setup{
-    tools = {
-        autoSetHints = true,
-        hover_with_actions = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
+local lspconfig = require('lspconfig')
 
-    server = {
-        settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy"
-                },
-            },
-        },
-    },
-    on_attach = on_attach
+local servers = { 'ltex', 'eslint', 'tsserver', 'jsonls' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    capabilities = capabilities,
+  }
+end
+
+lspconfig["rust_analyzer"].setup{
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            checkOnSave = {
+                command = "clippy"
+            } 
+        }
+    }
 }
 
-require'lspconfig'.eslint.setup{}
-require'lspconfig'.ltex.setup{}
-
--- Setup renamer
-local mappings_utils = require('renamer.mappings.utils');
-require('renamer').setup{}
-
 -- Setup Autocompletion
-local cmp = require'cmp'
+local cmp = require("cmp");
 cmp.setup({
-    -- Enable LSP Snippets
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
     mapping = {
-        -- Use Tab to navigate completions
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<C-D>'] = cmp.mapping.scroll_docs(-4),
@@ -105,22 +91,27 @@ cmp.setup({
             select = true,
         })
     },
-    sources = {
+    sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'vsnip' },
         { name = 'path' },
-        { name = 'buffer' },
-    }
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'buffer'}
+    }),
 })
 EOF
+
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['html']
+let g:vsnip_filetypes.typescriptreact = ['html']
 
 " Map keys for LSP
 nnoremap <silent> <C-F> <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <C-A> <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <C-D> <cmd>lua vim.lsp.buf.definition()<CR>
 
-" Set rename hotkey
-inoremap <silent> <C-R> <cmd>lua require('renamer').rename()<CR>
+" Auto format with eslint
+autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 " Switch tabs using Control + Move Keys
 map <silent> <C-H> :bp<CR>
@@ -151,7 +142,7 @@ vnoremap <silent> <A-l> ll
 
 
 " Toggle Nerd Tree with Control + B
-map <silent> <C-B> :NERDTreeToggle<CR>
+map <silent> <C-N> :NERDTreeToggle<CR>
 
 " Make Nerd Tree open on right side
 let g:NERDTreeWinPos = "right"
@@ -160,13 +151,53 @@ let g:NERDTreeWinPos = "right"
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
+" Create command to close all but current buffer
+function! CloseOtherBuffer()
+    let l:bufnr = bufnr()
+    execute "only"
+    for buffer in getbufinfo()
+        if !buffer.listed
+            continue
+        endif
+        if buffer.bufnr == l:bufnr
+            continue
+        else
+            if buffer.changed
+                echo buffer.name . " has changed, save first"
+                continue
+            endif
+            let l:cmd = "bdelete " . buffer.bufnr
+            execute l:cmd
+        endif
+    endfor
+endfunction
+
+nnoremap <C-O> :call CloseOtherBuffer()<CR>
+
 " Make everything look pretty
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+lua << EOF
+require('lualine').setup({
+    options = {
+        theme = 'gruvbox-flat'
+    },
+    extensions = { 'nerdtree', 'quickfix' },
+    tabline = {
+        lualine_a = {'buffers'},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {}
+    }
+})
+EOF
 
 if (has("termguicolors"))
     set termguicolors
 endif
 
 syntax enable
-colorscheme gruvbox
+let g:gruvbox_flat_style = "hard"
+let g:gruvbox_italic_functions = 1
+
+colorscheme gruvbox-flat

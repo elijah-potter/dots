@@ -1,6 +1,6 @@
 {
     "spacing": 10,
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock"],
     "keyboard-state": {

@@ -1,6 +1,9 @@
 # Stop .lesshst from appearing
 set -x LESSHISTFILE -
 
+# Set Bartib location
+set -x BARTIB_FILE ~/timesheet.bartib
+
 # Add stuff to PATH
 set -x PATH $PATH $HOME/.cargo/bin
 
@@ -15,13 +18,16 @@ end
 function fish_greeting
 end
 
+set -x vault /mnt/vault/
+set -x projects ~/Projects/
+set -x EDITOR nvim
+
 alias n="nvim"
-alias s="sway"
 alias connhome="ssh 73.229.56.138 -p 8822"
 alias connjellyfun="connhome -f -N -L 8096:10.0.0.40:8096 >/dev/null 2>&1 &"
-
-set -x vault /mnt/vault/
-
-set -x EDITOR nvim
+alias vault="cd $vault" 
+alias projects="cd $projects"
+alias tt="bartib"
+alias today="tt report --today"
 
 starship init fish | source
