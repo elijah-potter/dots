@@ -34,6 +34,11 @@ for name, setting in pairs(settings) do
 	})
 end
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = {"*.tsx", "*.ts", "*.jsx", "*.js"},
+        command = "EslintFixAll"
+})
+
 map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
 map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
 map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")

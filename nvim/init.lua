@@ -24,6 +24,7 @@ require 'plugins'
 local utils = require 'utils'
 local map = utils.map
 
+require 'git'
 require 'snippets'
 require 'completion'
 require 'lsp'

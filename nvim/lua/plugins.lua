@@ -13,6 +13,9 @@ return require('packer').startup(function()
             }
     }
 
+    -- Git
+    use 'lewis6991/gitsigns.nvim'
+
 	-- Completions
 	use {
 		'hrsh7th/nvim-cmp',

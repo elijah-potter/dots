@@ -1,8 +1,0 @@
-configuration {
-  modi: [drun];
-  font: "Hack Nerd Font Mono 15";
-  show-icons: true;
-  display-run: "Search";
-}
-
-@theme "main"
