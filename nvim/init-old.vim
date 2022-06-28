@@ -1,4 +1,4 @@
-set nocompatible            
+set nocompatible
 set showmatch               
 set ignorecase              
 set mouse=v                 
@@ -28,7 +28,7 @@ set clipboard=unnamedplus
 " Install Plugins
 call plug#begin(stdpath('data'))
  Plug 'nvim-lualine/lualine.nvim'
- Plug 'ryanoasis/vim-devicons'
+ Plug 'kyazdani42/nvim-web-devicons'
  Plug 'scrooloose/nerdtree'
  Plug 'eddyekofo94/gruvbox-flat.nvim'
  Plug 'neovim/nvim-lspconfig'
@@ -43,10 +43,22 @@ call plug#begin(stdpath('data'))
  Plug 'rafamadriz/friendly-snippets'
  Plug 'windwp/nvim-autopairs'
  Plug 'airblade/vim-gitgutter'
+ Plug 'stevearc/aerial.nvim'
 call plug#end()
 
 lua << EOF
 require('nvim-autopairs').setup()
+
+-- Setup Aerial
+require('aerial').setup({
+    default_direction = "float",
+    float = {
+        border = "rounded",
+        relative = "editor"
+    },
+    close_on_select = true
+})
+local on_attach = require('aerial').on_attach
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lsp_args = {capabilities = capabilities}
@@ -57,11 +69,13 @@ local lspconfig = require('lspconfig')
 local servers = { 'ltex', 'eslint', 'tsserver', 'jsonls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
+    on_attach = on_attach,
     capabilities = capabilities,
   }
 end
 
 lspconfig["rust_analyzer"].setup{
+    on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         ["rust-analyzer"] = {
@@ -99,6 +113,7 @@ cmp.setup({
         { name = 'buffer'}
     }),
 })
+
 EOF
 
 let g:vsnip_filetypes = {}
@@ -107,7 +122,7 @@ let g:vsnip_filetypes.typescriptreact = ['html']
 
 " Map keys for LSP
 nnoremap <silent> <C-F> <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <C-A> <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <C-S> <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <C-D> <cmd>lua vim.lsp.buf.definition()<CR>
 
 " Auto format with eslint
@@ -140,12 +155,14 @@ vnoremap <silent> <A-j> jj
 vnoremap <silent> <A-k> kk
 vnoremap <silent> <A-l> ll
 
-
-" Toggle Nerd Tree with Control + B
-map <silent> <C-N> :NERDTreeToggle<CR>
+" Toggle Nerd Tree with Control + N
+nnoremap <silent> <C-N> :NERDTreeToggle<CR>
 
 " Make Nerd Tree open on right side
 let g:NERDTreeWinPos = "right"
+
+" Toggle Aerial with Control + M
+nnoremap <silent> <C-X> :AerialToggle<CR>
 
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
@@ -197,7 +214,7 @@ if (has("termguicolors"))
 endif
 
 syntax enable
-let g:gruvbox_flat_style = "hard"
+let g:gruvbox_flat_style = "dark"
 let g:gruvbox_italic_functions = 1
 
 colorscheme gruvbox-flat
