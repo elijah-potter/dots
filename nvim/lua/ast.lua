@@ -5,11 +5,14 @@ local map = utils.map
 aerial.setup({
         default_direction = "float",
         float = {
-                borer = "rounded",
-                relative = "editor"
+                border = "rounded",
+                relative = "cursor"
         },
         close_on_select = true,
-        nerd_font = "auto"
+        nerd_font = "auto",
+        lsp = {
+                diagnostics_trigger_update = true,
+        }
 })
 
 map("n", "<C-X>", ":AerialToggle<CR>")

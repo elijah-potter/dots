@@ -3,7 +3,7 @@ return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
     -- Icons
-    use 'kyazdani42/nvim-web-devicons' 
+    use 'kyazdani42/nvim-web-devicons'
 
 	-- LSP
 	use {
@@ -22,6 +22,7 @@ return require('packer').startup(function()
 		requires = {
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-path',
+                'saadparwaiz1/cmp_luasnip'
 		}
 	}
 
@@ -49,7 +50,7 @@ return require('packer').startup(function()
 		}
 	}
 
-	-- AST 
+	-- AST
 	use 'stevearc/aerial.nvim'
 
 	-- Colorscheme

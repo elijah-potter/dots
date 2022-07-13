@@ -11,6 +11,7 @@ opt.number = true
 opt.signcolumn = 'number'
 opt.cursorline = true
 opt.tabstop = 4
+opt.softtabstop = 4
 opt.expandtab = true
 opt.autoindent = true
 opt.wildmode = 'longest,list'
@@ -49,3 +50,9 @@ map("nv", "<A-h>", "hh")
 map("nv", "<A-j>", "jj")
 map("nv", "<A-k>", "kk")
 map("nv", "<A-l>", "ll")
+
+-- Remove trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = {"*"},
+        command = ":%s/\\s\\+$//e"
+})

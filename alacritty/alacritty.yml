@@ -23,3 +23,9 @@ font:
 
 window:
   title: Terminal
+
+colors:
+  primary:
+    background: "#0A0E14"
+    foreground: "#B3B1AD"
+
