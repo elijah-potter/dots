@@ -39,7 +39,7 @@ bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
 bindsym $mod+Ctrl+$left move workspace to output left
-bindsym $mod+Ctrl+$down move workspace to output down  
+bindsym $mod+Ctrl+$down move workspace to output down
 bindsym $mod+Ctrl+$up move workspace to output up
 bindsym $mod+Ctrl+$right move workspace to output right
 
@@ -101,9 +101,6 @@ gaps outer 8
 client.focused #3C3836 #3C3836 #FFFFFF
 client.focused_inactive #282828 #282828 #FFFFFF
 client.unfocused #282828 #282828 #FFFFFF
-
-# Setup screensaver
-exec swayidle -w timeout 500 "alacritty -e sh -c 'swaymsg fullscreen && termsplash'"
 
 exec systemctl --user import-environment
 
