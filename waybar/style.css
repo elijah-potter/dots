@@ -4,6 +4,7 @@
         font-family: Hack Nerd Font;
         font-size: 13px;
         text-shadow: none;
+        box-shadow:    none;
         transition-duration: 0s;
         color: #c0caf5;
 }
