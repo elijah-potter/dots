@@ -1,12 +1,6 @@
-require 'nightfox'.setup({
-	options = {
-		dim_inactive = true,
-		styles = {
-			comments = "italic",
-			functions = "bold",
-			types = "italic,bold"
-		}
-	}
-})
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_lualine_bold = true
+vim.g.tokyonight_hide_inactive_statusline = true
 
-vim.cmd('colorscheme duskfox')
+vim.cmd('colorscheme tokyonight')

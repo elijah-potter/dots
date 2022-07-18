@@ -93,14 +93,15 @@ input * {
 # Cosmetics
 default_border pixel
 
-output * bg ~/Wallpapers/gruvbox-street-bw.jpg fill
+# output * bg ~/Wallpapers/gruvbox-street-bw.jpg fill
+output * bg #1a1b26 solid_color
 
 gaps inner 8
 gaps outer 8
 
-client.focused #3C3836 #3C3836 #FFFFFF
-client.focused_inactive #282828 #282828 #FFFFFF
-client.unfocused #282828 #282828 #FFFFFF
+client.focused #C0CAF5 #C0CAF5 #FFFFFF
+client.focused_inactive #414868 #414868 #FFFFFF
+client.unfocused #414868 #414868 #FFFFFF
 
 exec systemctl --user import-environment
 

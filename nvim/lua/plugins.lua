@@ -16,7 +16,7 @@ return require('packer').startup(function()
     -- Git
     use 'lewis6991/gitsigns.nvim'
 
-	-- Completions
+	-- Completion
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
@@ -54,6 +54,12 @@ return require('packer').startup(function()
 	-- AST
 	use 'stevearc/aerial.nvim'
 
+    -- Color Highlighting
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require('colorizer').setup() end
+    }
+
 	-- Colorscheme
-	use 'EdenEast/nightfox.nvim'
+    use 'folke/tokyonight.nvim'
 end)

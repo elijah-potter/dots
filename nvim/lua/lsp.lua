@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
+map("v", "<C-R>", ":lua vim.lsp.buf.range_code_action()<CR>")
 map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
 map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-G>", ":lua vim.lsp.buf.rename()<CR>")

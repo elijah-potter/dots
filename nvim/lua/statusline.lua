@@ -1,8 +1,10 @@
 require('lualine').setup({
     options = {
-        theme = 'auto'
+        theme = 'auto',
+        component_separators = { left = '|', right = '|'},
+        section_separators = { left = '█', right = '█'},
     },
-    extensions = { 'nvim-tree', 'quickfix' },
+    extensions = { 'nvim-tree', 'quickfix', 'aerial' },
     tabline = {
         lualine_a = {'buffers'},
     }

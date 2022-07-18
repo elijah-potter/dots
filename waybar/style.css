@@ -1,78 +1,55 @@
 * {
-        border:        none;
+        border: none;
         border-radius: 0;
-        font-family:   Hack Nerd Font;
-        font-size:     13px;
-        box-shadow:    none;
-        text-shadow:   none;
+        font-family: Hack Nerd Font;
+        font-size: 13px;
+        text-shadow: none;
         transition-duration: 0s;
-        color:      #D65D0E;
+        color: #c0caf5;
 }
 
 window {
         font-weight:    bold;
         color:          #d5c4a1;
-        background:     #282828;
-}
-
-#workspaces {
-        margin: 0 5px;
+        background:     transparent;
 }
 
 #workspaces button {
-        padding:    0 4px;
+        padding: 0 5px;
+        background: #1a1b26;
 }
 
 #workspaces button.visible {
+        background: #414868;
 }
 
 #workspaces button.focused {
-        background-color:       #3C3836;
+        background: #414868;
 }
 
-#battery, #network, #pulseaudio, #clock, #custom-power, #custom-qbitstats {
-        margin:     0px 8px 0px 1px;
-        min-width:  10px;
-    
+#pulseaudio, #cpu, #network, #clock, #battery{
+        padding: 0px 10px;
 }
 
-#clock {
-        margin:     0px 16px 0px 10px;
-        min-width:  10px;
-}
-
-#custom-power {
-        color:         #cc241d; 
-}
-
-#custom-qbitstats {
-}
-
-#battery {
-        color:       #689d6a;
-}
-
-#battery.critical {
-        color:          #fb4934;
-}
-
-#battery.good {
-        color:          #689d6a;
-}
-
-#battery.charging {
-        color:      #b8bb26;
-}
-
-#network.wifi {
-        color:          #689d6a;
+#network{
 }
 
 #network.disconnected {
-        color:          #fe8019; 
+        color: red;
 }
 
-#waybar > box:nth-child(2) > box:nth-child(3) > * > label {
-        padding: 0 3px;
+#battery {
+        color: green;
 }
 
+#battery.critical {
+        color: red;
+}
+
+#battery.good {
+        color: green;
+}
+
+#battery.charging {
+        color: green;
+}

@@ -1,22 +1,10 @@
 {
     "spacing": 10,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "modules-center": [],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock"],
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
-    },
-    "tray": {
-        "spacing": 10
     },
     "clock": {
         "timezone": "America/Denver",
@@ -24,16 +12,15 @@
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% CPU",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% RAM"
     },
     "temperature": {
         "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format": "{temperatureF}°F",
     },
     "battery": {
         "states": {
@@ -43,21 +30,16 @@
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
