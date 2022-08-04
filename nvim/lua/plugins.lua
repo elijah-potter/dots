@@ -54,12 +54,6 @@ return require('packer').startup(function()
 	-- AST
 	use 'stevearc/aerial.nvim'
 
-    -- Color Highlighting
-    use {
-        'norcalli/nvim-colorizer.lua',
-        config = function() require('colorizer').setup() end
-    }
-
 	-- Colorscheme
     use 'folke/tokyonight.nvim'
 end)

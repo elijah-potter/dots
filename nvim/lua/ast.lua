@@ -11,7 +11,7 @@ aerial.setup({
         close_on_select = true,
         nerd_font = "auto",
         lsp = {
-                diagnostics_trigger_update = true,
+                diagnostics_trigger_update = false,
         }
 })
 
