@@ -5,7 +5,6 @@ local opt = vim.opt
 
 -- QoL
 g.syntax_enable = true
-
 opt.mouse = 'a'
 opt.number = true
 opt.signcolumn = 'number'
@@ -25,14 +24,96 @@ require 'plugins'
 local utils = require 'utils'
 local map = utils.map
 
-require 'git'
-require 'snippets'
-require 'completion'
+-- Load programming language support
 require 'lsp'
-require 'ast'
-require 'filetree'
-require 'statusline'
-require 'colorscheme'
+
+--- Statusline
+local lualine = require 'lualine'
+lualine.setup({
+    options = {
+        theme = 'auto',
+        component_separators = { left = ' |', right = '| '},
+        section_separators = { left = '█ ', right = ' █'},
+    },
+    extensions = { 'nvim-tree', 'quickfix', 'aerial' },
+    tabline = {
+        lualine_a = {'buffers'},
+    }
+})
+
+-- Navigation
+local aerial = require 'aerial'
+aerial.setup({
+        default_direction = "float",
+        float = {
+                border = "rounded",
+                relative = "cursor"
+        },
+        close_on_select = true,
+        nerd_font = "auto",
+        lsp = {
+                diagnostics_trigger_update = false,
+        }
+})
+map("n", "<C-X>", ":AerialToggle<CR>")
+
+local luasnip = require 'luasnip'
+local luasnip_vscode_loader = require 'luasnip.loaders.from_vscode'
+luasnip_vscode_loader.lazy_load()
+
+-- Auto-Completion
+local cmp = require 'cmp'
+vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end
+	},
+    mapping = {
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        })
+    },
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+		{ name = 'path' },
+        { name = "emoji"}
+    }, {
+        { name = 'buffer'}
+    })
+})
+
+-- File Explorer
+local nvim_tree = require 'nvim-tree'
+nvim_tree.setup({
+	view = {
+		adaptive_size = true,
+		side = "right",
+		mappings = {
+			list = {
+				{ key = "H", action = "none" },
+				{ key = "L", action = "none" }
+			}
+		}
+	}
+})
+map("n", "<C-n>", ":NvimTreeToggle<CR>")
+
+-- Git Integration
+local gitsigns = require 'gitsigns'
+gitsigns.setup()
+
+-- Remove trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = {"*"},
+        command = ":%s/\\s\\+$//e"
+})
 
 -- Everyday mappings
 map("n", "<S-H>", "<C-W>h")
@@ -51,8 +132,9 @@ map("nv", "<A-j>", "jj")
 map("nv", "<A-k>", "kk")
 map("nv", "<A-l>", "ll")
 
--- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = {"*"},
-        command = ":%s/\\s\\+$//e"
-})
+-- Make everything look pretty
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_lualine_bold = true
+
+vim.cmd('colorscheme tokyonight')

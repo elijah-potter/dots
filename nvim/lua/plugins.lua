@@ -2,21 +2,10 @@ return require('packer').startup(function()
 	-- Let packer manage itself
 	use 'wbthomason/packer.nvim'
 
-    -- Icons
     use 'kyazdani42/nvim-web-devicons'
-
-	-- LSP
-	use {
-            'neovim/nvim-lspconfig',
-            requires = {
-                'windwp/nvim-autopairs'
-            }
-    }
-
-    -- Git
+	use 'neovim/nvim-lspconfig'
+    use 'windwp/nvim-autopairs'
     use 'lewis6991/gitsigns.nvim'
-
-	-- Completion
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
@@ -26,34 +15,15 @@ return require('packer').startup(function()
                 'saadparwaiz1/cmp_luasnip'
 		}
 	}
-
-	-- Snippets
 	use {
             'L3MON4D3/LuaSnip',
             requires = {
                 'rafamadriz/friendly-snippets'
             }
     }
-
-	-- File explorer
-	use {
-        'kyazdani42/nvim-tree.lua',
-		requires = {
-			'nvim-lualine/lualine.nvim'
-	    	}
-    	}
-
-	-- Statusline
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = {
-			'nvim-lualine/lualine.nvim'
-		}
-	}
-
-	-- AST
+	use 'kyazdani42/nvim-tree.lua'
+    use 'nvim-lualine/lualine.nvim'
 	use 'stevearc/aerial.nvim'
-
-	-- Colorscheme
     use 'folke/tokyonight.nvim'
+    use 'simrat39/rust-tools.nvim'
 end)

@@ -1,43 +1,24 @@
-local lspconfig = require 'lspconfig'
 local aerial = require 'aerial'
-local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local utils = require 'utils'
 local map = utils.map
 local autopairs = require 'nvim-autopairs'
+local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
 autopairs.setup({})
 
-local settings = {
-	ltex = {},
-	eslint = {},
-	tsserver = {},
-	jsonls = {},
-	rust_analyzer = {
-		['rust-analyzer'] = {
-            		checkOnSave = {
-                		command = 'clippy',
-            		},
-        	},
-	},
-}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-
-local on_attach = aerial.on_attach
-
-for name, setting in pairs(settings) do
-	lspconfig[name].setup({
-        on_attach = on_attach,
-		capabilities = capabilities,
-		settings = setting
-	})
+local on_attach = function(...)
+        aerial.on_attach(...)
 end
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = {"*.tsx", "*.ts", "*.jsx", "*.js"},
-        command = "EslintFixAll"
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities();
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities);
+
+-- Setup Languages
+local rust = require 'languages/rust'
+rust.setup({on_attach = on_attach, capabilities = capabilities})
+
+local eslint = require 'languages/eslint'
+eslint.setup({on_attach = on_attach, capabilities = capabilities})
 
 map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
 map("v", "<C-R>", ":lua vim.lsp.buf.range_code_action()<CR>")
