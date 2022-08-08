@@ -3,9 +3,10 @@ local lspconfig = require 'lspconfig'
 local M = {}
 
 function M.setup(options)
-        lspconfig["eslint"].setup({
+        lspconfig.eslint.setup({
                 on_attach = options.on_attach,
-                capabilities = options.capabilities
+                capabilities = options.capabilities,
+                settings = {}
         })
 
         vim.api.nvim_create_autocmd("BufWritePre", {

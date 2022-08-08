@@ -5,14 +5,14 @@ local tools_inlay_hints = require 'rust-tools.inlay_hints'
 local M = {}
 
 function M.setup(options)
-        local on_attach = function(...)
+        local on_attach = function(client, bufnr)
                 tools_config.setup()
                 tools_inlay_hints.setup_autocmd()
 
-                options.on_attach(...)
+                options.on_attach(client, bufnr)
         end
 
-        lspconfig['rust_analyzer'].setup({
+        lspconfig.rust_analyzer.setup({
                 on_attach = options.on_attach,
                 capabilities = options.capabilities,
                 settings = {

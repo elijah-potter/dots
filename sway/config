@@ -93,8 +93,7 @@ input * {
 # Cosmetics
 default_border pixel
 
-# output * bg ~/Wallpapers/gruvbox-street-bw.jpg fill
-output * bg #1a1b26 solid_color
+output * bg ~/.config/planet.png fill
 
 gaps inner 8
 gaps outer 8

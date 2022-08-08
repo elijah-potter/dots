@@ -26,6 +26,7 @@ local map = utils.map
 
 -- Load programming language support
 require 'lsp'
+require 'treesitter'
 
 --- Statusline
 local lualine = require 'lualine'
@@ -44,6 +45,7 @@ lualine.setup({
 -- Navigation
 local aerial = require 'aerial'
 aerial.setup({
+        backends = { "lsp", "treesitter", "markdown" },
         default_direction = "float",
         float = {
                 border = "rounded",
@@ -108,12 +110,6 @@ map("n", "<C-n>", ":NvimTreeToggle<CR>")
 -- Git Integration
 local gitsigns = require 'gitsigns'
 gitsigns.setup()
-
--- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = {"*"},
-        command = ":%s/\\s\\+$//e"
-})
 
 -- Everyday mappings
 map("n", "<S-H>", "<C-W>h")

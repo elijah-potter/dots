@@ -6,8 +6,8 @@ local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
 autopairs.setup({})
 
-local on_attach = function(...)
-        aerial.on_attach(...)
+local on_attach = function(client, bufnr)
+        aerial.on_attach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
@@ -20,6 +20,10 @@ rust.setup({on_attach = on_attach, capabilities = capabilities})
 local eslint = require 'languages/eslint'
 eslint.setup({on_attach = on_attach, capabilities = capabilities})
 
+local typescript = require 'languages/typescript'
+typescript.setup({on_attach = on_attach, capabilities = capabilities})
+
+map("n", "<C-X>", ":AerialToggle<CR>")
 map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
 map("v", "<C-R>", ":lua vim.lsp.buf.range_code_action()<CR>")
 map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")

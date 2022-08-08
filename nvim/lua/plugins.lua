@@ -1,4 +1,6 @@
-return require('packer').startup(function()
+local packer = require 'packer'
+
+return packer.startup(function()
 	-- Let packer manage itself
 	use 'wbthomason/packer.nvim'
 
@@ -26,4 +28,5 @@ return require('packer').startup(function()
 	use 'stevearc/aerial.nvim'
     use 'folke/tokyonight.nvim'
     use 'simrat39/rust-tools.nvim'
+    use 'nvim-treesitter/nvim-treesitter'
 end)
