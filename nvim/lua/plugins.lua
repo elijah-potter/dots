@@ -27,6 +27,6 @@ return packer.startup(function()
     use 'nvim-lualine/lualine.nvim'
 	use 'stevearc/aerial.nvim'
     use 'folke/tokyonight.nvim'
-    use 'simrat39/rust-tools.nvim'
     use 'nvim-treesitter/nvim-treesitter'
+    use 'folke/trouble.nvim'
 end)

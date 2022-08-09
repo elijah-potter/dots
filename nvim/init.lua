@@ -42,23 +42,6 @@ lualine.setup({
     }
 })
 
--- Navigation
-local aerial = require 'aerial'
-aerial.setup({
-        backends = { "lsp", "treesitter", "markdown" },
-        default_direction = "float",
-        float = {
-                border = "rounded",
-                relative = "cursor"
-        },
-        close_on_select = true,
-        nerd_font = "auto",
-        lsp = {
-                diagnostics_trigger_update = false,
-        }
-})
-map("n", "<C-X>", ":AerialToggle<CR>")
-
 local luasnip = require 'luasnip'
 local luasnip_vscode_loader = require 'luasnip.loaders.from_vscode'
 luasnip_vscode_loader.lazy_load()
@@ -88,7 +71,7 @@ cmp.setup({
         { name = "emoji"}
     }, {
         { name = 'buffer'}
-    })
+   })
 })
 
 -- File Explorer

@@ -7,14 +7,9 @@ function M.setup(options)
                 options.on_attach(client, bufnr)
         end
 
-        lspconfig.rust_analyzer.setup({
+        lspconfig.ltex.setup({
                 on_attach = options.on_attach,
                 capabilities = options.capabilities,
-                settings = {
-                    	checkOnSave = {
-                                command = 'clippy',
-                        },
-                },
         });
 end
 
