@@ -9,7 +9,12 @@ treesitter_config.setup({
                 "toml",
                 "javascript",
                 "typescript",
-                "tsx"
+                "tsx",
+                "vim",
+                "yaml",
+                "markdown",
+                "html",
+                "css"
         },
         highlight = {
                 enable = true,

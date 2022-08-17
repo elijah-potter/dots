@@ -15,6 +15,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh
 # Application Shortcuts
 bindsym $mod+Return exec $term
 bindsym $mod+e exec $browser
+bindsym $mod+m exec neovide --multigrid
 
 # Modify the size and position of windows with $mod + Mouse
 floating_modifier $mod normal
@@ -73,6 +74,9 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
 bindsym $mod+space focus mode_toggle
+
+bindsym $mod+g output eDP-1 disable 
+bindsym $mod+y output eDP-1 enable
 
 mode "resize" {
     bindsym $left resize shrink width 30px

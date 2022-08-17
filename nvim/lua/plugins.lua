@@ -1,6 +1,6 @@
 local packer = require 'packer'
 
-return packer.startup(function()
+packer.startup(function()
 	-- Let packer manage itself
 	use 'wbthomason/packer.nvim'
 
@@ -29,4 +29,8 @@ return packer.startup(function()
     use 'folke/tokyonight.nvim'
     use 'nvim-treesitter/nvim-treesitter'
     use 'folke/trouble.nvim'
+    use {
+        'saecki/crates.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+    }
 end)
