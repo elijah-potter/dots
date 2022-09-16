@@ -18,7 +18,7 @@ opt.autoindent = true
 opt.wildmode = 'longest,list'
 opt.termguicolors = true
 opt.clipboard = 'unnamedplus'
-g.neovide_cursor_vfx_mode = "pixiedust"
+g.neovide_cursor_vfx_mode = ""
 g.neovide_cursor_animation_length = 0.05
 g.gui_font_face = "Hack Nerd Font Mono"
 
@@ -48,8 +48,8 @@ lualine.setup({
 })
 
 local luasnip = require 'luasnip'
-local luasnip_vscode_loader = require 'luasnip.loaders.from_vscode'
-luasnip_vscode_loader.lazy_load()
+local luasnip_snipmate_loader = require 'luasnip.loaders.from_snipmate'
+luasnip_snipmate_loader.lazy_load({ paths = {"./snippets"}})
 
 -- Auto-Completion
 local cmp = require 'cmp'
@@ -132,8 +132,9 @@ api.nvim_create_user_command("Quote", function(opts)
 end, {})
 
 -- Make everything look pretty
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_functions = true
-vim.g.tokyonight_lualine_bold = true
+local tokyonight = require 'tokyonight'
+tokyonight.setup({
+        style = "night"
+})
 
 vim.cmd('colorscheme tokyonight')

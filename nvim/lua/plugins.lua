@@ -17,12 +17,7 @@ packer.startup(function()
                 'saadparwaiz1/cmp_luasnip'
 		}
 	}
-	use {
-            'L3MON4D3/LuaSnip',
-            requires = {
-                'rafamadriz/friendly-snippets'
-            }
-    }
+	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
 	use 'stevearc/aerial.nvim'
