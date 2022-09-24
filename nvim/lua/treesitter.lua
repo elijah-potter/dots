@@ -13,8 +13,10 @@ treesitter_config.setup({
                 "vim",
                 "yaml",
                 "markdown",
+                "latex",
                 "html",
                 "css"
+
         },
         highlight = {
                 enable = true,

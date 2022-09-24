@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $browser firefox-developer-edition
+set $browser MOZ_ENABLE_WAYLAND=1 firefox-developer-edition
 
 # Media keys
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
@@ -15,7 +15,6 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh
 # Application Shortcuts
 bindsym $mod+Return exec $term
 bindsym $mod+e exec $browser
-bindsym $mod+m exec neovide --multigrid
 
 # Modify the size and position of windows with $mod + Mouse
 floating_modifier $mod normal

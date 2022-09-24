@@ -18,9 +18,6 @@ opt.autoindent = true
 opt.wildmode = 'longest,list'
 opt.termguicolors = true
 opt.clipboard = 'unnamedplus'
-g.neovide_cursor_vfx_mode = ""
-g.neovide_cursor_animation_length = 0.05
-g.gui_font_face = "Hack Nerd Font Mono"
 
 -- Load packages
 require 'plugins'
@@ -41,6 +38,14 @@ lualine.setup({
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' }
     },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch'},
+        lualine_c = {'filename'},
+        lualine_x = {'filetype'},
+        lualine_y = {},
+        lualine_z = {'location'}
+  },
     extensions = { 'nvim-tree', 'quickfix', 'aerial' },
     tabline = {
         lualine_a = {'buffers'},
@@ -94,7 +99,10 @@ map("n", "<C-n>", ":NvimTreeOpen<CR>")
 
 -- Git Integration
 local gitsigns = require 'gitsigns'
-gitsigns.setup()
+gitsigns.setup({
+        signcolumn = false,
+        numhl = true
+})
 
 -- Cargo.toml
 local crates = require 'crates'
