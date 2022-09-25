@@ -1,5 +1,4 @@
 local aerial = require 'aerial'
-local trouble = require 'trouble'
 local utils = require 'utils'
 local map = utils.map
 local autopairs = require 'nvim-autopairs'
@@ -19,11 +18,6 @@ aerial.setup({
         lsp = {
                 diagnostics_trigger_update = false,
         }
-})
-
-trouble.setup({
-        position = "left",
-        icons = true,
 })
 
 local options = {
@@ -47,7 +41,6 @@ local ltex = require 'languages/ltex'
 ltex.setup(options)
 
 map("n", "<C-X>", ":AerialOpen<CR>")
-map("n", "<C-T>", ":Trouble workspace_diagnostics<CR>")
 map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
 map("v", "<C-R>", ":lua vim.lsp.buf.range_code_action()<CR>")
 map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")

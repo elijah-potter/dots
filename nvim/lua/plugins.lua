@@ -23,9 +23,6 @@ packer.startup(function()
 	use 'stevearc/aerial.nvim'
     use 'folke/tokyonight.nvim'
     use 'nvim-treesitter/nvim-treesitter'
-    use 'folke/trouble.nvim'
-    use {
-        'saecki/crates.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-    }
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
 end)

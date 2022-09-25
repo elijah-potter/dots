@@ -79,11 +79,20 @@ cmp.setup({
 		{ name = 'luasnip' },
 		{ name = 'path' },
         { name = 'emoji'},
-        { name = 'crates'}
     }, {
         { name = 'buffer'}
    })
 })
+
+-- Telescope
+local telescope = require 'telescope'
+telescope.setup({
+
+})
+map("n", "ff", ":Telescope find_files<CR>")
+map("n", "fg", ":Telescope live_grep<CR>")
+map("n", "fb", ":Telescope buffers<CR>")
+map("n", "ft", ":Telescope treesitter<CR>")
 
 -- File Explorer
 local nvim_tree = require 'nvim-tree'
@@ -103,10 +112,6 @@ gitsigns.setup({
         signcolumn = false,
         numhl = true
 })
-
--- Cargo.toml
-local crates = require 'crates'
-crates.setup()
 
 -- Everyday mappings
 map("n", "<leader>h", "<C-W>h")
