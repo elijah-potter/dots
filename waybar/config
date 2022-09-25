@@ -1,8 +1,8 @@
 {
     "spacing": 10,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "battery"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -11,23 +11,12 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
-    "cpu": {
-        "format": "{usage}% CPU",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% RAM"
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureF}°F",
-    },
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{capacity}% {icon} ",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-icons": ["", "", "", "", ""]

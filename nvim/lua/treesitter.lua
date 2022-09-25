@@ -2,21 +2,20 @@ local treesitter_config = require 'nvim-treesitter.configs'
 
 treesitter_config.setup({
         ensure_installed = {
+                "json",
+                "toml",
+                "yaml",
+                "html",
+                "css",
                 "lua",
                 "rust",
                 "bash",
-                "json",
-                "toml",
                 "javascript",
                 "typescript",
                 "tsx",
                 "vim",
-                "yaml",
                 "markdown",
                 "latex",
-                "html",
-                "css"
-
         },
         highlight = {
                 enable = true,
