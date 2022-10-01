@@ -8,20 +8,17 @@ packer.startup(function()
 	use 'neovim/nvim-lspconfig'
     use 'windwp/nvim-autopairs'
     use 'lewis6991/gitsigns.nvim'
-	use {
-		'hrsh7th/nvim-cmp',
-		requires = {
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-emoji',
-                'saadparwaiz1/cmp_luasnip'
-		}
-	}
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-emoji'
+    use 'saadparwaiz1/cmp_luasnip'
 	use 'L3MON4D3/LuaSnip'
 	use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
 	use 'stevearc/aerial.nvim'
     use 'folke/tokyonight.nvim'
+    use 'folke/twilight.nvim' 
     use 'nvim-treesitter/nvim-treesitter'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'

@@ -5,7 +5,7 @@ local opt = vim.opt
 local api = vim.api
 
 -- QoL
-g.syntax_enable = false --< We have TreeSitter
+g.syntax_enable = false -- We have TreeSitter
 g.mapleader = ' '
 opt.mouse = 'a'
 opt.number = true
@@ -36,7 +36,8 @@ lualine.setup({
     options = {
         theme = 'auto',
         section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' }
+        component_separators = { left = '', right = '' },
+        globalstatus = true
     },
     sections = {
         lualine_a = {'mode'},
@@ -95,14 +96,20 @@ map("n", "fb", ":Telescope buffers<CR>")
 map("n", "ft", ":Telescope treesitter<CR>")
 
 -- File Explorer
+g.loaded = 1 -- Disable builtin netrw
+g.loaded_netrwPlugin = 1
+
 local nvim_tree = require 'nvim-tree'
 nvim_tree.setup({
 	view = {
 		adaptive_size = true,
 		side = "right",
-		mappings = {
-		}
-	}
+		mappings = {}
+	},
+    open_on_setup = false,
+    remove_keymaps = {
+            "f"
+    }
 })
 map("n", "<C-n>", ":NvimTreeOpen<CR>")
 
@@ -112,6 +119,11 @@ gitsigns.setup({
         signcolumn = false,
         numhl = true
 })
+
+-- Allow focusing on specific parts of code
+local twilight = require 'twilight'
+twilight.setup()
+map("n", "<leader>t", ":Twilight<CR>")
 
 -- Everyday mappings
 map("n", "<leader>h", "<C-W>h")
@@ -133,16 +145,6 @@ map("nv", "<A-h>", "hhh")
 map("nv", "<A-j>", "jjj")
 map("nv", "<A-k>", "kkk")
 map("nv", "<A-l>", "lll")
-
-function quote(str)
-        return "\"" .. str .. "\""
-end
-
-api.nvim_create_user_command("Quote", function(opts)
-        local line = api.nvim_get_current_line()
-        local quoted = quote(line)
-        api.nvim_set_current_line(quoted)
-end, {})
 
 -- Make everything look pretty
 local tokyonight = require 'tokyonight'
