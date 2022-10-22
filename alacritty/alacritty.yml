@@ -15,11 +15,10 @@ font:
     family: Hack Nerd Font Mono
     style: Bold Italic
 
-  size: 13
+  size: 15
 
 window:
   title: Terminal
-
 
 # From the Tokyo Night Theme
 colors:

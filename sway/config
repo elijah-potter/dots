@@ -98,8 +98,8 @@ default_border pixel
 
 output * bg ~/.config/planet.png fill
 
-gaps inner 4
-gaps outer 4
+gaps inner 0
+gaps outer 0
 
 client.focused #C0CAF5 #C0CAF5 #FFFFFF
 client.focused_inactive #414868 #414868 #FFFFFF

@@ -11,7 +11,7 @@ function M.setup(options)
                 on_attach = options.on_attach,
                 capabilities = options.capabilities,
                 settings = {
-                    	checkOnSave = {
+                            checkOnSave = {
                                 command = 'clippy',
                         },
                 },

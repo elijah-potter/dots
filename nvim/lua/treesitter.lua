@@ -1,4 +1,5 @@
 local treesitter_config = require 'nvim-treesitter.configs'
+local treesitter_context = require 'treesitter-context'
 
 treesitter_config.setup({
         ensure_installed = {
@@ -17,10 +18,14 @@ treesitter_config.setup({
                 "vim",
                 "markdown",
                 "latex",
-                "regex"
+                "regex",
+                "gitignore",
+                "comment"
         },
         highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
         }
 })
+
+treesitter_context.setup()
