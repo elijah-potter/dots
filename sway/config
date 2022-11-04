@@ -8,9 +8,10 @@ set $term alacritty
 set $browser MOZ_ENABLE_WAYLAND=1 firefox-developer-edition
 
 # Media keys
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
 
 # Application Shortcuts
 bindsym $mod+Return exec $term

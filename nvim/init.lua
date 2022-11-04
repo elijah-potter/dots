@@ -10,22 +10,22 @@ g.syntax_enable = false
 -- We have tree-sitter
 g.mapleader = ' '
 opt.mouse = 'a'
-opt.number = true
+opt.relativenumber = true
 opt.signcolumn = 'number'
 opt.cursorline = true
-opt.tabstop = 4
-opt.softtabstop = 4
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.wildmode = 'longest,list'
 opt.termguicolors = true
 opt.clipboard = 'unnamedplus'
+opt.foldmethod = 'indent'
+opt.foldenable = false
 
 -- Load packages
 require 'plugins'
-
--- Load cache
-require 'impatient'
 
 -- Load utility functions
 local utils = require 'utils'
@@ -36,28 +36,45 @@ require 'treesitter'
 
 --- Statusline
 local lualine = require 'lualine'
+
+local function time()
+  local timetable = os.date('*t')
+  return string.format("%02d:%02d:%02d", timetable.hour, timetable.min, timetable.sec)
+end
+
 lualine.setup({
-        options = {
-                theme = 'auto',
-                section_separators = {left = '', right = ''},
-                component_separators = {left = '', right = ''},
-                globalstatus = true
-        },
-        sections = {
-                lualine_a = {'mode'},
-                lualine_b = {'branch'},
-                lualine_c = {'filename'},
-                lualine_x = {'filetype'},
-                lualine_y = {},
-                lualine_z = {'location'}
-        },
-        extensions = {'nvim-tree', 'quickfix', 'aerial'},
-        tabline = {
-                lualine_a = {'buffers'},
-        }
+  options = {
+    theme = 'auto',
+    section_separators = {left = '', right = ''},
+    component_separators = {left = '', right = ''},
+    globalstatus = true
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {},
+    lualine_z = {'location'}
+  },
+  extensions = {'nvim-tree', 'quickfix', 'aerial'},
+  tabline = {
+    lualine_a = {'buffers'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {time},
+    lualine_z = {battery},
+  }
 })
 
+-- Snippets
 local luasnip = require 'luasnip'
+luasnip.config.setup({
+  enable_autosnippets = true,
+  update_events = 'TextChanged,TextChangedI'
+})
+
 local luasnip_snipmate_loader = require 'luasnip.loaders.from_snipmate'
 luasnip_snipmate_loader.lazy_load({paths = {"./snippets"}})
 
@@ -65,28 +82,37 @@ luasnip_snipmate_loader.lazy_load({paths = {"./snippets"}})
 local cmp = require 'cmp'
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 cmp.setup({
-        snippet = {
-                expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                end
-        },
-        mapping = {
-                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                ['<Tab>'] = cmp.mapping.select_next_item(),
-                ['<C-Space>'] = cmp.mapping.complete(),
-                ['<CR>'] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Insert,
-                        select = true,
-                })
-        },
-        sources = cmp.config.sources(
-                {
-                        {name = 'nvim_lsp'},
-                        {name = 'luasnip'},
-                        {name = 'path'},
-                },
-                {{name = 'buffer'}}
-        )
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end
+  },
+  mapping = {
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable() then
+        luasnip.jump(1)
+      elseif cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+  sources = cmp.config.sources(
+    {
+      {name = 'nvim_lsp'},
+      {name = 'luasnip'},
+      {name = 'path'},
+      {name = 'nvim_lsp_signature_help'},
+    },
+    {{name = 'buffer'}}
+  )
 })
 
 -- Telescope
@@ -105,9 +131,9 @@ g.loaded_netrwPlugin = 1
 
 local nvim_tree = require 'nvim-tree'
 nvim_tree.setup({
-        view = {adaptive_size = true, side = "right", mappings = {}},
-        open_on_setup = false,
-        remove_keymaps = {"f"}
+  view = {adaptive_size = true, side = "right", mappings = {}},
+  open_on_setup = false,
+  remove_keymaps = {"f"},
 })
 utils.map("n", "<C-n>", ":NvimTreeOpen<CR>")
 
@@ -142,14 +168,10 @@ utils.map("nv", "<A-k>", "kkk")
 utils.map("nv", "<A-l>", "lll")
 
 -- Make everything look pretty
-opt.list = true
-opt.listchars:append "space:⋅"
-opt.listchars:append "eol:↴"
-
 require("indent_blankline").setup {
-        show_current_context = true,
-        use_treesitter = true,
-        char_blankline = '┆',
+  show_current_context = true,
+  use_treesitter = true,
+  char_blankline = '┆',
 }
 
 local tokyonight = require 'tokyonight'

@@ -7,7 +7,6 @@ autopairs.setup({})
 
 aerial.setup({
         backends = { "lsp", "treesitter", "markdown" },
-        default_direction = "float",
         float = {
                 border = "rounded",
         },
@@ -20,7 +19,6 @@ aerial.setup({
 
 local options = {
         on_attach = function(client, bufnr)
-                aerial.on_attach(client, bufnr)
         end,
         capabilities = cmp_nvim_lsp.default_capabilities()
 }

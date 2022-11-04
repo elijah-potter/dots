@@ -20,7 +20,8 @@ treesitter_config.setup({
                 "latex",
                 "regex",
                 "gitignore",
-                "comment"
+                "comment",
+                "wgsl"
         },
         highlight = {
                 enable = true,
