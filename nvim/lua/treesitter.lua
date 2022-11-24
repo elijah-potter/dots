@@ -17,11 +17,14 @@ treesitter_config.setup({
                 "tsx",
                 "vim",
                 "markdown",
+                "markdown_inline",
                 "latex",
                 "regex",
                 "gitignore",
+                "diff",
                 "comment",
-                "wgsl"
+                "wgsl",
+                "dockerfile"
         },
         highlight = {
                 enable = true,

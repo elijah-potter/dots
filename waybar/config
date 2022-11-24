@@ -2,7 +2,7 @@
     "spacing": 10,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "battery"],
+    "modules-right": ["custom/pipewire", "network", "battery"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -27,20 +27,10 @@
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": ""
+    "custom/pipewire": {
+      "tooltip": false,
+      "signal": 8,
+      "restart-interval": 0,
+      "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -c '{print ($2 * 100)\"%\"}'"
     },
 }

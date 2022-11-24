@@ -23,5 +23,6 @@ packer.startup(function()
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  use "lukas-reineke/indent-blankline.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'nvim-telescope/telescope-ui-select.nvim'
 end)

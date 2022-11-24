@@ -10,6 +10,7 @@ g.syntax_enable = false
 -- We have tree-sitter
 g.mapleader = ' '
 opt.mouse = 'a'
+opt.number = true
 opt.relativenumber = true
 opt.signcolumn = 'number'
 opt.cursorline = true
@@ -23,6 +24,7 @@ opt.termguicolors = true
 opt.clipboard = 'unnamedplus'
 opt.foldmethod = 'indent'
 opt.foldenable = false
+opt.updatetime = 250
 
 -- Load packages
 require 'plugins'
@@ -63,8 +65,8 @@ lualine.setup({
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {time},
-    lualine_z = {battery},
+    lualine_y = {},
+    lualine_z = { time },
   }
 })
 
@@ -78,6 +80,11 @@ luasnip.config.setup({
 local luasnip_snipmate_loader = require 'luasnip.loaders.from_snipmate'
 luasnip_snipmate_loader.lazy_load({paths = {"./snippets"}})
 
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 -- Auto-Completion
 local cmp = require 'cmp'
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
@@ -90,10 +97,12 @@ cmp.setup({
   mapping = {
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.jumpable() then
-        luasnip.jump(1)
-      elseif cmp.visible() then
+      if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif has_words_before() then
+        cmp.complete()
       else
         fallback()
       end
@@ -106,18 +115,50 @@ cmp.setup({
   },
   sources = cmp.config.sources(
     {
-      {name = 'nvim_lsp'},
-      {name = 'luasnip'},
-      {name = 'path'},
-      {name = 'nvim_lsp_signature_help'},
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'nvim_lsp_signature_help' },
     },
-    {{name = 'buffer'}}
+    {
+      { name = 'buffer' },
+      { name = 'path' },
+    }
   )
 })
 
 -- Telescope
 local telescope = require 'telescope'
-telescope.setup()
+
+telescope.setup({
+  defaults = {
+    prompt_prefix = "   ",
+    borderchars = { "", "", "", "", "", "", "", "" },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--trim"
+    }
+  },
+  extensions = {
+    ["ui-select"] = {
+      sorting_strategy = "ascending",
+      results_title = false,
+      layout_strategy = "cursor",
+      layout_config = {
+        width = 60,
+        height = 9,
+      },
+      borderchars = { "", "", "", "", "", "", "", "" },
+    }
+  }
+})
+
+telescope.load_extension('ui-select')
 utils.map("n", "ff", ":Telescope find_files<CR>")
 utils.map("n", "fg", ":Telescope live_grep<CR>")
 utils.map("n", "ft", ":Telescope treesitter<CR>")
@@ -151,8 +192,10 @@ utils.map("n", "<leader>h", "<C-W>h")
 utils.map("n", "<leader>j", "<C-W>j")
 utils.map("n", "<leader>k", "<C-W>k")
 utils.map("n", "<leader>l", "<C-W>l")
+
 utils.map("n", "<leader>s", ":vsplit<CR>")
 utils.map("n", "<leader>S", ":split<CR>")
+
 utils.map("n", "<leader>r", "<C-W>R")
 utils.map("n", "<leader>c", "<C-W>c")
 utils.map("n", "<leader>d", ":bd<CR>")
