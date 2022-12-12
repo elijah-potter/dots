@@ -6,26 +6,12 @@
         text-shadow: none;
         box-shadow:    none;
         transition-duration: 0s;
-        color: #c0caf5;
+        color: #ffffff;
 }
 
 window {
         font-weight:    bold;
-        color:          #d5c4a1;
         background:     transparent;
-}
-
-#workspaces button {
-        padding: 0 5px;
-        background: #1a1b26;
-}
-
-#workspaces button.visible {
-        background: #414868;
-}
-
-#workspaces button.focused {
-        background: #414868;
 }
 
 #pulseaudio, #cpu, #network, #clock, #battery{
@@ -37,20 +23,4 @@ window {
 
 #network.disconnected {
         color: red;
-}
-
-#battery {
-        color: green;
-}
-
-#battery.critical {
-        color: red;
-}
-
-#battery.good {
-        color: green;
-}
-
-#battery.charging {
-        color: green;
 }

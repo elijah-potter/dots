@@ -1,12 +1,19 @@
-local lspconfig = require 'lspconfig'
+local typescript = require 'typescript'
 
 local M = {}
 
 function M.setup(options)
-  lspconfig.tsserver.setup({
-    on_attach = options.on_attach,
-    capabilities = options.capabilities,
-    settings = {}
+  typescript.setup({
+    debug = false,
+    disable_commands = false,
+    go_to_source_definition = {
+        fallback = true,
+    },
+    server = {
+      on_attach = options.on_attach,
+      capabilities = options.capabilities,
+      settings = {}
+    }
   })
 end
 

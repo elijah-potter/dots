@@ -1,4 +1,3 @@
-local fn = vim.fn;
 local api = vim.api;
 local strings = require "plenary.strings"
 
@@ -11,7 +10,7 @@ function M.map(modes, lhs, rhs, opts)
   end
 
   for i = 1, string.len(modes) do
-    api.nvim_set_keymap(string.sub(modes, i, i), lhs, rhs, options)
+    vim.keymap.set(string.sub(modes, i, i), lhs, rhs, options)
   end
 end
 

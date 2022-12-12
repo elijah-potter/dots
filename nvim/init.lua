@@ -25,12 +25,20 @@ opt.clipboard = 'unnamedplus'
 opt.foldmethod = 'indent'
 opt.foldenable = false
 opt.updatetime = 250
+opt.wrap = false
+
+-- Load compiled cache
+require 'impatient'
 
 -- Load packages
 require 'plugins'
 
 -- Load utility functions
 local utils = require 'utils'
+
+-- Notifications
+local notify = require 'notify'
+vim.notify = notify
 
 -- Load programming language support
 require 'lsp'
@@ -70,23 +78,16 @@ lualine.setup({
   }
 })
 
--- Snippets
-local luasnip = require 'luasnip'
-luasnip.config.setup({
-  enable_autosnippets = true,
-  update_events = 'TextChanged,TextChangedI'
-})
+require 'snippets'
 
-local luasnip_snipmate_loader = require 'luasnip.loaders.from_snipmate'
-luasnip_snipmate_loader.lazy_load({paths = {"./snippets"}})
-
+-- Auto-Completion
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- Auto-Completion
 local cmp = require 'cmp'
+local luasnip = require 'luasnip'
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 cmp.setup({
   snippet = {
@@ -99,8 +100,6 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
       elseif has_words_before() then
         cmp.complete()
       else
@@ -117,9 +116,6 @@ cmp.setup({
     {
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
-      { name = 'nvim_lsp_signature_help' },
-    },
-    {
       { name = 'buffer' },
       { name = 'path' },
     }
@@ -211,13 +207,5 @@ utils.map("nv", "<A-k>", "kkk")
 utils.map("nv", "<A-l>", "lll")
 
 -- Make everything look pretty
-require("indent_blankline").setup {
-  show_current_context = true,
-  use_treesitter = true,
-  char_blankline = '┆',
-}
-
-local tokyonight = require 'tokyonight'
-tokyonight.setup({style = "night"})
-
-vim.cmd('colorscheme tokyonight')
+g.enfocado_style = 'neon'
+vim.cmd('colorscheme enfocado')

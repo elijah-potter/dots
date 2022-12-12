@@ -19,12 +19,14 @@ treesitter_config.setup({
                 "markdown",
                 "markdown_inline",
                 "latex",
+                "bibtex",
                 "regex",
                 "gitignore",
                 "diff",
                 "comment",
                 "wgsl",
-                "dockerfile"
+                "dockerfile",
+                "python"
         },
         highlight = {
                 enable = true,

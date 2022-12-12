@@ -7,9 +7,15 @@ function M.setup(options)
     on_attach = options.on_attach,
     capabilities = options.capabilities,
     settings = {
-      checkOnSave = {
-        command = 'clippy',
-      },
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          allFeatures = true,
+          overrideCommand = {
+              'cargo', 'clippy', '--workspace', '--message-format=json',
+              '--all-targets', '--all-features'
+          }
+        },
+      }
     },
   })
 end

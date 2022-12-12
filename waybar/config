@@ -1,8 +1,8 @@
 {
     "spacing": 10,
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/pipewire", "network", "battery"],
+    "modules-left": ["clock"],
+    "modules-center": [],
+    "modules-right": ["network", "battery"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -26,11 +26,5 @@
         "format-ethernet": "",
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "custom/pipewire": {
-      "tooltip": false,
-      "signal": 8,
-      "restart-interval": 0,
-      "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -c '{print ($2 * 100)\"%\"}'"
-    },
+    }
 }

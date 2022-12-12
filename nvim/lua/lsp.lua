@@ -1,7 +1,10 @@
 local aerial = require 'aerial'
+local trouble = require 'trouble'
 local utils = require 'utils'
 local autopairs = require 'nvim-autopairs'
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+local lsp_signature = require "lsp_signature"
+local notify = require 'notify'
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -10,6 +13,23 @@ vim.diagnostic.config({
     scope = "cursor"
   }
 })
+
+vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local lvl = ({
+    'ERROR',
+    'WARN',
+    'INFO',
+    'DEBUG',
+  })[result.type]
+  notify({ result.message }, lvl, {
+    title = 'LSP | ' .. client.name,
+    timeout = 10000,
+    keep = function()
+      return lvl == 'ERROR' or lvl == 'WARN'
+    end,
+  })
+end
 
 autopairs.setup({})
 
@@ -21,6 +41,20 @@ aerial.setup({
     diagnostics_trigger_update = false,
   }
 })
+
+lsp_signature.setup({
+  bind = true,
+  handler_opts = {
+    border = "none"
+  },
+  hint_prefix = ""
+})
+
+trouble.setup{
+  position = "left",
+}
+
+utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
   utils.map("n", "<C-X>", ":AerialOpen<CR>")
@@ -53,3 +87,6 @@ ltex.setup(options)
 
 local lua = require 'languages/lua'
 lua.setup(options)
+
+local python = require 'languages/python'
+python.setup(options)
