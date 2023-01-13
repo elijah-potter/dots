@@ -15,7 +15,7 @@ font:
     family: IBM Plex Mono
     style: Bold Italic
 
-  size: 15
+  size: 14
 
 window:
   title: Terminal
@@ -24,7 +24,7 @@ window:
 # Colors (Selenized black)
 colors:
   primary:
-    background: '0x181818'
+    background: '0x121212'
     foreground: '0xb9b9b9'
   normal:
     black:   '0x252525'

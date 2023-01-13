@@ -14,6 +14,7 @@ function M.setup(options)
     pattern = {"*.tex"},
     command = "silent !(" .. command .. "biber ./%:r 2>&1 1>/dev/null; " .. command .. command .. ") & disown"
   })
+
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = {"*.md"},
     command = "silent !pandoc ./% -o ./%.pdf -V \"geometry:margin=2cm\" & disown"

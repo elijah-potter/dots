@@ -1,10 +1,12 @@
+local renamer = require 'renamer'
+local mason = require 'mason'
+local mason_lspconfig = require 'mason-lspconfig'
 local aerial = require 'aerial'
 local trouble = require 'trouble'
 local utils = require 'utils'
-local autopairs = require 'nvim-autopairs'
+local mini_pairs = require 'mini.pairs'
+local mini_indentscope = require "mini.indentscope"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-local lsp_signature = require "lsp_signature"
-local notify = require 'notify'
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -22,32 +24,39 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
     'INFO',
     'DEBUG',
   })[result.type]
-  notify({ result.message }, lvl, {
+  vim.notify({ result.message }, lvl, {
     title = 'LSP | ' .. client.name,
-    timeout = 10000,
+    timeout = 5000,
     keep = function()
       return lvl == 'ERROR' or lvl == 'WARN'
     end,
   })
 end
 
-autopairs.setup({})
+renamer.setup({})
+
+mason.setup({})
+mason_lspconfig.setup({
+  automatic_installation = true
+})
+
+mini_pairs.setup({})
+mini_indentscope.setup({
+  draw = {
+    animation = mini_indentscope.gen_animation.quartic({ duration = 5 })
+  }
+})
 
 aerial.setup({
   backends = { "lsp", "treesitter", "markdown" },
   close_on_select = true,
   nerd_font = "auto",
+  float = {
+    border = "none"
+  },
   lsp = {
     diagnostics_trigger_update = false,
   }
-})
-
-lsp_signature.setup({
-  bind = true,
-  handler_opts = {
-    border = "none"
-  },
-  hint_prefix = ""
 })
 
 trouble.setup{
@@ -57,36 +66,30 @@ trouble.setup{
 utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
-  utils.map("n", "<C-X>", ":AerialOpen<CR>")
+  utils.map("n", "<C-X>", ":AerialOpen float<CR>")
   utils.map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
   utils.map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
   utils.map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")
-  utils.map("n", "<C-G>", ":lua vim.lsp.buf.rename()<CR>")
+  utils.map("n", "<C-G>", function()
+    renamer.rename()
+  end)
   vim.api.nvim_create_autocmd("CursorHold,CursorHoldI", {
     command = ":lua vim.diagnostic.open_float(nil, nil)"
   });
 end
 
+local capabilities = cmp_nvim_lsp.default_capabilities();
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local options = {
   on_attach = on_attach,
-  capabilities = cmp_nvim_lsp.default_capabilities(),
+  capabilities = capabilities,
 }
 
 -- Setup Languages
-local rust = require 'languages/rust'
-rust.setup(options)
+local files = { "rust", "web", "ltex", "lua", "python", "bash" }
 
-local eslint = require 'languages/eslint'
-eslint.setup(options)
-
-local typescript = require 'languages/typescript'
-typescript.setup(options)
-
-local ltex = require 'languages/ltex'
-ltex.setup(options)
-
-local lua = require 'languages/lua'
-lua.setup(options)
-
-local python = require 'languages/python'
-python.setup(options)
+for _, file in ipairs(files) do
+  local lang = require ('languages/' .. file)
+  lang.setup(options)
+end

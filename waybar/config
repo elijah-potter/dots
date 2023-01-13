@@ -16,14 +16,13 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon} ",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{capacity}% ",
+        "format-charging": "{capacity}%",
+        "format-plugged": "{capacity}%",
     },
     "network": {
-        "format-wifi": "",
-        "format-ethernet": "",
+        "format-wifi": "",
+        "format-ethernet": "",
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     }

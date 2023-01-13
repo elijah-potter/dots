@@ -36,9 +36,25 @@ require 'plugins'
 -- Load utility functions
 local utils = require 'utils'
 
--- Notifications
-local notify = require 'notify'
-vim.notify = notify
+-- Noice
+local noice = require "noice"
+noice.setup({
+  lsp = {
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  views = {
+    cmdline_popup = {
+      border = {
+        style = "none",
+        padding = {1, 1}
+      }
+    }
+  }
+})
 
 -- Load programming language support
 require 'lsp'
@@ -160,6 +176,10 @@ utils.map("n", "fg", ":Telescope live_grep<CR>")
 utils.map("n", "ft", ":Telescope treesitter<CR>")
 utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
 
+-- Leaping
+local leap = require 'leap'
+leap.add_default_mappings()
+
 -- File Explorer
 g.loaded = 1
 
@@ -205,6 +225,12 @@ utils.map("nv", "<A-h>", "hhh")
 utils.map("nv", "<A-j>", "jjj")
 utils.map("nv", "<A-k>", "kkk")
 utils.map("nv", "<A-l>", "lll")
+
+-- Open new terminal in PWD
+utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
+
+-- Reload NeoVim
+utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
 -- Make everything look pretty
 g.enfocado_style = 'neon'

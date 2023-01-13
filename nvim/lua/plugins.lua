@@ -9,7 +9,10 @@ packer.startup(function()
   use 'kyazdani42/nvim-web-devicons'
   use 'neovim/nvim-lspconfig'
   use 'jose-elias-alvarez/typescript.nvim'
-  use 'windwp/nvim-autopairs'
+
+  use 'echasnovski/mini.pairs'
+  use 'echasnovski/mini.indentscope'
+
   use 'lewis6991/gitsigns.nvim'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -26,7 +29,17 @@ packer.startup(function()
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-ui-select.nvim'
   use 'folke/trouble.nvim'
-  use 'ray-x/lsp_signature.nvim'
-  use 'rcarriga/nvim-notify'
+
+  use 'folke/noice.nvim'
+  use 'MunifTanjim/nui.nvim'
+
   use 'wuelnerdotexe/vim-enfocado'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'filipdutescu/renamer.nvim'
+
+  use 'simrat39/rust-tools.nvim'
+
+  use 'epwalsh/obsidian.nvim'
+  use 'ggandor/leap.nvim'
 end)
