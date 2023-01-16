@@ -36,26 +36,6 @@ require 'plugins'
 -- Load utility functions
 local utils = require 'utils'
 
--- Noice
-local noice = require "noice"
-noice.setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  views = {
-    cmdline_popup = {
-      border = {
-        style = "none",
-        padding = {1, 1}
-      }
-    }
-  }
-})
-
 -- Load programming language support
 require 'lsp'
 require 'treesitter'

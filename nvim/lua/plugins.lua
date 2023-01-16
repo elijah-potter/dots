@@ -30,9 +30,6 @@ packer.startup(function()
   use 'nvim-telescope/telescope-ui-select.nvim'
   use 'folke/trouble.nvim'
 
-  use 'folke/noice.nvim'
-  use 'MunifTanjim/nui.nvim'
-
   use 'wuelnerdotexe/vim-enfocado'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
@@ -40,6 +37,5 @@ packer.startup(function()
 
   use 'simrat39/rust-tools.nvim'
 
-  use 'epwalsh/obsidian.nvim'
   use 'ggandor/leap.nvim'
 end)
