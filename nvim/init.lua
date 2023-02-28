@@ -180,27 +180,41 @@ gitsigns.setup({signcolumn = false, numhl = true})
 
 -- Allow focusing on specific parts of code
 local twilight = require 'twilight'
-twilight.setup()
-utils.map("n", "<leader>t", ":Twilight<CR>")
+twilight.setup({
+  context = 1
+})
 
--- Everyday mappings
+local zen_mode = require 'zen-mode'
+zen_mode.setup()
+
+utils.map("n", "<leader>t", function ()
+  twilight.toggle()
+  zen_mode.toggle()
+end)
+
+-- Focus windows
 utils.map("n", "<leader>h", "<C-W>h")
 utils.map("n", "<leader>j", "<C-W>j")
 utils.map("n", "<leader>k", "<C-W>k")
 utils.map("n", "<leader>l", "<C-W>l")
 
+-- Split along the vertical center
 utils.map("n", "<leader>s", ":vsplit<CR>")
+-- Split along the horizontal center
 utils.map("n", "<leader>S", ":split<CR>")
 
+-- Swap windows
 utils.map("n", "<leader>r", "<C-W>R")
+-- Close windows
 utils.map("n", "<leader>c", "<C-W>c")
+-- Delete buffer
 utils.map("n", "<leader>d", ":bd<CR>")
 
+-- Switch tabs
 utils.map("n", "<leader>u", ":bp<CR>")
 utils.map("n", "<leader>p", ":bn<CR>")
 
-utils.map("t", "\\tt", "<C-\\><C-n>")
-
+-- Faster text navigation
 utils.map("nv", "<A-h>", "hhh")
 utils.map("nv", "<A-j>", "jjj")
 utils.map("nv", "<A-k>", "kkk")
@@ -209,9 +223,12 @@ utils.map("nv", "<A-l>", "lll")
 -- Open new terminal in PWD
 utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
 
+-- Open current file in Zathura
+utils.map("n", "<leader>z", ":silent ! zathura %.pdf & disown<CR>")
+
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
 -- Make everything look pretty
-g.enfocado_style = 'neon'
+g.enfocado_style = 'nature'
 vim.cmd('colorscheme enfocado')

@@ -6,6 +6,7 @@ local trouble = require 'trouble'
 local utils = require 'utils'
 local mini_pairs = require 'mini.pairs'
 local mini_indentscope = require "mini.indentscope"
+local mini_surround = require "mini.surround"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
 vim.diagnostic.config({
@@ -46,11 +47,27 @@ mini_indentscope.setup({
     animation = mini_indentscope.gen_animation.quartic({ duration = 5 })
   }
 })
+mini_surround.setup({
+  mappings = {
+    add = "<leader>wa", 
+    delete = "<leader>wd", 
+    find = "<leader>wf", 
+    find_left = "<leader>wF", 
+    highlight = "<leader>wh", 
+    replace = "<leader>wr", 
+    update_n_lines = "<leader>wn", 
+    suffix_last = "l", 
+    suffix_next = "n", 
+  },
+})
 
 aerial.setup({
   backends = { "lsp", "treesitter", "markdown" },
   close_on_select = true,
   nerd_font = "auto",
+  layout = {
+    max_width = 100,
+  },
   float = {
     border = "none"
   },
@@ -87,7 +104,7 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash", "go" }
 
 for _, file in ipairs(files) do
   local lang = require ('languages/' .. file)

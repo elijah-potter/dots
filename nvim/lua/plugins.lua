@@ -12,6 +12,7 @@ packer.startup(function()
 
   use 'echasnovski/mini.pairs'
   use 'echasnovski/mini.indentscope'
+  use 'echasnovski/mini.surround'
 
   use 'lewis6991/gitsigns.nvim'
   use 'hrsh7th/nvim-cmp'
@@ -22,7 +23,10 @@ packer.startup(function()
   use 'kyazdani42/nvim-tree.lua'
   use 'nvim-lualine/lualine.nvim'
   use 'stevearc/aerial.nvim'
+
   use 'folke/twilight.nvim' 
+  use 'folke/zen-mode.nvim' 
+
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-lua/plenary.nvim'
@@ -38,4 +42,9 @@ packer.startup(function()
   use 'simrat39/rust-tools.nvim'
 
   use 'ggandor/leap.nvim'
+
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  })
 end)

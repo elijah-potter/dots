@@ -4,12 +4,12 @@ local utils = require 'utils'
 local M = {}
 
 function M.setup(options)
-  lspconfig.sumneko_lua.setup {
+  lspconfig.lua_ls.setup {
     server = {
-      on_attach = function(client, bufnr)
-        options.on_attach(client, bufnr)
-      end,
-      capabilities = options.capabilities
+        on_attach = function(client, bufnr)
+          options.on_attach(client, bufnr)
+        end,
+        capabilities = options.capabilities
     },
     settings = {
       Lua = {
@@ -28,6 +28,7 @@ function M.setup(options)
       },
     },
   }
+  
 end
 
 return M;

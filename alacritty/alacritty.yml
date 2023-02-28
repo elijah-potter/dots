@@ -45,3 +45,7 @@ colors:
     magenta: '0xff81ca'
     cyan:    '0x56d8c9'
     white:   '0xdedede'
+
+cursor:
+  style: beam
+  unfocused_hollow: false

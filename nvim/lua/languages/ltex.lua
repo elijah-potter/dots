@@ -6,6 +6,13 @@ function M.setup(options)
   lspconfig.ltex.setup({
     on_attach = options.on_attach,
     capabilities = options.capabilities,
+    settings = {
+      ltex = {
+        additionalRules = {
+          languageModel = "~/ngrams/"
+        }
+      }
+    }
   });
 
   local command = "pdflatex -output-directory=./%:h ./%:r 2>&1 1>/dev/null; "
