@@ -1,7 +1,7 @@
 {
     "spacing": 10,
     "layer": "top",
-    "modules-left": ["clock"],
+    "modules-left": ["clock", "custom/weather"],
     "modules-center": [],
     "modules-right": ["tray", "network", "battery"],
     "sway/mode": {
@@ -26,5 +26,10 @@
         "format-ethernet": "",
         "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "custom/weather": {
+        "format": {},
+        "exec": "$HOME/.config/waybar/get_forecast.sh",
+        "interval": "1800"
     }
 }

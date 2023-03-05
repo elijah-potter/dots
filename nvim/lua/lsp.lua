@@ -1,13 +1,32 @@
-local renamer = require 'renamer'
 local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
-local aerial = require 'aerial'
-local trouble = require 'trouble'
 local utils = require 'utils'
 local mini_pairs = require 'mini.pairs'
 local mini_indentscope = require "mini.indentscope"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local signature = require 'lsp_signature'
+local aerial = require "aerial"
+local trouble = require "trouble"
+
+trouble.setup({
+  position = "left",
+})
+
+aerial.setup({
+  backends = { "lsp", "treesitter", "markdown" },
+  close_on_select = true,
+  nerd_font = "auto",
+  layout = {
+    max_width = 100,
+  },
+  float = {
+    border = "none"
+  },
+  lsp = {
+    diagnostics_trigger_update = false,
+  }
+})
+
 
 signature.setup({
   bind = true,
@@ -41,7 +60,6 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
   })
 end
 
-renamer.setup({})
 
 mason.setup({})
 mason_lspconfig.setup({
@@ -55,33 +73,18 @@ mini_indentscope.setup({
   }
 })
 
-aerial.setup({
-  backends = { "lsp", "treesitter", "markdown" },
-  close_on_select = true,
-  nerd_font = "auto",
-  layout = {
-    max_width = 100,
-  },
-  float = {
-    border = "none"
-  },
-  lsp = {
-    diagnostics_trigger_update = false,
-  }
-})
-
-trouble.setup{
-  position = "left",
-}
-
 utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
   utils.map("n", "<C-X>", ":AerialOpen float<CR>")
+
   utils.map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
   utils.map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
   utils.map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")
   utils.map("n", "<C-G>", function()
+    local renamer = require 'renamer'
+
+    renamer.setup({})
     renamer.rename()
   end)
   vim.api.nvim_create_autocmd("CursorHold,CursorHoldI", {

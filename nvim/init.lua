@@ -115,6 +115,12 @@ cmp.setup({
   )
 })
 
+-- Harpoon
+utils.map("n", "<leader>a", function ()
+  local harpoon_mark = require 'harpoon.mark'
+  harpoon_mark.add_file()
+end)
+
 -- Telescope
 local telescope = require 'telescope'
 
@@ -148,10 +154,13 @@ telescope.setup({
 })
 
 telescope.load_extension('ui-select')
+telescope.load_extension('harpoon')
+
 utils.map("n", "ff", ":Telescope find_files<CR>")
 utils.map("n", "fg", ":Telescope live_grep<CR>")
-utils.map("n", "ft", ":Telescope treesitter<CR>")
+utils.map("n", "fy", ":Telescope treesitter<CR>")
 utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
+utils.map("n", "fh", ":Telescope harpoon marks<CR>")
 
 -- Leaping
 local leap = require 'leap'
