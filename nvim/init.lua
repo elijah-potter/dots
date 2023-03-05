@@ -27,9 +27,6 @@ opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = false
 
--- Load compiled cache
-require 'impatient'
-
 -- Load packages
 require 'plugins'
 

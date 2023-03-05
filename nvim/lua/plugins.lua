@@ -1,51 +1,49 @@
-local packer = require 'packer'
-
-packer.startup(function()
-  -- Let packer manage itself
-  use 'wbthomason/packer.nvim'
-
-  use 'lewis6991/impatient.nvim'
-  
-  use 'kyazdani42/nvim-web-devicons'
-  use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/typescript.nvim'
-
-  use 'echasnovski/mini.pairs'
-  use 'echasnovski/mini.indentscope'
-
-  use 'lewis6991/gitsigns.nvim'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
-  use 'saadparwaiz1/cmp_luasnip'
-  use { "L3MON4D3/LuaSnip", run = "make install_jsregexp" }
-  use 'kyazdani42/nvim-tree.lua'
-  use 'nvim-lualine/lualine.nvim'
-  use 'stevearc/aerial.nvim'
-
-  use 'folke/twilight.nvim' 
-  use 'folke/zen-mode.nvim' 
-
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-ui-select.nvim'
-  use 'folke/trouble.nvim'
-
-  use 'wuelnerdotexe/vim-enfocado'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'filipdutescu/renamer.nvim'
-
-  use 'simrat39/rust-tools.nvim'
-
-  use 'ggandor/leap.nvim'
-
-  use 'ray-x/lsp_signature.nvim'
-
-  use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
-end)
+end
+vim.opt.rtp:prepend(lazypath)
+
+local lazy = require "lazy"
+
+lazy.setup(
+  {
+    'kyazdani42/nvim-web-devicons',
+    'neovim/nvim-lspconfig',
+    'jose-elias-alvarez/typescript.nvim',
+    'echasnovski/mini.pairs',
+    'echasnovski/mini.indentscope',
+    'lewis6991/gitsigns.nvim',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
+    'kyazdani42/nvim-tree.lua',
+    'nvim-lualine/lualine.nvim',
+    'stevearc/aerial.nvim',
+    'folke/twilight.nvim',
+    'folke/zen-mode.nvim',
+    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter-context',
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
+    'folke/trouble.nvim',
+    'wuelnerdotexe/vim-enfocado',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'filipdutescu/renamer.nvim',
+    'simrat39/rust-tools.nvim',
+    'ggandor/leap.nvim',
+    'ray-x/lsp_signature.nvim'
+  }
+)
