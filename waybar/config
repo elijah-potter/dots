@@ -1,8 +1,9 @@
 {
     "spacing": 10,
+    "layer": "top",
     "modules-left": ["clock"],
     "modules-center": [],
-    "modules-right": ["network", "battery"],
+    "modules-right": ["tray", "network", "battery"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },

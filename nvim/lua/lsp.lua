@@ -6,8 +6,15 @@ local trouble = require 'trouble'
 local utils = require 'utils'
 local mini_pairs = require 'mini.pairs'
 local mini_indentscope = require "mini.indentscope"
-local mini_surround = require "mini.surround"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+local signature = require 'lsp_signature'
+
+signature.setup({
+  bind = true,
+  handler_opts = {
+    border = "none"
+  }
+})
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -46,19 +53,6 @@ mini_indentscope.setup({
   draw = {
     animation = mini_indentscope.gen_animation.quartic({ duration = 5 })
   }
-})
-mini_surround.setup({
-  mappings = {
-    add = "<leader>wa", 
-    delete = "<leader>wd", 
-    find = "<leader>wf", 
-    find_left = "<leader>wF", 
-    highlight = "<leader>wh", 
-    replace = "<leader>wr", 
-    update_n_lines = "<leader>wn", 
-    suffix_last = "l", 
-    suffix_next = "n", 
-  },
 })
 
 aerial.setup({

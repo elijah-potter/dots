@@ -60,7 +60,7 @@ lualine.setup({
     lualine_b = {'branch'},
     lualine_c = {'filename'},
     lualine_x = {'filetype'},
-    lualine_y = {},
+    lualine_y = { },
     lualine_z = {'location'}
   },
   extensions = {'nvim-tree', 'quickfix', 'aerial'},
@@ -222,9 +222,6 @@ utils.map("nv", "<A-l>", "lll")
 
 -- Open new terminal in PWD
 utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
-
--- Open current file in Zathura
-utils.map("n", "<leader>z", ":silent ! zathura %.pdf & disown<CR>")
 
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")

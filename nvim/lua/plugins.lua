@@ -12,7 +12,6 @@ packer.startup(function()
 
   use 'echasnovski/mini.pairs'
   use 'echasnovski/mini.indentscope'
-  use 'echasnovski/mini.surround'
 
   use 'lewis6991/gitsigns.nvim'
   use 'hrsh7th/nvim-cmp'
@@ -42,6 +41,8 @@ packer.startup(function()
   use 'simrat39/rust-tools.nvim'
 
   use 'ggandor/leap.nvim'
+
+  use 'ray-x/lsp_signature.nvim'
 
   use({
       "iamcco/markdown-preview.nvim",
