@@ -179,6 +179,7 @@ nvim_tree.setup({
   remove_keymaps = {"f"},
 })
 utils.map("n", "<C-n>", ":NvimTreeOpen<CR>")
+utils.map("n", "<leader>n", ":NvimTreeFindFile<CR>")
 
 -- Git Integration
 local gitsigns = require 'gitsigns'
@@ -215,6 +216,8 @@ utils.map("n", "<leader>r", "<C-W>R")
 utils.map("n", "<leader>c", "<C-W>c")
 -- Delete buffer
 utils.map("n", "<leader>d", ":bd<CR>")
+-- Delete all buffers
+utils.map("n", "<leader><leader>q", ":bufdo bd<CR>")
 
 -- Switch tabs
 utils.map("n", "<leader>u", ":bp<CR>")

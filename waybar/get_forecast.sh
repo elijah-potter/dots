@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 FORECAST_URL=$(curl 'https://api.weather.gov/points/40,-105' | jq -r '.properties.forecast')
 
 CURRENT_WEATHER=$(curl "$FORECAST_URL" | jq '.properties.periods[0]')

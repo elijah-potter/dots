@@ -40,9 +40,10 @@ lazy.setup({
   'wuelnerdotexe/vim-enfocado',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  'filipdutescu/renamer.nvim',
+  'smjonas/inc-rename.nvim',
   'simrat39/rust-tools.nvim',
   'ggandor/leap.nvim',
   'ray-x/lsp_signature.nvim',
-  'ThePrimeagen/harpoon'
+  'ThePrimeagen/harpoon',
+  'iamcco/markdown-preview.nvim'
 })

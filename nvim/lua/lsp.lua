@@ -81,12 +81,14 @@ local on_attach = function(client, bufnr)
   utils.map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
   utils.map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
   utils.map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")
-  utils.map("n", "<C-G>", function()
-    local renamer = require 'renamer'
 
-    renamer.setup({})
-    renamer.rename()
-  end)
+  vim.keymap.set("n", "<C-G>", function()
+    local inc_rename = require 'inc_rename'
+
+    inc_rename.setup({})
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, { expr = true })
+
   vim.api.nvim_create_autocmd("CursorHold,CursorHoldI", {
     command = ":lua vim.diagnostic.open_float(nil, nil)"
   });
