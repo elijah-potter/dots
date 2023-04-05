@@ -27,7 +27,8 @@ treesitter_config.setup({
     "wgsl",
     "dockerfile",
     "python",
-    "go"
+    "go",
+    "svelte"
   },
   highlight = {
     enable = true,

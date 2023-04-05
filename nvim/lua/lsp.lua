@@ -1,32 +1,14 @@
 local mason = require 'mason'
 local mason_lspconfig = require 'mason-lspconfig'
 local utils = require 'utils'
-local mini_pairs = require 'mini.pairs'
 local mini_indentscope = require "mini.indentscope"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local signature = require 'lsp_signature'
-local aerial = require "aerial"
-local trouble = require "trouble"
+local trouble = require 'trouble'
 
 trouble.setup({
   position = "left",
 })
-
-aerial.setup({
-  backends = { "lsp", "treesitter", "markdown" },
-  close_on_select = true,
-  nerd_font = "auto",
-  layout = {
-    max_width = 100,
-  },
-  float = {
-    border = "none"
-  },
-  lsp = {
-    diagnostics_trigger_update = false,
-  }
-})
-
 
 signature.setup({
   bind = true,
@@ -36,7 +18,7 @@ signature.setup({
 })
 
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   float = {
     focus = false,
     scope = "cursor"
@@ -60,13 +42,11 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
   })
 end
 
-
 mason.setup({})
 mason_lspconfig.setup({
   automatic_installation = true
 })
 
-mini_pairs.setup({})
 mini_indentscope.setup({
   draw = {
     animation = mini_indentscope.gen_animation.quartic({ duration = 5 })
@@ -76,11 +56,27 @@ mini_indentscope.setup({
 utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
-  utils.map("n", "<C-X>", ":AerialOpen float<CR>")
+  local navbuddy = require 'nvim-navbuddy'
 
-  utils.map("n", "<C-F>", ":lua vim.lsp.buf.code_action()<CR>")
-  utils.map("n", "<C-S>", ":lua vim.lsp.buf.hover()<CR>")
-  utils.map("n", "<C-D>", ":lua vim.lsp.buf.definition()<CR>")
+  navbuddy.setup({})
+  navbuddy.attach(client, bufnr)
+
+  utils.map("n", "<C-X>", function ()
+    navbuddy.open()
+  end)
+
+  utils.map("n", "<C-F>", function ()
+    vim.lsp.buf.code_action()
+  end)
+  utils.map("n", "<C-S>", function ()
+    vim.lsp.buf.hover()
+  end)
+  utils.map("n", "<C-D>", function ()
+    vim.lsp.buf.definition()
+  end)
+  utils.map("n", "<C-Q>", function ()
+    vim.diagnostic.open_float(nil, nil)
+  end)
 
   vim.keymap.set("n", "<C-G>", function()
     local inc_rename = require 'inc_rename'
@@ -88,10 +84,6 @@ local on_attach = function(client, bufnr)
     inc_rename.setup({})
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, { expr = true })
-
-  vim.api.nvim_create_autocmd("CursorHold,CursorHoldI", {
-    command = ":lua vim.diagnostic.open_float(nil, nil)"
-  });
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities();

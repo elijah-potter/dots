@@ -2,8 +2,8 @@
   "spacing": 20,
   "layer": "top",
   "modules-left": ["clock", "custom/weather"],
-  "modules-center": [],
-  "modules-right": ["tray", "network", "battery"],
+  "modules-center": ["custom/mpris"],
+  "modules-right": ["tray", "network", "battery", "pulseaudio"],
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
@@ -30,7 +30,16 @@
   "custom/weather": {
     "format": {},
     "exec": "$HOME/.config/waybar/get_forecast.sh",
-    "interval": "60"
+    "interval": 60
+  },
+  "pulseaudio": {
+    "format": "{volume}%  🔊",
+    "format-muted": "{volume}%  🔇"
+  },
+  "custom/mpris":{
+    "format": {},
+    "exec": "$HOME/.config/waybar/get_mpris.sh",
+    "interval": 0.2
   },
   "mpris": {
   	"format": "{status_icon}  {artist} - {title}",

@@ -42,7 +42,7 @@ local lualine = require 'lualine'
 
 local function time()
   local timetable = os.date('*t')
-  return string.format("%02d:%02d:%02d", timetable.hour, timetable.min, timetable.sec)
+  return string.format("%01d:%02d:%02d", timetable.hour, timetable.min, timetable.sec)
 end
 
 lualine.setup({
@@ -55,14 +55,14 @@ lualine.setup({
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_c = {{ 'filename', path = 4 }},
     lualine_x = {'filetype'},
     lualine_y = { },
     lualine_z = {'location'}
   },
   extensions = {'nvim-tree', 'quickfix', 'aerial'},
   tabline = {
-    lualine_a = {'buffers'},
+    lualine_a = {{ 'buffers', show_filename_only = false }},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
@@ -115,10 +115,28 @@ cmp.setup({
   )
 })
 
+-- Markdown and LaTeX previewing
+local knap = require 'knap'
+
+vim.g.knap_settings = {
+  textopdf = "pdflatex -jobname \"$(basename -s .pdf %outputfile%)\" -halt-on-error",
+  textopdfbufferasstdin = true,
+  mdoutputext = "pdf",
+  mdtopdf = "pandoc %docroot% -o %outputfile% -V 'geometry:margin=2cm'"
+}
+
+utils.map("nvi", "<F5>", function ()
+  knap.toggle_autopreviewing()
+end)
+
 -- Harpoon
 utils.map("n", "<leader>a", function ()
   local harpoon_mark = require 'harpoon.mark'
   harpoon_mark.add_file()
+end)
+utils.map("n", "<leader><leader>c", function ()
+  local harpoon_mark = require 'harpoon.mark' 
+  harpoon_mark.clear_all()
 end)
 
 -- Telescope
@@ -194,7 +212,7 @@ twilight.setup({
 local zen_mode = require 'zen-mode'
 zen_mode.setup()
 
-utils.map("n", "<leader>t", function ()
+utils.map("n", "<leader>f", function ()
   twilight.toggle()
   zen_mode.toggle()
 end)

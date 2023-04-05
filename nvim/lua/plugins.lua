@@ -18,7 +18,6 @@ lazy.setup({
   'kyazdani42/nvim-web-devicons',
   'neovim/nvim-lspconfig',
   'jose-elias-alvarez/typescript.nvim',
-  'echasnovski/mini.pairs',
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
   'hrsh7th/nvim-cmp',
@@ -28,7 +27,6 @@ lazy.setup({
   { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
   'kyazdani42/nvim-tree.lua',
   'nvim-lualine/lualine.nvim',
-  'stevearc/aerial.nvim',
   'folke/twilight.nvim',
   'folke/zen-mode.nvim',
   'nvim-treesitter/nvim-treesitter',
@@ -45,5 +43,8 @@ lazy.setup({
   'ggandor/leap.nvim',
   'ray-x/lsp_signature.nvim',
   'ThePrimeagen/harpoon',
-  'iamcco/markdown-preview.nvim'
+  'frabjous/knap',
+  'SmiteshP/nvim-navbuddy',
+  'SmiteshP/nvim-navic',
+  'MunifTanjim/nui.nvim',
 })

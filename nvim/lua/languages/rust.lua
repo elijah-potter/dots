@@ -20,6 +20,9 @@ function M.setup(options)
                 '--all-targets', '--all-features'
             }
           },
+          procMacro = {
+            enable = true
+          }
         }
       },
     }
