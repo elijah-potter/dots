@@ -135,7 +135,7 @@ utils.map("n", "<leader>a", function ()
   harpoon_mark.add_file()
 end)
 utils.map("n", "<leader><leader>c", function ()
-  local harpoon_mark = require 'harpoon.mark' 
+  local harpoon_mark = require 'harpoon.mark'
   harpoon_mark.clear_all()
 end)
 
@@ -179,6 +179,9 @@ utils.map("n", "fg", ":Telescope live_grep<CR>")
 utils.map("n", "fy", ":Telescope treesitter<CR>")
 utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
 utils.map("n", "fh", ":Telescope harpoon marks<CR>")
+utils.map("n", "ft", function ()
+  require('telescope').extensions.dict.synonyms()
+end)
 
 -- Leaping
 local leap = require 'leap'
@@ -192,9 +195,7 @@ g.loaded_netrwPlugin = 1
 
 local nvim_tree = require 'nvim-tree'
 nvim_tree.setup({
-  view = {adaptive_size = true, side = "right", mappings = {}},
-  open_on_setup = false,
-  remove_keymaps = {"f"},
+  view = { adaptive_size = true, side = "right", mappings = {} },
 })
 utils.map("n", "<C-n>", ":NvimTreeOpen<CR>")
 utils.map("n", "<leader>n", ":NvimTreeFindFile<CR>")
@@ -210,7 +211,11 @@ twilight.setup({
 })
 
 local zen_mode = require 'zen-mode'
-zen_mode.setup()
+zen_mode.setup({
+  window = {
+    width = 200
+  }
+})
 
 utils.map("n", "<leader>f", function ()
   twilight.toggle()
@@ -256,3 +261,4 @@ utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 -- Make everything look pretty
 g.enfocado_style = 'nature'
 vim.cmd('colorscheme enfocado')
+vim.cmd('set background=light')

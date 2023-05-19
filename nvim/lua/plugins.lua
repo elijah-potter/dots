@@ -47,4 +47,6 @@ lazy.setup({
   'SmiteshP/nvim-navbuddy',
   'SmiteshP/nvim-navic',
   'MunifTanjim/nui.nvim',
+  'rudism/telescope-dict.nvim',
+  'HiPhish/nvim-ts-rainbow2'
 })

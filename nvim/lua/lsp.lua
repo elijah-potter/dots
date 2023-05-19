@@ -33,6 +33,7 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
     'INFO',
     'DEBUG',
   })[result.type]
+
   vim.notify({ result.message }, lvl, {
     title = 'LSP | ' .. client.name,
     timeout = 5000,
@@ -53,14 +54,16 @@ mini_indentscope.setup({
   }
 })
 
+local navbuddy = require 'nvim-navbuddy'
+navbuddy.setup({
+  lsp = {
+    auto_attach = true 
+  }
+})
+
 utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
-  local navbuddy = require 'nvim-navbuddy'
-
-  navbuddy.setup({})
-  navbuddy.attach(client, bufnr)
-
   utils.map("n", "<C-X>", function ()
     navbuddy.open()
   end)
@@ -84,6 +87,19 @@ local on_attach = function(client, bufnr)
     inc_rename.setup({})
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, { expr = true })
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*" },
+    callback = function()
+      pcall(function ()
+        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact" }
+
+        if not utils.contains(blacklist, vim.bo.filetype) then
+          vim.lsp.buf.format({ timeout_ms = 200 })
+        end
+      end)
+    end,
+  })
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities();
@@ -95,7 +111,7 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash", "go" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro" }
 
 for _, file in ipairs(files) do
   local lang = require ('languages/' .. file)

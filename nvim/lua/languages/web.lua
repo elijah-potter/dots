@@ -8,21 +8,11 @@ function M.setup(options)
     on_attach = options.on_attach,
     capabilities = options.capabilities,
     settings = {
-      codeAction = {
-        showDocumentation = {
-          enable = true
-        }
-      },
       packageManager = "yarn",
     }
   })
 
   typescript.setup({
-    debug = false,
-    disable_commands = false,
-    go_to_source_definition = {
-        fallback = true,
-    },
     server = {
       on_attach = options.on_attach,
       capabilities = options.capabilities,
