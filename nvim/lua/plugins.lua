@@ -42,7 +42,6 @@ lazy.setup({
   'simrat39/rust-tools.nvim',
   'ggandor/leap.nvim',
   'ray-x/lsp_signature.nvim',
-  'ThePrimeagen/harpoon',
   'frabjous/knap',
   'SmiteshP/nvim-navbuddy',
   'SmiteshP/nvim-navic',

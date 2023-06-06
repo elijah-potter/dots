@@ -129,16 +129,6 @@ utils.map("nvi", "<F5>", function ()
   knap.toggle_autopreviewing()
 end)
 
--- Harpoon
-utils.map("n", "<leader>a", function ()
-  local harpoon_mark = require 'harpoon.mark'
-  harpoon_mark.add_file()
-end)
-utils.map("n", "<leader><leader>c", function ()
-  local harpoon_mark = require 'harpoon.mark'
-  harpoon_mark.clear_all()
-end)
-
 -- Telescope
 local telescope = require 'telescope'
 
@@ -172,7 +162,6 @@ telescope.setup({
 })
 
 telescope.load_extension('ui-select')
-telescope.load_extension('harpoon')
 
 utils.map("n", "ff", ":Telescope find_files<CR>")
 utils.map("n", "fg", ":Telescope live_grep<CR>")

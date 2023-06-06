@@ -15,6 +15,7 @@ treesitter_config.setup({
     "bash",
     "javascript",
     "typescript",
+    "svelte",
     "tsx",
     "vim",
     "markdown",
