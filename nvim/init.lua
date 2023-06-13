@@ -250,4 +250,10 @@ utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 -- Make everything look pretty
 g.enfocado_style = 'nature'
 vim.cmd('colorscheme enfocado')
-vim.cmd('set background=light')
+
+if os.getenv("GTK_THEME"):find "dark" then
+  vim.cmd('set background=dark')
+else
+  vim.cmd('set background=light')
+end
+
