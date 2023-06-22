@@ -80,6 +80,16 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.TogglePaneZoomState,
   },
+  {
+    key = '+',
+    mods = 'CTRL',
+    action = wezterm.action.IncreaseFontSize,
+  },
+  {
+    key = '_',
+    mods = 'CTRL',
+    action = wezterm.action.DecreaseFontSize,
+  },
 }
 
 return config
