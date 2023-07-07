@@ -92,7 +92,7 @@ local on_attach = function(client, bufnr)
     pattern = { "*" },
     callback = function()
       pcall(function ()
-        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact" }
+        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte" }
 
         if not utils.contains(blacklist, vim.bo.filetype) then
           vim.lsp.buf.format({ timeout_ms = 200 })
@@ -111,7 +111,7 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro", "go" }
 
 for _, file in ipairs(files) do
   local lang = require ('languages/' .. file)

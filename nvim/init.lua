@@ -270,6 +270,8 @@ utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
 -- Make everything look pretty
+local dressing = require 'dressing'
+dressing.setup();
 g.enfocado_style = 'nature'
 vim.cmd('colorscheme enfocado')
 

@@ -57,5 +57,12 @@ lazy.setup({
           require("lazy").load({ plugins = "firenvim", wait = true })
           vim.fn["firenvim#install"](0)
       end
-  }
+  },
+  {
+    "chrisgrieser/nvim-early-retirement",
+	  config = true,
+	  event = "VeryLazy",
+  },
+  'stevearc/dressing.nvim',
+  'wakatime/vim-wakatime'
 })
