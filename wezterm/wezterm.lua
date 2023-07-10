@@ -2,8 +2,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-local dark_theme = "Violet Dark"
-local light_theme = "Violet Light"
+local dark_theme = "carbonfox"
+local light_theme = "dayfox"
 
 -- Set the color scheme based on the system theme
 if os.getenv("GTK_THEME"):find "dark" then

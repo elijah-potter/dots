@@ -189,7 +189,6 @@ utils.map("n", "ff", ":Telescope find_files<CR>")
 utils.map("n", "fg", ":Telescope live_grep<CR>")
 utils.map("n", "fy", ":Telescope treesitter<CR>")
 utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
-utils.map("n", "fh", ":Telescope harpoon marks<CR>")
 utils.map("n", "ft", function ()
   require('telescope').extensions.dict.synonyms()
 end)
@@ -269,15 +268,36 @@ utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
+-- Make tagalong work
+vim.g.tagalong_filetypes = {'eco', 'eelixir', 'ejs', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'jsx', 'php', 'typescriptreact', 'xml', "svelte"}
+
 -- Make everything look pretty
-local dressing = require 'dressing'
-dressing.setup();
-g.enfocado_style = 'nature'
-vim.cmd('colorscheme enfocado')
+local noice = require 'noice'
+noice.setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+})
+
+local nightfox = require 'nightfox'
+nightfox.setup({})
 
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd('set background=dark')
+  vim.cmd('colorscheme carbonfox')
 else
-  vim.cmd('set background=light')
+  vim.cmd('colorscheme dayfox')
 end
 

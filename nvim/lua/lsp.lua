@@ -3,18 +3,10 @@ local mason_lspconfig = require 'mason-lspconfig'
 local utils = require 'utils'
 local mini_indentscope = require "mini.indentscope"
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
-local signature = require 'lsp_signature'
 local trouble = require 'trouble'
 
 trouble.setup({
   position = "left",
-})
-
-signature.setup({
-  bind = true,
-  handler_opts = {
-    border = "none"
-  }
 })
 
 vim.diagnostic.config({
@@ -57,27 +49,27 @@ mini_indentscope.setup({
 local navbuddy = require 'nvim-navbuddy'
 navbuddy.setup({
   lsp = {
-    auto_attach = true 
+    auto_attach = true
   }
 })
 
 utils.map("n", "<C-T>", ":Trouble<CR>")
 
 local on_attach = function(client, bufnr)
-  utils.map("n", "<C-X>", function ()
+  utils.map("n", "<C-X>", function()
     navbuddy.open()
   end)
 
-  utils.map("n", "<C-F>", function ()
+  utils.map("n", "<C-F>", function()
     vim.lsp.buf.code_action()
   end)
-  utils.map("n", "<C-S>", function ()
+  utils.map("n", "<C-S>", function()
     vim.lsp.buf.hover()
   end)
-  utils.map("n", "<C-D>", function ()
+  utils.map("n", "<C-D>", function()
     vim.lsp.buf.definition()
   end)
-  utils.map("n", "<C-Q>", function ()
+  utils.map("n", "<C-Q>", function()
     vim.diagnostic.open_float(nil, nil)
   end)
 
@@ -91,8 +83,8 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },
     callback = function()
-      pcall(function ()
-        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte" }
+      pcall(function()
+        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css" }
 
         if not utils.contains(blacklist, vim.bo.filetype) then
           vim.lsp.buf.format({ timeout_ms = 200 })
@@ -111,9 +103,9 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro", "go" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro", "go", "marksman" }
 
 for _, file in ipairs(files) do
-  local lang = require ('languages/' .. file)
+  local lang = require('languages/' .. file)
   lang.setup(options)
 end

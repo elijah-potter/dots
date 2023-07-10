@@ -35,13 +35,11 @@ lazy.setup({
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-ui-select.nvim',
   'folke/trouble.nvim',
-  'wuelnerdotexe/vim-enfocado',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'smjonas/inc-rename.nvim',
   'simrat39/rust-tools.nvim',
   'ggandor/leap.nvim',
-  'ray-x/lsp_signature.nvim',
   'frabjous/knap',
   'SmiteshP/nvim-navbuddy',
   'SmiteshP/nvim-navic',
@@ -63,6 +61,9 @@ lazy.setup({
 	  config = true,
 	  event = "VeryLazy",
   },
-  'stevearc/dressing.nvim',
-  'wakatime/vim-wakatime'
+  'wakatime/vim-wakatime',
+  "folke/noice.nvim",
+  "AndrewRadev/tagalong.vim",
+  "windwp/nvim-ts-autotag",
+  "EdenEast/nightfox.nvim"
 })
