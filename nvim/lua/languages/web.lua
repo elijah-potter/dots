@@ -1,5 +1,5 @@
 local lspconfig = require 'lspconfig'
-local typescript = require 'typescript'
+local typescript_tools = require 'typescript-tools'
 
 local M = {}
 
@@ -20,12 +20,9 @@ function M.setup(options)
     }
   })
 
-  typescript.setup({
-    server = {
+  typescript_tools.setup({
       on_attach = options.on_attach,
       capabilities = options.capabilities,
-      settings = {}
-    }
   })
 
   lspconfig.cssls.setup({

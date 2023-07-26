@@ -27,24 +27,24 @@ opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = false
 
--- Configure FireNvim 
+-- Configure FireNvim
 vim.g.firenvim_config = {
-    globalSettings = { alt = "all" },
-    localSettings = {
-        [".*"] = {
-            cmdline  = "neovim",
-            content  = "text",
-            priority = 0,
-            selector = "textarea",
-            takeover = "always"
-        },
-    }
+  globalSettings = { alt = "all" },
+  localSettings = {
+    [".*"] = {
+      cmdline  = "neovim",
+      content  = "text",
+      priority = 0,
+      selector = "textarea",
+      takeover = "always"
+    },
+  }
 }
 
 if vim.g.started_by_firenvim == true then
-  vim.api.nvim_create_autocmd({'TextChanged', 'TextChangedI'}, {
-      nested = true,
-      command = "write"
+  vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
+    nested = true,
+    command = "write"
   })
 end
 
@@ -70,21 +70,21 @@ end
 lualine.setup({
   options = {
     theme = 'auto',
-    section_separators = {left = '', right = ''},
-    component_separators = {left = '', right = ''},
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },
     globalstatus = true
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch'},
-    lualine_c = {{ 'filename', path = 4 }},
-    lualine_x = {'filetype'},
-    lualine_y = { },
-    lualine_z = {'location'}
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch' },
+    lualine_c = { { 'filename', path = 4 } },
+    lualine_x = { 'filetype' },
+    lualine_y = {},
+    lualine_z = { 'location' }
   },
-  extensions = {'nvim-tree', 'quickfix', 'aerial'},
+  extensions = { 'nvim-tree', 'quickfix', 'aerial' },
   tabline = {
-    lualine_a = {{ 'buffers', show_filename_only = false }},
+    lualine_a = { { 'buffers', show_filename_only = false } },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
@@ -103,7 +103,7 @@ end
 
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
+vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -147,7 +147,7 @@ vim.g.knap_settings = {
   mdtopdf = "pandoc %docroot% -o %outputfile% -V 'geometry:margin=2cm'"
 }
 
-utils.map("nvi", "<F5>", function ()
+utils.map("nvi", "<F5>", function()
   knap.toggle_autopreviewing()
 end)
 
@@ -189,7 +189,7 @@ utils.map("n", "ff", ":Telescope find_files<CR>")
 utils.map("n", "fg", ":Telescope live_grep<CR>")
 utils.map("n", "fy", ":Telescope treesitter<CR>")
 utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
-utils.map("n", "ft", function ()
+utils.map("n", "ft", function()
   require('telescope').extensions.dict.synonyms()
 end)
 
@@ -201,36 +201,20 @@ leap.add_default_mappings()
 g.loaded = 1
 
 -- Disable builtin netrw
+g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 local nvim_tree = require 'nvim-tree'
+
 nvim_tree.setup({
-  view = { adaptive_size = true, side = "right", mappings = {} },
+  view = { adaptive_size = true, side = "right" },
 })
 utils.map("n", "<C-n>", ":NvimTreeOpen<CR>")
 utils.map("n", "<leader>n", ":NvimTreeFindFile<CR>")
 
 -- Git Integration
 local gitsigns = require 'gitsigns'
-gitsigns.setup({signcolumn = false, numhl = true})
-
--- Allow focusing on specific parts of code
-local twilight = require 'twilight'
-twilight.setup({
-  context = 1
-})
-
-local zen_mode = require 'zen-mode'
-zen_mode.setup({
-  window = {
-    width = 200
-  }
-})
-
-utils.map("n", "<leader>f", function ()
-  twilight.toggle()
-  zen_mode.toggle()
-end)
+gitsigns.setup({ signcolumn = false, numhl = true })
 
 -- Focus windows
 utils.map("n", "<leader>h", "<C-W>h")
@@ -268,9 +252,6 @@ utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
--- Make tagalong work
-vim.g.tagalong_filetypes = {'eco', 'eelixir', 'ejs', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'jsx', 'php', 'typescriptreact', 'xml', "svelte"}
-
 -- Make everything look pretty
 local noice = require 'noice'
 noice.setup({
@@ -284,20 +265,30 @@ noice.setup({
   },
   -- you can enable a preset for easier configuration
   presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
+    bottom_search = true,         -- use a classic bottom cmdline for search
+    command_palette = true,       -- position the cmdline and popupmenu together
     long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
+    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false,       -- add a border to hover docs and signature help
   },
 })
 
-local nightfox = require 'nightfox'
-nightfox.setup({})
+-- Keep cusor centered
+vim.cmd([[ :set scrolloff=8 ]])
+vim.cmd([[ :set sidescrolloff=8 ]])
+
+local nightfox = require "nightfox"
+nightfox.setup({
+  options = {
+    styles = {
+      comments = "italic"
+    }
+  }
+})
 
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd('colorscheme carbonfox')
+  vim.cmd([[ colorscheme carbonfox ]])
 else
-  vim.cmd('colorscheme dayfox')
+  vim.cmd([[ colorscheme dayfox ]])
 end
 

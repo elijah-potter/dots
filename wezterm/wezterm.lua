@@ -13,7 +13,8 @@ else
 end
 
 config.use_fancy_tab_bar = false
-config.font = wezterm.font('JetBrains Mono', {})
+config.font = wezterm.font('Victor Mono', {})
+config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
   left = 0,
@@ -90,6 +91,20 @@ config.keys = {
     mods = 'CTRL',
     action = wezterm.action.DecreaseFontSize,
   },
+  {
+		key="p",
+    mods="LEADER",
+    action = wezterm.action_callback(function(window, pane)
+      local overrides = window:get_config_overrides() or {}
+      if (overrides.color_scheme == light_theme)
+      then
+        overrides.color_scheme = dark_theme
+      else
+        overrides.color_scheme = light_theme
+      end
+      window:set_config_overrides(overrides)
+    end),
+  }
 }
 
 return config

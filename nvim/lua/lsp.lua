@@ -53,7 +53,7 @@ navbuddy.setup({
   }
 })
 
-utils.map("n", "<C-T>", ":Trouble<CR>")
+utils.map("n", "<C-T>", ":Trouble workspace_diagnostics<CR>")
 
 local on_attach = function(client, bufnr)
   utils.map("n", "<C-X>", function()
@@ -103,7 +103,7 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash", "elixir", "astro", "go", "marksman" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

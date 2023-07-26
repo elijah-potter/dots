@@ -1,6 +1,5 @@
 local treesitter_config = require 'nvim-treesitter.configs'
 local treesitter_context = require 'treesitter-context'
-local rainbow = require 'ts-rainbow'
 
 treesitter_config.setup({
   ensure_installed = {
@@ -39,12 +38,6 @@ treesitter_config.setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    disable = { },
-    query = 'rainbow-parens',
-    strategy = rainbow.strategy.global,
   }
 })
 

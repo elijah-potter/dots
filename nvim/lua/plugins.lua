@@ -17,7 +17,7 @@ local lazy = require "lazy"
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
   'neovim/nvim-lspconfig',
-  'jose-elias-alvarez/typescript.nvim',
+  "pmizio/typescript-tools.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
   'hrsh7th/nvim-cmp',
@@ -27,8 +27,6 @@ lazy.setup({
   { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
   'kyazdani42/nvim-tree.lua',
   'nvim-lualine/lualine.nvim',
-  'folke/twilight.nvim',
-  'folke/zen-mode.nvim',
   'nvim-treesitter/nvim-treesitter',
   'nvim-treesitter/nvim-treesitter-context',
   'nvim-lua/plenary.nvim',
@@ -45,25 +43,23 @@ lazy.setup({
   'SmiteshP/nvim-navic',
   'MunifTanjim/nui.nvim',
   'rudism/telescope-dict.nvim',
-  'HiPhish/nvim-ts-rainbow2',
   {
-      'glacambre/firenvim',
-      -- Lazy load firenvim
-      -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-      cond = not not vim.g.started_by_firenvim,
-      build = function()
-          require("lazy").load({ plugins = "firenvim", wait = true })
-          vim.fn["firenvim#install"](0)
-      end
+    'glacambre/firenvim',
+    -- Lazy load firenvim
+    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    cond = not not vim.g.started_by_firenvim,
+    build = function()
+      require("lazy").load({ plugins = "firenvim", wait = true })
+      vim.fn["firenvim#install"](0)
+    end
   },
   {
     "chrisgrieser/nvim-early-retirement",
-	  config = true,
-	  event = "VeryLazy",
+    config = true,
+    event = "VeryLazy",
   },
   'wakatime/vim-wakatime',
   "folke/noice.nvim",
-  "AndrewRadev/tagalong.vim",
   "windwp/nvim-ts-autotag",
   "EdenEast/nightfox.nvim"
 })
