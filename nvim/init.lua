@@ -252,6 +252,10 @@ utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
+-- Discord presence
+local presence = require "presence"
+presence.setup()
+
 -- Make everything look pretty
 local noice = require 'noice'
 noice.setup({

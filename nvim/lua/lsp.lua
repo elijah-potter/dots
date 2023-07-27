@@ -103,7 +103,7 @@ local options = {
 }
 
 -- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash" }
+local files = { "rust", "web", "ltex", "lua", "python", "bash", "go" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

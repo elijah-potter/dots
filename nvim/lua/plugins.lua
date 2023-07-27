@@ -61,5 +61,6 @@ lazy.setup({
   'wakatime/vim-wakatime',
   "folke/noice.nvim",
   "windwp/nvim-ts-autotag",
-  "EdenEast/nightfox.nvim"
+  "EdenEast/nightfox.nvim",
+  "andweeb/presence.nvim"
 })
