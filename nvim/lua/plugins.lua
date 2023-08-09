@@ -16,15 +16,15 @@ local lazy = require "lazy"
 
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
-  'neovim/nvim-lspconfig',
-  "pmizio/typescript-tools.nvim",
+  { dir = "/home/elijahpotter/Projects/nvim-lspconfig" },
+  "jose-elias-alvarez/typescript.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-path',
   'saadparwaiz1/cmp_luasnip',
-  { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
+  { 'L3MON4D3/LuaSnip',                                build = "make install_jsregexp" },
   'kyazdani42/nvim-tree.lua',
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',

@@ -102,8 +102,20 @@ local options = {
   capabilities = capabilities,
 }
 
--- Setup Languages
-local files = { "rust", "web", "ltex", "lua", "python", "bash", "go" }
+local lspconfig = require 'lspconfig'
+
+-- Setup Languages that require no additional config (just use the LSP as-is)
+local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss" }
+
+for _, lsp in ipairs(basic_languages) do
+  lspconfig[lsp].setup({
+    on_attach = options.on_attach,
+    capabilities = options.capabilities,
+  })
+end
+
+
+local files = { "rust", "web", "ltex", "lua", }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

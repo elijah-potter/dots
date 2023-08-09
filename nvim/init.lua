@@ -254,7 +254,9 @@ utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
 -- Discord presence
 local presence = require "presence"
-presence.setup()
+presence.setup({
+  main_image = "file"
+})
 
 -- Make everything look pretty
 local noice = require 'noice'
@@ -277,7 +279,7 @@ noice.setup({
   },
 })
 
--- Keep cusor centered
+-- Keep cursor centered
 vim.cmd([[ :set scrolloff=8 ]])
 vim.cmd([[ :set sidescrolloff=8 ]])
 
@@ -295,4 +297,3 @@ if os.getenv("GTK_THEME"):find "dark" then
 else
   vim.cmd([[ colorscheme dayfox ]])
 end
-
