@@ -27,20 +27,6 @@ opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = false
 
--- Configure FireNvim
-vim.g.firenvim_config = {
-  globalSettings = { alt = "all" },
-  localSettings = {
-    [".*"] = {
-      cmdline  = "neovim",
-      content  = "text",
-      priority = 0,
-      selector = "textarea",
-      takeover = "always"
-    },
-  }
-}
-
 if vim.g.started_by_firenvim == true then
   vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
     nested = true,

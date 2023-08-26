@@ -22,6 +22,7 @@ local filetypes = {
   "html",
 }
 
+
 function M.setup(options)
   lspconfig.ltex.setup({
     on_attach = options.on_attach,
@@ -30,7 +31,7 @@ function M.setup(options)
     settings = {
       ltex = {
         enabled = filetypes,
-        sentenceCacheSize = 1000000,
+        sentenceCacheSize = 10000,
         checkFrequency = "save",
         additionalRules = {
           languageModel = "~/ngrams/",
