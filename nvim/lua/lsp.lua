@@ -46,19 +46,15 @@ mini_indentscope.setup({
   }
 })
 
-local navbuddy = require 'nvim-navbuddy'
-navbuddy.setup({
-  lsp = {
-    auto_attach = true
-  }
+local aerial = require 'aerial'
+aerial.setup({
+  close_on_select = true
 })
 
 utils.map("n", "<C-T>", ":Trouble workspace_diagnostics<CR>")
 
 local on_attach = function(client, bufnr)
-  utils.map("n", "<C-X>", function()
-    navbuddy.open()
-  end)
+  utils.map("n", "<C-X>", ":AerialToggle float<CR>")
 
   utils.map("n", "<C-F>", function()
     vim.lsp.buf.code_action()
@@ -115,7 +111,7 @@ for _, lsp in ipairs(basic_languages) do
 end
 
 
-local files = { "rust", "web", "ltex", "lua", }
+local files = { "rust", "web", "ltex", "lua", "dotnet" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

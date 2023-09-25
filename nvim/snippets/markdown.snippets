@@ -14,11 +14,22 @@ snippet bo
 snippet it
 	_$1_$0
 
+snippet [ 
+	[$1]($0)
+
 snippet link
 	[$1]($0)
+
+snippet ![
+	![$1]($0)
 
 snippet img
 	![$1]($0)
 
 autosnippet w/
 	with
+
+snippet plot "Create a GNUPlot Context"
+	\`\`\`{.gnuplot}
+	plot $0
+	\`\`\`

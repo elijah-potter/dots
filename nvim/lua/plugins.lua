@@ -16,7 +16,7 @@ local lazy = require "lazy"
 
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
-  { dir = "/home/elijahpotter/Projects/nvim-lspconfig" },
+  "https://github.com/neovim/nvim-lspconfig",
   "jose-elias-alvarez/typescript.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
@@ -24,7 +24,7 @@ lazy.setup({
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-path',
   'saadparwaiz1/cmp_luasnip',
-  { 'L3MON4D3/LuaSnip',                                build = "make install_jsregexp" },
+  { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
   'kyazdani42/nvim-tree.lua',
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',
@@ -39,8 +39,6 @@ lazy.setup({
   'simrat39/rust-tools.nvim',
   'ggandor/leap.nvim',
   'frabjous/knap',
-  'SmiteshP/nvim-navbuddy',
-  'SmiteshP/nvim-navic',
   'MunifTanjim/nui.nvim',
   'rudism/telescope-dict.nvim',
   {
@@ -52,5 +50,7 @@ lazy.setup({
   "folke/noice.nvim",
   "windwp/nvim-ts-autotag",
   "EdenEast/nightfox.nvim",
-  "andweeb/presence.nvim"
+  "andweeb/presence.nvim",
+  'lukas-reineke/headlines.nvim',
+  'stevearc/aerial.nvim',
 })

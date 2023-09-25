@@ -7,7 +7,6 @@ local api = vim.api
 -- QoL
 g.syntax_enable = false
 
--- We have tree-sitter
 g.mapleader = ' '
 opt.mouse = 'a'
 opt.number = true
@@ -26,14 +25,7 @@ opt.foldmethod = 'indent'
 opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = false
-
-if vim.g.started_by_firenvim == true then
-  vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-    nested = true,
-    command = "write"
-  })
-end
-
+opt.so = 10
 
 -- Load packages
 require 'plugins'
@@ -130,10 +122,10 @@ vim.g.knap_settings = {
   textopdf = "pdflatex -jobname \"$(basename -s .pdf %outputfile%)\" -halt-on-error",
   textopdfbufferasstdin = true,
   mdoutputext = "pdf",
-  mdtopdf = "pandoc %docroot% -o %outputfile% -V 'geometry:margin=2cm'"
+  mdtopdf = "~/.config/pandoc_wrap.sh %docroot% %outputfile%"
 }
 
-utils.map("nvi", "<F5>", function()
+utils.map("nv", "<leader><leader>s", function()
   knap.toggle_autopreviewing()
 end)
 

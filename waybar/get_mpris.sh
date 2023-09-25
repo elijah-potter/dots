@@ -4,5 +4,5 @@
 
 if [ "$(playerctl metadata title)" != "" ]
 then
-  echo $(playerctl metadata title) '|' $(playerctl metadata artist)
+  echo $(playerctl metadata title) 'by' $(playerctl metadata artist)
 fi

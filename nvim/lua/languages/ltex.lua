@@ -4,13 +4,15 @@ local M = {}
 
 local filetypes = {
   "bib",
+  "bibtex",
   "gitcommit",
   "markdown",
   "org",
-  "plaintex",
+  "plaintext",
   "rst",
   "rnoweb",
   "tex",
+  "latex",
   "pandoc",
   "rust",
   "javascript",

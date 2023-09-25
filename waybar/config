@@ -1,9 +1,20 @@
 {
   "spacing": 20,
   "layer": "top",
-  "modules-left": ["clock", "custom/weather"],
-  "modules-center": ["custom/mpris"],
-  "modules-right": ["tray", "network", "battery", "pulseaudio"],
+  "modules-left": [
+    "clock",
+    "custom/weather",
+    "custom/uptime"
+  ],
+  "modules-center": [
+    "custom/mpris"
+  ],
+  "modules-right": [
+    "tray",
+    "network",
+    "battery",
+    "pulseaudio"
+  ],
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
@@ -32,21 +43,18 @@
     "exec": "$HOME/.config/waybar/get_forecast.sh",
     "interval": 60
   },
+  "custom/uptime": {
+    "format": {},
+    "exec": "uptime --pretty",
+    "interval": 60
+  },
   "pulseaudio": {
     "format": "{volume}%  🔊",
     "format-muted": "{volume}%  🔇"
   },
-  "custom/mpris":{
+  "custom/mpris": {
     "format": {},
     "exec": "$HOME/.config/waybar/get_mpris.sh",
-    "interval": 0.2
-  },
-  "mpris": {
-  	"format": "{status_icon}  {artist} - {title}",
-  	"format-paused": "{status_icon}  {artist} - {title}",
-  	"status-icons": {
-      "playing": "",
-  		"paused": ""
-  	}
+    "interval": 1
   }
 }
