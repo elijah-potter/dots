@@ -24,7 +24,7 @@ opt.clipboard = 'unnamedplus'
 opt.foldmethod = 'indent'
 opt.foldenable = false
 opt.updatetime = 250
-opt.wrap = false
+opt.wrap = true
 opt.so = 10
 
 -- Load packages

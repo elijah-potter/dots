@@ -30,7 +30,8 @@ treesitter_config.setup({
     "python",
     "go",
     "elixir",
-    "astro"
+    "astro",
+    "c_sharp"
   },
   autotag = {
     enable = true,

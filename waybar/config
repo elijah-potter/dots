@@ -4,7 +4,8 @@
   "modules-left": [
     "clock",
     "custom/weather",
-    "custom/uptime"
+    "custom/uptime",
+    "custom/time-rem"
   ],
   "modules-center": [
     "custom/mpris"
@@ -46,6 +47,11 @@
   "custom/uptime": {
     "format": {},
     "exec": "uptime --pretty",
+    "interval": 60
+  },
+  "custom/time-rem": {
+    "format": {},
+    "exec": "$HOME/.config/waybar/get_day_remaining.sh",
     "interval": 60
   },
   "pulseaudio": {

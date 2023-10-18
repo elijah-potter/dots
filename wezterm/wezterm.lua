@@ -13,8 +13,8 @@ else
 end
 
 config.use_fancy_tab_bar = false
-config.font = wezterm.font_with_fallback({"JetBrainsMono Nerd Font", "Noto Color Emoji"})
-config.font_size = 12
+config.font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "Noto Color Emoji" })
+config.font_size = 10
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
   left = 0,
@@ -92,8 +92,8 @@ config.keys = {
     action = wezterm.action.DecreaseFontSize,
   },
   {
-		key="p",
-    mods="LEADER",
+    key = "p",
+    mods = "LEADER",
     action = wezterm.action_callback(function(window, pane)
       local overrides = window:get_config_overrides() or {}
       if (overrides.color_scheme == light_theme)
