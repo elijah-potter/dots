@@ -23,7 +23,7 @@ function M.setup(options)
   })
 
   vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
+    pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.svelte" },
     command = "EslintFixAll"
   })
 end

@@ -16,7 +16,7 @@ local lazy = require "lazy"
 
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
-  "https://github.com/neovim/nvim-lspconfig",
+  "neovim/nvim-lspconfig",
   "jose-elias-alvarez/typescript.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
@@ -49,7 +49,7 @@ lazy.setup({
   'wakatime/vim-wakatime',
   "folke/noice.nvim",
   "windwp/nvim-ts-autotag",
-  "EdenEast/nightfox.nvim",
+  "sainnhe/everforest",
   "andweeb/presence.nvim",
   'lukas-reineke/headlines.nvim',
   'stevearc/aerial.nvim',

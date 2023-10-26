@@ -131,6 +131,7 @@ end)
 
 -- Telescope
 local telescope = require 'telescope'
+local actions = require 'telescope.actions'
 
 telescope.setup({
   defaults = {
@@ -163,11 +164,11 @@ telescope.setup({
 
 telescope.load_extension('ui-select')
 
-utils.map("n", "ff", ":Telescope find_files<CR>")
-utils.map("n", "fg", ":Telescope live_grep<CR>")
-utils.map("n", "fy", ":Telescope treesitter<CR>")
-utils.map("n", "fb", ":Telescope current_buffer_fuzzy_find<CR>")
-utils.map("n", "ft", function()
+utils.map("n", "<leader>f", ":Telescope find_files<CR>")
+utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
+utils.map("n", "<leader>y", ":Telescope treesitter<CR>")
+utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
+utils.map("n", "<leader>t", function()
   require('telescope').extensions.dict.synonyms()
 end)
 
@@ -261,17 +262,12 @@ noice.setup({
 vim.cmd([[ :set scrolloff=8 ]])
 vim.cmd([[ :set sidescrolloff=8 ]])
 
-local nightfox = require "nightfox"
-nightfox.setup({
-  options = {
-    styles = {
-      comments = "italic"
-    }
-  }
-})
+g.everforest_background = "hard"
 
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd([[ colorscheme carbonfox ]])
+  vim.cmd([[ set background=dark ]])
 else
-  vim.cmd([[ colorscheme dayfox ]])
+  vim.cmd([[ set background=light ]])
 end
+
+vim.cmd([[ colorscheme everforest ]])
