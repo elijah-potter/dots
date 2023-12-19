@@ -2,16 +2,18 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-local dark_theme = "Everforest Dark (Medium)"
-local light_theme = "Everforest Light (Medium)"
+local dark_theme = "carbonfox"
+local light_theme = "dayfox"
 
 -- Set the color scheme based on the system theme
 if os.getenv("GTK_THEME"):find "dark" then
   config.color_scheme = dark_theme
+  config.window_background_opacity = .7;
 else
   config.color_scheme = light_theme
 end
 
+config.enable_wayland = false
 config.use_fancy_tab_bar = false
 config.font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "Noto Color Emoji" })
 config.font_size = 10

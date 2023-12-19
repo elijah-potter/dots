@@ -14,7 +14,7 @@ local filetypes = {
   "tex",
   "latex",
   "pandoc",
-  "rust",
+  --"rust",
   "javascript",
   "typescript",
   "javascriptreact",
@@ -41,11 +41,6 @@ function M.setup(options)
       }
     }
   });
-
-  lspconfig["lt-rs"].setup({
-    on_attach = options.on_attach,
-    capabilities = options.capabilities,
-  })
 end
 
 return M;

@@ -1,10 +1,12 @@
 local lspconfig = require 'lspconfig'
-local typescript = require 'typescript'
+local typescript_tools = require 'typescript-tools'
 
 local M = {}
 
 function M.setup(options)
-  typescript.setup({})
+  typescript_tools.setup({
+    on_attach = options.on_attach
+  })
 
   local eslint_on_attach = function(client, bufnr)
     options.on_attach();

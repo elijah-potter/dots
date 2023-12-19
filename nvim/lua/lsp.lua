@@ -72,8 +72,7 @@ local on_attach = function(client, bufnr)
 
   vim.keymap.set("n", "<C-G>", function()
     local inc_rename = require 'inc_rename'
-
-    inc_rename.setup({})
+    inc_rename.setup();
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, { expr = true })
 

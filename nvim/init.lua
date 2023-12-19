@@ -48,7 +48,7 @@ end
 lualine.setup({
   options = {
     theme = 'auto',
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
     globalstatus = true
   },
@@ -166,11 +166,8 @@ telescope.load_extension('ui-select')
 
 utils.map("n", "<leader>f", ":Telescope find_files<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
-utils.map("n", "<leader>y", ":Telescope treesitter<CR>")
+utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
-utils.map("n", "<leader>t", function()
-  require('telescope').extensions.dict.synonyms()
-end)
 
 -- Leaping
 local leap = require 'leap'
@@ -241,20 +238,18 @@ presence.setup({
 local noice = require 'noice'
 noice.setup({
   lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
       ["vim.lsp.util.stylize_markdown"] = true,
       ["cmp.entry.get_documentation"] = true,
     },
   },
-  -- you can enable a preset for easier configuration
   presets = {
-    bottom_search = true,         -- use a classic bottom cmdline for search
-    command_palette = true,       -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false,       -- add a border to hover docs and signature help
+    bottom_search = true,
+    command_palette = true,
+    long_message_to_split = true,
+    inc_rename = true,
+    lsp_doc_border = false,
   },
 })
 
@@ -262,12 +257,15 @@ noice.setup({
 vim.cmd([[ :set scrolloff=8 ]])
 vim.cmd([[ :set sidescrolloff=8 ]])
 
-g.everforest_background = "hard"
+local nightfox = require 'nightfox'
+nightfox.setup({
+  options = {
+    transparent = true
+  }
+})
 
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd([[ set background=dark ]])
+  vim.cmd([[ colorscheme carbonfox ]])
 else
-  vim.cmd([[ set background=light ]])
+  vim.cmd([[ colorscheme dayfox ]])
 end
-
-vim.cmd([[ colorscheme everforest ]])

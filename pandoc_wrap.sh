@@ -1,7 +1,7 @@
 #! /bin/bash
 
 pandoc $1 \
--f markdown-implicit_figures \
+-f markdown+implicit_figures \
 --pdf-engine=xelatex \
 -M plot-configuration="$HOME/.config/pandoc-plot/config.yaml" \
 --filter pandoc-plot \
