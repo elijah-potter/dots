@@ -1,2 +1,4 @@
 gui:
   expandFocusedSidePanel: true
+  nerdFontsVersion: "3"
+  windowSize: 'half'
