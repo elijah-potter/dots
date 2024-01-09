@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 local dark_theme = "carbonfox"
 local light_theme = "dayfox"
 
--- Set the color scheme based on the system theme
+-- Set the color scheme based on the system theme l
 if os.getenv("GTK_THEME"):find "dark" then
   config.color_scheme = dark_theme
   config.window_background_opacity = .7;
@@ -15,8 +15,25 @@ end
 
 config.enable_wayland = false
 config.use_fancy_tab_bar = false
-config.font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "Noto Color Emoji" })
-config.font_size = 10
+
+config.font = wezterm.font(
+  { -- Normal text
+    family = 'MonaspiceNe NFM',
+    harfbuzz_features = { 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
+  })
+
+config.font_rules = {
+  {
+    italic = true,
+    font = wezterm.font({
+      family = "MonaspiceRn NFM",
+      harfbuzz_features = { 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
+      style = 'Italic',
+    })
+  },
+}
+
+config.font_size = 12
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
   left = 0,

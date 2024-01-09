@@ -54,6 +54,10 @@ aerial.setup({
 utils.map("n", "<C-T>", ":Trouble workspace_diagnostics<CR>")
 
 local on_attach = function(client, bufnr)
+  local lsp_inlayhints = require 'lsp-inlayhints'
+  lsp_inlayhints.setup()
+  lsp_inlayhints.on_attach(client, bufnr)
+
   utils.map("n", "<C-X>", ":AerialToggle float<CR>")
 
   utils.map("n", "<C-F>", function()
@@ -80,6 +84,7 @@ local on_attach = function(client, bufnr)
     pattern = { "*" },
     callback = function()
       pcall(function()
+        -- These have special, non-LSP formatters
         local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css" }
 
         if not utils.contains(blacklist, vim.bo.filetype) then
@@ -101,13 +106,15 @@ local options = {
 local lspconfig = require 'lspconfig'
 
 -- Setup Languages that require no additional config (just use the LSP as-is)
-local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp" }
+local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp",
+  "clangd", "autotools_ls" }
 
 for _, lsp in ipairs(basic_languages) do
   lspconfig[lsp].setup(options)
 end
 
 
+-- Languages that require additional config
 local files = { "rust", "web", "ltex", "lua" }
 
 for _, file in ipairs(files) do

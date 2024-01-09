@@ -27,6 +27,8 @@ opt.updatetime = 250
 opt.wrap = true
 opt.so = 10
 
+opt.colorcolumn = "80"
+
 -- Load packages
 require 'plugins'
 
@@ -169,6 +171,37 @@ utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
 utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
 
+-- Harpoon
+local harpoon = require 'harpoon'
+harpoon.setup({})
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
+
+-- Pasted and modified from harpoon's README
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
+end
+
+vim.keymap.set("n", "<leader>v", function() toggle_telescope(harpoon:list()) end,
+  { desc = "Open harpoon window" })
+
+-- Oil
+local oil = require 'oil'
+oil.setup()
+
 -- Leaping
 local leap = require 'leap'
 leap.add_default_mappings()
@@ -260,8 +293,12 @@ vim.cmd([[ :set sidescrolloff=8 ]])
 local nightfox = require 'nightfox'
 nightfox.setup({
   options = {
-    transparent = true
-  }
+    transparent = true,
+    styles = {
+      comments = "italic",
+      functions = "italic,bold",
+    }
+  },
 })
 
 if os.getenv("GTK_THEME"):find "dark" then

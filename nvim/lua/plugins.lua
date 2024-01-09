@@ -36,7 +36,6 @@ lazy.setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
   'smjonas/inc-rename.nvim',
-  'simrat39/rust-tools.nvim',
   'ggandor/leap.nvim',
   'frabjous/knap',
   'MunifTanjim/nui.nvim',
@@ -78,5 +77,11 @@ lazy.setup({
       }
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } }
-  }
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+  },
+  'stevearc/oil.nvim',
+  "lvimuser/lsp-inlayhints.nvim"
 })

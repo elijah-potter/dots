@@ -1,3 +1,4 @@
+export PATH=$PATH:$HOME/.cargo/bin
 export EDITOR=nvim
 export PAGER=bat
 alias n=nvim
@@ -7,12 +8,14 @@ alias gunzip=unpigz
 alias lg=lazygit
 
 currentTime=`date +"%H"`
-if [[ $currentTime -ge "08" && $currentTime -le "20"  ]] 
+if [[ $currentTime -ge "08" && $currentTime -le "20" ]] 
 then
   export GTK_THEME=Adwaita:light 
 else
   export GTK_THEME=Adwaita:dark 
 fi
+
+export GTK_THEME=Adwaita:dark 
 
 eval "$(starship init zsh)"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

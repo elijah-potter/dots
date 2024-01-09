@@ -31,7 +31,8 @@ treesitter_config.setup({
     "go",
     "elixir",
     "astro",
-    "c_sharp"
+    "c_sharp",
+    "make"
   },
   autotag = {
     enable = true,
@@ -42,4 +43,6 @@ treesitter_config.setup({
   }
 })
 
-treesitter_context.setup()
+treesitter_context.setup({
+  max_lines = 6
+})
