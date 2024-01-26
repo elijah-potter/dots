@@ -10,7 +10,7 @@ g.syntax_enable = false
 g.mapleader = ' '
 opt.mouse = 'a'
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.signcolumn = 'number'
 opt.cursorline = true
 opt.tabstop = 2
@@ -160,43 +160,20 @@ telescope.setup({
         height = 9,
       },
       borderchars = { "", "", "", "", "", "", "", "" },
+    },
+    frecency = {
+      auto_validate = false
     }
   }
 })
 
 telescope.load_extension('ui-select')
+telescope.load_extension('frecency')
 
-utils.map("n", "<leader>f", ":Telescope find_files<CR>")
+utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
 utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
-
--- Harpoon
-local harpoon = require 'harpoon'
-harpoon.setup({})
-
-vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
-
--- Pasted and modified from harpoon's README
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require("telescope.pickers").new({}, {
-    prompt_title = "Harpoon",
-    finder = require("telescope.finders").new_table({
-      results = file_paths,
-    }),
-    previewer = conf.file_previewer({}),
-    sorter = conf.generic_sorter({}),
-  }):find()
-end
-
-vim.keymap.set("n", "<leader>v", function() toggle_telescope(harpoon:list()) end,
-  { desc = "Open harpoon window" })
 
 -- Oil
 local oil = require 'oil'
@@ -286,7 +263,7 @@ noice.setup({
   },
 })
 
--- Keep cursor centered
+-- Keep cursor cntered
 vim.cmd([[ :set scrolloff=8 ]])
 vim.cmd([[ :set sidescrolloff=8 ]])
 
@@ -296,7 +273,7 @@ nightfox.setup({
     transparent = true,
     styles = {
       comments = "italic",
-      functions = "italic,bold",
+      functions = "bold",
     }
   },
 })

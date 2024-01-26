@@ -17,6 +17,9 @@ local lazy = require "lazy"
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
   "neovim/nvim-lspconfig",
+  {
+    dir = "~/Projects/nvim-lspconfig"
+  },
   "pmizio/typescript-tools.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',
@@ -52,36 +55,8 @@ lazy.setup({
   'lukas-reineke/headlines.nvim',
   'stevearc/aerial.nvim',
   "folke/zen-mode.nvim",
-  {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup {
-        theme = 'hyper',
-        config = {
-          week_header = {
-            enable = true,
-          },
-          shortcut = {
-            { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-            {
-              icon = ' ',
-              icon_hl = '@variable',
-              desc = 'Files',
-              group = 'Label',
-              action = 'Telescope find_files',
-              key = 'f',
-            },
-          },
-        },
-      }
-    end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } }
-  },
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-  },
   'stevearc/oil.nvim',
-  "lvimuser/lsp-inlayhints.nvim"
+  "lvimuser/lsp-inlayhints.nvim",
+  "terryma/vim-expand-region",
+  "nvim-telescope/telescope-frecency.nvim"
 })

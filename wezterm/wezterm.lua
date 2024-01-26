@@ -13,7 +13,7 @@ else
   config.color_scheme = light_theme
 end
 
-config.enable_wayland = false
+config.enable_wayland = true
 config.use_fancy_tab_bar = false
 
 config.font = wezterm.font(

@@ -65,7 +65,6 @@ local on_attach = function(client, bufnr)
   end)
   utils.map("n", "<C-S>", function()
     vim.lsp.buf.hover()
-    print("test")
   end)
   utils.map("n", "<C-D>", function()
     vim.lsp.buf.definition()
@@ -107,15 +106,14 @@ local lspconfig = require 'lspconfig'
 
 -- Setup Languages that require no additional config (just use the LSP as-is)
 local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp",
-  "clangd", "autotools_ls" }
+  "clangd", "autotools_ls", "harper_ls" }
 
 for _, lsp in ipairs(basic_languages) do
   lspconfig[lsp].setup(options)
 end
 
-
 -- Languages that require additional config
-local files = { "rust", "web", "ltex", "lua" }
+local files = { "rust", "web", "lua" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)
