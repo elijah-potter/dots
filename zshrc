@@ -12,20 +12,24 @@ alias gunzip=unpigz
 alias lg=lazygit
 
 currentTime=`date +"%H"`
-if [[ $currentTime -ge "08" && $currentTime -le "20" ]] 
+if [[ $currentTime -ge "08" && $currentTime -le "16" ]] 
 then
   export GTK_THEME=Adwaita:light 
 else
   export GTK_THEME=Adwaita:dark 
 fi
 
-  export GTK_THEME=Adwaita:dark 
+export GTK_THEME=Adwaita:dark 
 
 eval "$(starship init zsh)"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
+
+# Lukas and Grant's Magic Sauce
+function wo {
+    cd "$(cat <<(fd --base-directory=$HOME --type d -c never | awk '{print "~/"$0}' | sort) <<(echo "~") | fzf $([ -z "$1" ] || echo "-q$1") --tac | sed "s#~#$HOME#g")"
+}
 
 # Use CTRL-Z instead of `fg`
 fancy-ctrl-z () {

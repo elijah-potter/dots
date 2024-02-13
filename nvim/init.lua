@@ -25,7 +25,8 @@ opt.foldmethod = 'indent'
 opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = true
-opt.so = 10
+opt.scrolloff = 20
+opt.sidescrolloff = 20
 
 opt.colorcolumn = "80"
 
@@ -38,6 +39,11 @@ local utils = require 'utils'
 -- Load programming language support
 require 'lsp'
 require 'treesitter'
+
+-- Hehe
+local apm = require 'vim-apm'
+apm:setup({})
+vim.keymap.set("n", "<leader>apm", function() apm:toggle_monitor() end)
 
 --- Statusline
 local lualine = require 'lualine'
@@ -227,13 +233,13 @@ utils.map("n", "<leader>u", ":bp<CR>")
 utils.map("n", "<leader>p", ":bn<CR>")
 
 -- Faster text navigation
-utils.map("nv", "<A-h>", "hhh")
-utils.map("nv", "<A-j>", "jjj")
-utils.map("nv", "<A-k>", "kkk")
-utils.map("nv", "<A-l>", "lll")
+utils.map("nv", "<A-h>", "hhhhh")
+utils.map("nv", "<A-j>", "jjjjj")
+utils.map("nv", "<A-k>", "kkkkk")
+utils.map("nv", "<A-l>", "lllll")
 
--- Open new terminal in PWD
-utils.map("n", "<leader>y", ":silent ! alacritty & disown<CR>")
+utils.map("nv", "<C-A-j>", "<C-D>")
+utils.map("nv", "<C-A-k>", "<C-U>")
 
 -- Reload NeoVim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
@@ -262,10 +268,6 @@ noice.setup({
     lsp_doc_border = false,
   },
 })
-
--- Keep cursor cntered
-vim.cmd([[ :set scrolloff=8 ]])
-vim.cmd([[ :set sidescrolloff=8 ]])
 
 local nightfox = require 'nightfox'
 nightfox.setup({

@@ -33,7 +33,7 @@ config.font_rules = {
   },
 }
 
-config.font_size = 12
+config.font_size = 11
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
   left = 0,

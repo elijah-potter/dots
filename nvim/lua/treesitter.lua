@@ -3,6 +3,7 @@ local treesitter_context = require 'treesitter-context'
 
 treesitter_config.setup({
   ensure_installed = {
+    "fish",
     "json",
     "json5",
     "toml",

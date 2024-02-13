@@ -58,5 +58,6 @@ lazy.setup({
   'stevearc/oil.nvim',
   "lvimuser/lsp-inlayhints.nvim",
   "terryma/vim-expand-region",
-  "nvim-telescope/telescope-frecency.nvim"
+  "nvim-telescope/telescope-frecency.nvim",
+  "ThePrimeagen/vim-apm"
 })
