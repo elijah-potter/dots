@@ -25,8 +25,6 @@ opt.foldmethod = 'indent'
 opt.foldenable = false
 opt.updatetime = 250
 opt.wrap = true
-opt.scrolloff = 20
-opt.sidescrolloff = 20
 
 opt.colorcolumn = "80"
 
@@ -39,6 +37,11 @@ local utils = require 'utils'
 -- Load programming language support
 require 'lsp'
 require 'treesitter'
+
+if vim.g.neovide then
+  vim.o.guifont = "MonaspiceNe NFM:h12"
+  vim.gneovide_transparency = 0.7
+end
 
 -- Hehe
 local apm = require 'vim-apm'
@@ -241,7 +244,7 @@ utils.map("nv", "<A-l>", "lllll")
 utils.map("nv", "<C-A-j>", "<C-D>")
 utils.map("nv", "<C-A-k>", "<C-U>")
 
--- Reload NeoVim
+-- Reload Neovim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
 -- Discord presence

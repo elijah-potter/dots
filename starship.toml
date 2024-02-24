@@ -89,3 +89,5 @@ $character
 [git_branch]
 format = """[$symbol$branch(:$remote_branch)]($style) """
 
+[jobs]
+symbol = '+ '

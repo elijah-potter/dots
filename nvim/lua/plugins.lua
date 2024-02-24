@@ -31,6 +31,7 @@ lazy.setup({
   'kyazdani42/nvim-tree.lua',
   'nvim-lualine/lualine.nvim',
   'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter/playground',
   'nvim-treesitter/nvim-treesitter-context',
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',

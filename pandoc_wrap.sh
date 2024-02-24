@@ -7,6 +7,6 @@ pandoc $1 \
 --filter pandoc-plot \
 -o $2 \
 -V 'geometry:margin=2cm' \
--H ~/.config/float_placement.tex -V colorlinks=true \
+-H ~/.config/pandoc_template.tex -V colorlinks=true \
 -V linkcolor=blue \
 -V urlcolor=blue 

@@ -1,0 +1,13 @@
+\usepackage{sectsty}
+\sectionfont{\clearpage}
+
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\setkeys{Gin}{width=.5\linewidth}
