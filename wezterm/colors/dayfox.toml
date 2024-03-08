@@ -5,7 +5,7 @@ origin_url = "https://github.com/EdenEast/nightfox.nvim"
 
 [colors]
 foreground = "#3d2b5a"
-background = "#f6f2ee"
+background = "#ffffff"
 cursor_bg = "#3d2b5a"
 cursor_border = "#3d2b5a"
 cursor_fg = "#f6f2ee"

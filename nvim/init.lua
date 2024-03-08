@@ -38,11 +38,6 @@ local utils = require 'utils'
 require 'lsp'
 require 'treesitter'
 
-if vim.g.neovide then
-  vim.o.guifont = "MonaspiceNe NFM:h12"
-  vim.gneovide_transparency = 0.7
-end
-
 -- Hehe
 local apm = require 'vim-apm'
 apm:setup({})
@@ -100,8 +95,8 @@ cmp.setup({
     end
   },
   mapping = {
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<C-P>'] = cmp.mapping.select_prev_item(),
+    ["<C-N>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif has_words_before() then
@@ -282,6 +277,18 @@ nightfox.setup({
     }
   },
 })
+
+if vim.g.neovide then
+  vim.o.guifont = "MonaspiceNe NFM:h12"
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_floating_shadow = false
+
+  if os.getenv("GTK_THEME"):find "dark" then
+    vim.g.neovide_transparency = 0.7
+  else
+    vim.g.neovide_transparency = 1
+  end
+end
 
 if os.getenv("GTK_THEME"):find "dark" then
   vim.cmd([[ colorscheme carbonfox ]])

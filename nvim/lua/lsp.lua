@@ -69,8 +69,11 @@ local on_attach = function(client, bufnr)
   utils.map("n", "<C-D>", function()
     vim.lsp.buf.definition()
   end)
-  utils.map("n", "<C-Q>", function()
-    vim.diagnostic.open_float(nil, nil)
+  utils.map("n", "<C-W>", function()
+    vim.diagnostic.goto_prev()
+  end)
+  utils.map("n", "<C-E>", function()
+    vim.diagnostic.goto_next()
   end)
 
   vim.keymap.set("n", "<C-G>", function()
@@ -106,14 +109,14 @@ local lspconfig = require 'lspconfig'
 
 -- Setup Languages that require no additional config (just use the LSP as-is)
 local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp",
-  "clangd", "autotools_ls", "harper_ls" }
+  "clangd", "autotools_ls", "yamlls" }
 
 for _, lsp in ipairs(basic_languages) do
   lspconfig[lsp].setup(options)
 end
 
 -- Languages that require additional config
-local files = { "rust", "web", "lua" }
+local files = { "rust", "web", "lua", "harper" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

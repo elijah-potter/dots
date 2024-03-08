@@ -1,2 +1,16 @@
+SVG
 MacOS
+Anker
+Holmdel
+parsers
+Grandey
+Graphviz
+hashtable
+allocator
 Deallocate
+deallocate
+pseudocode
+Eudaimonia
+deallocation
+Zettelkasten
+resubmission

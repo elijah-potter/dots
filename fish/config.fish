@@ -5,7 +5,14 @@ set -x EDITOR nvim
 set -x PAGER bat
 
 if status is-interactive
-  set -x GTK_THEME Adwaita:dark
+  set HOUR (date '+%H')
+
+  if test "7" -le $HOUR && test $HOUR -lt "17"
+    set -x GTK_THEME Adwaita:light
+    set -x BAT_THEME GitHub
+  else
+    set -x GTK_THEME Adwaita:dark
+  end
 
   # Use CTRL-Z to go back to background task
   bind \cz 'fg 2>/dev/null; commandline -f repaint'
