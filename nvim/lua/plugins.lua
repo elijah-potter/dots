@@ -17,9 +17,6 @@ local lazy = require "lazy"
 lazy.setup({
   'kyazdani42/nvim-web-devicons',
   "neovim/nvim-lspconfig",
-  {
-    dir = "~/Projects/nvim-lspconfig"
-  },
   "pmizio/typescript-tools.nvim",
   'echasnovski/mini.indentscope',
   'lewis6991/gitsigns.nvim',

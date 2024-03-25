@@ -12,6 +12,7 @@
   ],
   "modules-right": [
     "tray",
+    "custom/harper_count",
     "network",
     "battery",
     "pulseaudio"
@@ -22,7 +23,7 @@
   "clock": {
     "timezone": "America/Denver",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format": "{:%H:%M %Y-%m-%d}",
   },
   "battery": {
     "states": {
@@ -62,5 +63,10 @@
     "format": {},
     "exec": "$HOME/.config/waybar/get_mpris.sh",
     "interval": 1
+  },
+  "custom/harper_count": {
+    "format": {},
+    "exec": "$HOME/.config/waybar/harper_count.sh",
+    "interval": 60
   }
 }

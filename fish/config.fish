@@ -22,6 +22,7 @@ if status is-interactive
   alias gzip=pigz
   alias gunzip=unpigz
   alias lg=lazygit
+  alias cdo="cargo doc --open"
   
   fish_user_key_bindings
 

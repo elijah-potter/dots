@@ -8,12 +8,12 @@ local light_theme = "dayfox"
 -- Set the color scheme based on the system theme l
 if os.getenv("GTK_THEME"):find "dark" then
   config.color_scheme = dark_theme
-  config.window_background_opacity = .7;
+  config.window_background_opacity = .8;
 else
   config.color_scheme = light_theme
 end
 
-config.enable_wayland = true
+config.enable_wayland = false
 config.use_fancy_tab_bar = false
 
 config.font = wezterm.font(

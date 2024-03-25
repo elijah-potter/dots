@@ -10,7 +10,7 @@ g.syntax_enable = false
 g.mapleader = ' '
 opt.mouse = 'a'
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 opt.signcolumn = 'number'
 opt.cursorline = true
 opt.tabstop = 2
@@ -87,6 +87,7 @@ end
 
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 cmp.setup({
   snippet = {
@@ -229,12 +230,6 @@ utils.map("n", "<leader><leader>q", ":bufdo bd<CR>")
 -- Switch tabs
 utils.map("n", "<leader>u", ":bp<CR>")
 utils.map("n", "<leader>p", ":bn<CR>")
-
--- Faster text navigation
-utils.map("nv", "<A-h>", "hhhhh")
-utils.map("nv", "<A-j>", "jjjjj")
-utils.map("nv", "<A-k>", "kkkkk")
-utils.map("nv", "<A-l>", "lllll")
 
 utils.map("nv", "<C-A-j>", "<C-D>")
 utils.map("nv", "<C-A-k>", "<C-U>")
