@@ -42,7 +42,7 @@ config.window_padding = {
   top = 0
 }
 
-config.leader = { key = 'a', mods = 'CTRL', timout_milliseconds = 1000 }
+config.leader = { key = 'w', mods = 'CTRL', timout_milliseconds = 1000 }
 
 config.keys = {
   {
@@ -96,7 +96,7 @@ config.keys = {
     action = wezterm.action.ActivateTabRelative(1)
   },
   {
-    key = 'z',
+    key = 'r',
     mods = 'LEADER',
     action = wezterm.action.TogglePaneZoomState,
   },

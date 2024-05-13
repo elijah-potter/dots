@@ -285,6 +285,11 @@ if vim.g.neovide then
   end
 end
 
+utils.map("n", "<leader>o", function ()
+  print("tatum serve --open " .. vim.fn.expand('%') )
+  vim.fn.jobstart("tatum serve --open " .. vim.fn.expand('%'))
+end)
+
 if os.getenv("GTK_THEME"):find "dark" then
   vim.cmd([[ colorscheme carbonfox ]])
 else

@@ -1,0 +1,19 @@
+[formatting]
+date = "%F" # YYYY-MM-DD
+time = "%R" # 24h Time
+max_width = 160 # Character width rendered for HTML
+
+[network]
+url = "https://elearning.mines.edu"
+token = ""
+pagination = 50
+
+[associations.submission_files]
+
+[ignore]
+courses = []
+inbox = []
+discussions = []
+grades = []
+assignments = []
+modules = []

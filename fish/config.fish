@@ -1,8 +1,13 @@
 set -U fish_greeting
-set -x PATH $PATH:$HOME/.cargo/bin
-set -x PATH $PATH:$HOME/go/bin
-set -x EDITOR nvim
-set -x PAGER bat
+if not contains cargo $PATH
+  set -x PATH $PATH:$HOME/.cargo/bin
+  set -x PATH $PATH:$HOME/go/bin
+  set -x PATH $PATH:$HOME/.dotnet/tools
+  set -x EDITOR nvim
+  set -x PAGER bat
+end
+
+source ~/fuller.fish
 
 if status is-interactive
   set HOUR (date '+%H')
@@ -13,6 +18,7 @@ if status is-interactive
   else
     set -x GTK_THEME Adwaita:dark
   end
+
 
   # Use CTRL-Z to go back to background task
   bind \cz 'fg 2>/dev/null; commandline -f repaint'

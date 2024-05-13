@@ -6,6 +6,7 @@ local M = {}
 function M.setup(options)
   lspconfig.harper_ls.setup {
     -- cmd = vim.lsp.rpc.connect("127.0.0.1", 4000),
+    -- filetypes = { "markdown", "text", "lua" },
     server = {
       on_attach = function(client, bufnr)
         options.on_attach(client, bufnr)

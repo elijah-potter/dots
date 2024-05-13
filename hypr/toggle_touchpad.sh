@@ -1,31 +1,15 @@
-#!/bin/sh
+#! /bin/bash
 
-HYPRLAND_DEVICE="ven_04f3:00-04f3:32aa-touchpad"
+CONFIG_DIR="$HOME/.config/hypr"
+TOUCHPAD_CONFIG="touchpad.conf"
+CONFIG_FILE="$CONFIG_DIR/$TOUCHPAD_CONFIG"
 
-if [ -z "$XDG_RUNTIME_DIR" ]; then
-  export XDG_RUNTIME_DIR=/run/user/$(id -u)
-fi
+enabled=$(grep -o "enabled\s*=\s*[01]" "$CONFIG_FILE")
 
-export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
-
-enable_touchpad() {
-  printf "true" > "$STATUS_FILE"
-
-  hyprctl keyword "device:$HYPRLAND_DEVICE:enabled" true
-}
-
-disable_touchpad() {
-  printf "false" > "$STATUS_FILE"
-
-  hyprctl keyword "device:$HYPRLAND_DEVICE:enabled" false
-}
-
-if ! [ -f "$STATUS_FILE" ]; then
-  enable_touchpad
+if [ "$enabled" == "enabled = 0" ]; then
+  sed -i "s/enabled\s*=\s*0/enabled = 1/" "$CONFIG_FILE"
+  state="enabled"
 else
-  if [ $(cat "$STATUS_FILE") = "true" ]; then
-    disable_touchpad
-  elif [ $(cat "$STATUS_FILE") = "false" ]; then
-    enable_touchpad
-  fi
+  sed -i "s/enabled\s*=\s*1/enabled = 0/" "$CONFIG_FILE"
+  state="disabled"
 fi
