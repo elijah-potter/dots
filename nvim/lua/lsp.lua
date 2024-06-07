@@ -58,12 +58,12 @@ local on_attach = function(client, bufnr)
   lsp_inlayhints.setup()
   lsp_inlayhints.on_attach(client, bufnr)
 
-  utils.map("n", "<C-X>", ":AerialToggle float<CR>")
+  utils.map("n", "<C-x>", ":AerialToggle float<CR>")
 
-  utils.map("n", "<C-F>", function()
+  utils.map("n", "<C-f>", function()
     vim.lsp.buf.code_action()
   end)
-  utils.map("n", "<C-S>", function()
+  utils.map("n", "<C-s>", function()
     vim.lsp.buf.hover()
   end)
   utils.map("n", "<C-D>", function()
@@ -82,19 +82,19 @@ local on_attach = function(client, bufnr)
     return ":IncRename " .. vim.fn.expand("<cword>")
   end, { expr = true })
 
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*" },
-    callback = function()
-      pcall(function()
-        -- These have special, non-LSP formatters
-        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css" }
+  -- vim.api.nvim_create_autocmd("BufWritePre", {
+  --   pattern = { "*" },
+  --   callback = function()
+  --     pcall(function()
+  --       -- These have special, non-LSP formatters
+  --       local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css" }
 
-        if not utils.contains(blacklist, vim.bo.filetype) then
-          vim.lsp.buf.format({ timeout_ms = 200 })
-        end
-      end)
-    end,
-  })
+  --       if not utils.contains(blacklist, vim.bo.filetype) then
+  --         vim.lsp.buf.format({ timeout_ms = 200 })
+  --       end
+  --     end)
+  --   end,
+  -- })
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities();
@@ -109,14 +109,15 @@ local lspconfig = require 'lspconfig'
 
 -- Setup Languages that require no additional config (just use the LSP as-is)
 local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp",
-  "clangd", "yamlls" }
+  "clangd", "yamlls", "gradle_ls", "jdtls" }
 
 for _, lsp in ipairs(basic_languages) do
   lspconfig[lsp].setup(options)
 end
 
 -- Languages that require additional config
-local files = { "rust", "web", "lua", "harper" }
+local files = { "rust", "web", "lua", "harper", "powershell" }
+
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)

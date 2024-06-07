@@ -1,5 +1,4 @@
 local lspconfig = require 'lspconfig'
-local utils = require 'utils'
 
 local M = {}
 
