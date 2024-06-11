@@ -38,11 +38,6 @@ local utils = require 'utils'
 require 'lsp'
 require 'treesitter'
 
--- Hehe
-local apm = require 'vim-apm'
-apm:setup({})
-vim.keymap.set("n", "<leader>apm", function() apm:toggle_monitor() end)
-
 --- Statusline
 local lualine = require 'lualine'
 
@@ -153,7 +148,7 @@ telescope.setup({
       "--column",
       "--smart-case",
       "--trim"
-    }
+    },
   },
   extensions = {
     ["ui-select"] = {
@@ -206,6 +201,13 @@ utils.map("n", "<leader>n", ":NvimTreeFindFile<CR>")
 -- Git Integration
 local gitsigns = require 'gitsigns'
 gitsigns.setup({ signcolumn = false, numhl = true })
+
+local gitblame = require 'gitblame'
+gitblame.setup({
+  enabled = false
+})
+
+utils.map("n", "<leader>i", ":GitBlameToggle<CR>")
 
 -- Focus windows
 utils.map("n", "<leader>h", "<C-W>h")
@@ -265,7 +267,7 @@ noice.setup({
 local nightfox = require 'nightfox'
 nightfox.setup({
   options = {
-    transparent = true,
+    transparent = false,
     styles = {
       comments = "italic",
       functions = "bold",
@@ -290,8 +292,8 @@ utils.map("n", "<leader>o", function ()
   vim.fn.jobstart("tatum serve --open " .. vim.fn.expand('%'))
 end)
 
-if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd([[ colorscheme carbonfox ]])
-else
-  vim.cmd([[ colorscheme dayfox ]])
-end
+-- if os.getenv("GTK_THEME"):find "dark" then
+--  vim.cmd([[ colorscheme carbonfox ]])
+-- else
+vim.cmd([[ colorscheme dayfox ]])
+-- end

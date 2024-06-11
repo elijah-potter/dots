@@ -1,6 +1,3 @@
-$PSModuleAutoLoadingPreference = 'None'
-Import-Module Microsoft.PowerShell.Utility
-Import-Module Microsoft.PowerShell.Management
 Import-Module PSReadLine
 
 Set-PSReadlineOption -EditMode vi

@@ -45,7 +45,7 @@ lazy.setup({
     config = true,
     event = "VeryLazy",
   },
-  'wakatime/vim-wakatime',
+  -- 'wakatime/vim-wakatime',
   "folke/noice.nvim",
   "windwp/nvim-ts-autotag",
   "EdenEast/nightfox.nvim",
@@ -57,5 +57,5 @@ lazy.setup({
   "lvimuser/lsp-inlayhints.nvim",
   "terryma/vim-expand-region",
   "nvim-telescope/telescope-frecency.nvim",
-  "ThePrimeagen/vim-apm"
+  "f-person/git-blame.nvim"
 })
