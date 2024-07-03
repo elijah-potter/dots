@@ -113,6 +113,7 @@ cmp.setup({
       { name = 'luasnip' },
       { name = 'buffer' },
       { name = 'path' },
+      { name = 'lazydev' },
     }
   )
 })
@@ -137,6 +138,7 @@ local actions = require 'telescope.actions'
 
 telescope.setup({
   defaults = {
+    file_ignore_patterns = { '.git' },
     prompt_prefix = "   ",
     borderchars = { "", "", "", "", "", "", "", "" },
     vimgrep_arguments = {
@@ -156,13 +158,14 @@ telescope.setup({
       results_title = false,
       layout_strategy = "cursor",
       layout_config = {
-        width = 60,
+        width = 80,
         height = 9,
       },
       borderchars = { "", "", "", "", "", "", "", "" },
     },
     frecency = {
-      auto_validate = false
+      db_safe_mode = false,
+      auto_validate = true
     }
   }
 })
@@ -170,7 +173,7 @@ telescope.setup({
 telescope.load_extension('ui-select')
 telescope.load_extension('frecency')
 
-utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD<CR>")
+utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD path_display={\"shorten\"}<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
 utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
@@ -220,8 +223,6 @@ utils.map("n", "<leader>s", ":vsplit<CR>")
 -- Split along the horizontal center
 utils.map("n", "<leader>S", ":split<CR>")
 
--- Swap windows
-utils.map("n", "<leader>r", "<C-W>R")
 -- Close windows
 utils.map("n", "<leader>c", "<C-W>c")
 -- Delete buffer

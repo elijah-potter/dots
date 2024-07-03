@@ -13,6 +13,7 @@ treesitter_config.setup({
     "lua",
     "rust",
     "bash",
+    "java",
     "javascript",
     "typescript",
     "svelte",

@@ -7,18 +7,15 @@ if not contains cargo $PATH
   set -x PAGER bat
 end
 
-source ~/fuller.fish
-
 if status is-interactive
   set HOUR (date '+%H')
 
-  if test "7" -le $HOUR && test $HOUR -lt "17"
+  if test "7" -le $HOUR && test $HOUR -lt "18"
     set -x GTK_THEME Adwaita:light
     set -x BAT_THEME GitHub
   else
     set -x GTK_THEME Adwaita:dark
   end
-
 
   # Use CTRL-Z to go back to background task
   bind \cz 'fg 2>/dev/null; commandline -f repaint'
