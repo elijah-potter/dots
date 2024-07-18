@@ -4,14 +4,9 @@ local utils = require 'utils'
 local M = {}
 
 function M.setup(options)
-  lspconfig.powershell_es.setup {
-    server = {
-      on_attach = function(client, bufnr)
-        options.on_attach(client, bufnr)
-      end,
-      capabilities = options.capabilities
-    },
-  }
+  require('powershell').setup({
+    bundle_path = vim.fn.stdpath "data" .. "/mason/packages/powershell-editor-services",
+  })
 end
 
 return M;

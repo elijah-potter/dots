@@ -56,6 +56,7 @@ lazy.setup({
   "terryma/vim-expand-region",
   "nvim-telescope/telescope-frecency.nvim",
   "f-person/git-blame.nvim",
+  "sindrets/diffview.nvim",
   "mfussenegger/nvim-dap",
   "nvim-neotest/nvim-nio",
   "rcarriga/nvim-dap-ui",
@@ -64,5 +65,6 @@ lazy.setup({
   "saecki/crates.nvim",
   'mrcjkb/rustaceanvim',
   'theHamsta/nvim-dap-virtual-text',
-  'nvim-java/nvim-java'
+  'nvim-java/nvim-java',
+  "TheLeoP/powershell.nvim"
 })
