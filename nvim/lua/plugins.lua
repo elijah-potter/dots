@@ -65,6 +65,5 @@ lazy.setup({
   "saecki/crates.nvim",
   'mrcjkb/rustaceanvim',
   'theHamsta/nvim-dap-virtual-text',
-  'nvim-java/nvim-java',
-  "TheLeoP/powershell.nvim"
+  'nvim-java/nvim-java'
 })
