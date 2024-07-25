@@ -16,7 +16,7 @@ local lazy = require "lazy"
 
 lazy.setup({
   "kyazdani42/nvim-web-devicons",
-  { "elijah-potter/nvim-lspconfig", branch = "harper-update"},
+  "neovim/nvim-lspconfig",
   "pmizio/typescript-tools.nvim",
   "echasnovski/mini.indentscope",
   "lewis6991/gitsigns.nvim",
@@ -65,5 +65,6 @@ lazy.setup({
   "saecki/crates.nvim",
   'mrcjkb/rustaceanvim',
   'theHamsta/nvim-dap-virtual-text',
-  'nvim-java/nvim-java'
+  'nvim-java/nvim-java',
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
 })

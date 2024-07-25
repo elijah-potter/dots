@@ -125,7 +125,7 @@ local on_attach = function(client, bufnr)
     callback = function()
       pcall(function()
         -- These have special, non-LSP formatters
-        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css" }
+        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css", "ps1" }
 
         if not utils.contains(blacklist, vim.bo.filetype) then
           vim.lsp.buf.format({ timeout_ms = 200 })

@@ -2,13 +2,7 @@ Import-Module PSReadLine
 
 Set-PSReadlineOption -EditMode vi
 
-function n {
-  $temp = $env:JAVA_HOME
-  $env:JAVA_HOME = "C:\TylerDev\jdks\jdk17"
-  nvim $args
-  $env:JAVA_HOME = $temp
-}
-
+Set-Alias -Name n -Value 'nvim'
 Set-Alias -Name g -Value './gradlew.bat'
 Set-Alias -Name lg -Value 'lazygit'
 

@@ -173,7 +173,7 @@ telescope.setup({
 telescope.load_extension('ui-select')
 telescope.load_extension('frecency')
 
-utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD path_display={\"shorten\"}<CR>")
+utils.map("n", "<leader>f", ":Telescope find_files<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
 utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
