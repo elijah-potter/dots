@@ -147,7 +147,7 @@ local lspconfig = require 'lspconfig'
 
 -- Setup Languages that require no additional config (just use the LSP as-is)
 local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls", "svelte", "tailwindcss", "omnisharp",
-  "clangd", "yamlls", "gradle_ls" }
+  "clangd", "yamlls", "gradle_ls", "marksman" }
 
 for _, lsp in ipairs(basic_languages) do
   lspconfig[lsp].setup(options)
