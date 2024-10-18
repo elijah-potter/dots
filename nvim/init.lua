@@ -8,7 +8,6 @@ local api = vim.api
 g.syntax_enable = false
 
 g.mapleader = ' '
-opt.mouse = 'a'
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = 'number'
@@ -46,6 +45,38 @@ local function time()
   return string.format("%01d:%02d:%02d", timetable.hour, timetable.min, timetable.sec)
 end
 
+local function fileexists(name)
+  local f = io.open(name, "r")
+  return f ~= nil and io.close(f)
+end
+
+local function getepoch()
+  return os.time(os.date("!*t"))
+end
+
+local lastwordcount = "";
+local lastwordcountupdate = getepoch();
+
+local function wordcount()
+  if getepoch() - lastwordcountupdate < 5 then
+    return lastwordcount;
+  end
+
+  local filepath = vim.fn.expand('%')
+
+  if filepath == nil or filepath == '' or not fileexists(filepath) then
+    return ""
+  end
+
+  local handle = io.popen('harper-cli parse ' .. filepath .. ' | grep Word | wc -l')
+  local output = handle:read('*a'):gsub("[\n\r]", " ")
+
+  lastwordcount = output;
+  lastwordcountupdate = getepoch()
+
+  return output
+end
+
 lualine.setup({
   options = {
     theme = 'auto',
@@ -67,7 +98,7 @@ lualine.setup({
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {},
+    lualine_y = { },
     lualine_z = { time },
   }
 })
@@ -173,7 +204,7 @@ telescope.setup({
 telescope.load_extension('ui-select')
 telescope.load_extension('frecency')
 
-utils.map("n", "<leader>f", ":Telescope find_files<CR>")
+utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
 utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
@@ -288,13 +319,12 @@ if vim.g.neovide then
   end
 end
 
-utils.map("n", "<leader>o", function ()
-  print("tatum serve --open " .. vim.fn.expand('%') )
-  vim.fn.jobstart({"tatum", "serve", "--open", vim.fn.expand('%')})
+vim.keymap.set("n", "<leader>o", function()
+  vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
 end)
 
--- if os.getenv("GTK_THEME"):find "dark" then
---  vim.cmd([[ colorscheme carbonfox ]])
--- else
-vim.cmd([[ colorscheme dayfox ]])
--- end
+if os.getenv("GTK_THEME"):find "dark" then
+  vim.cmd([[ colorscheme carbonfox ]])
+else
+  vim.cmd([[ colorscheme dayfox ]])
+end
