@@ -34,7 +34,8 @@ treesitter_config.setup({
     "elixir",
     "astro",
     "c_sharp",
-    "make"
+    "make",
+    "norg"
   },
   autotag = {
     enable = true,

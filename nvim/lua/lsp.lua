@@ -7,23 +7,24 @@ local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local trouble = require 'trouble'
 
 local dap = require 'dap'
-utils.map("n", "<leader>v", function ()
+utils.map("n", "<leader>v", function()
+  dap.set_exception_breakpoints()
   dap.continue()
 end)
 
-utils.map("n", "<leader>y", function ()
+utils.map("n", "<leader>y", function()
   dap.step_over()
 end)
 
-utils.map("n", "<leader>i", function ()
+utils.map("n", "<leader>i", function()
   dap.step_into()
 end)
 
-utils.map("n", "<leader>x", function ()
+utils.map("n", "<leader>x", function()
   dap.step_out()
 end)
 
-utils.map("n", "<leader>z", function ()
+utils.map("n", "<leader>z", function()
   dap.toggle_breakpoint()
 end)
 
@@ -69,8 +70,8 @@ end
 
 mason.setup({})
 mason_dap.setup({
-    ensure_installed = { "codelldb", "java-debug-adapter" },
-    handlers = {}, 
+  ensure_installed = { "codelldb", "java-debug-adapter" },
+  handlers = {},
 })
 mason_lspconfig.setup({
   automatic_installation = { exclude = { "harper_ls" } }
@@ -89,36 +90,24 @@ aerial.setup({
 
 utils.map("n", "<C-T>", ":Trouble diagnostics<CR>")
 
+vim.keymap.set("n", "<C-G>", function()
+  local inc_rename = require 'inc_rename'
+  inc_rename.setup({});
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
+
 local on_attach = function(client, bufnr)
   local lsp_inlayhints = require 'lsp-inlayhints'
   lsp_inlayhints.setup()
   lsp_inlayhints.on_attach(client, bufnr)
 
   utils.map("n", "<C-x>", ":AerialToggle float<CR>")
-  utils.map("n", "<C-f>", function()
-    vim.lsp.buf.code_action()
-  end)
-  utils.map("n", "<C-s>", function()
-    vim.lsp.buf.hover()
-  end)
-  utils.map("n", "<C-D>", function()
-    vim.lsp.buf.definition()
-  end)
-  utils.map("n", "<C-H>", function()
-    require("telescope.builtin").lsp_references()
-  end)
-  utils.map("n", "<C-Q>", function()
-    vim.diagnostic.goto_prev()
-  end)
-  utils.map("n", "<C-E>", function()
-    vim.diagnostic.goto_next()
-  end)
-
-  vim.keymap.set("n", "<C-G>", function()
-    local inc_rename = require 'inc_rename'
-    inc_rename.setup();
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  end, { expr = true })
+  utils.map("n", "<C-f>", ":lua vim.lsp.buf.code_action()<CR>")
+  utils.map("n", "<C-s>", ":lua vim.lsp.buf.hover()<CR>")
+  utils.map("n", "<C-d>", ":lua vim.lsp.buf.definition()<CR>")
+  utils.map("n", "<C-h>", ":lua require(\"telescope.builtin\").lsp_references()<CR>")
+  utils.map("n", "<C-q>", ":lua vim.diagnostic.goto_prev()<CR>")
+  utils.map("n", "<C-e>", ":lua vim.diagnostic.goto_next()<CR>")
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },

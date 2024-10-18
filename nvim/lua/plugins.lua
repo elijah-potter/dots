@@ -24,11 +24,10 @@ lazy.setup({
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-path",
   "saadparwaiz1/cmp_luasnip",
-  { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+  { "L3MON4D3/LuaSnip",             build = "make install_jsregexp" },
   "kyazdani42/nvim-tree.lua",
   "nvim-lualine/lualine.nvim",
   "nvim-treesitter/nvim-treesitter",
-  "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter-context",
   "nvim-lua/plenary.nvim",
   "nvim-telescope/telescope.nvim",
@@ -68,4 +67,6 @@ lazy.setup({
   'nvim-java/nvim-java',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
   {'akinsho/git-conflict.nvim', version = "*", config = true}
+  'NoahTheDuke/vim-just',
+  'sindrets/diffview.nvim'
 })

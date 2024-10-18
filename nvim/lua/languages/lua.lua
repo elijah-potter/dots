@@ -4,12 +4,8 @@ local M = {}
 
 function M.setup(options)
   lspconfig.lua_ls.setup {
-    server = {
-      on_attach = function(client, bufnr)
-        options.on_attach(client, bufnr)
-      end,
-      capabilities = options.capabilities
-    },
+    on_attach = options.on_attach,
+    capabilities = options.capabilities,
     settings = {
       Lua = {
         runtime = {

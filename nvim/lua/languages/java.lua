@@ -6,12 +6,10 @@ local M = {}
 function M.setup(options)
   java.setup()
   lspconfig.jdtls.setup {
-    server = {
-      on_attach = function(client, bufnr)
-        options.on_attach(client, bufnr)
-      end,
-      capabilities = options.capabilities
-    },
+    on_attach = function(client, bufnr)
+      options.on_attach(client, bufnr)
+    end,
+    capabilities = options.capabilities
   }
 
 end
