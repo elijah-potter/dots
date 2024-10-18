@@ -13,6 +13,7 @@
   "modules-right": [
     "tray",
     "custom/harper_count",
+    "custom/harper_obsidian_count",
     "network",
     "battery",
     "pulseaudio"
@@ -67,6 +68,11 @@
   "custom/harper_count": {
     "format": {},
     "exec": "$HOME/.config/waybar/harper_count.sh",
+    "interval": 60
+  },
+  "custom/harper_obsidian_count": {
+    "format": {},
+    "exec": "$HOME/.config/waybar/harper_obsidian_count.sh",
     "interval": 60
   }
 }
