@@ -1,9 +1,12 @@
+CI
 Qin
 DDE
+JVM
 auth
 PTSD
 enum
 CMIS
+APIs
 Anker
 OAuth
 Shang
@@ -15,10 +18,16 @@ config
 royale
 KanBan
 Vaadin
+Gradle
+DevOps
+Kladov
+Jacoco
 Holmdel
 Grandey
 Sharman
 Marchus
+Mockito
+RipGrep
 Graphviz
 endogamy
 Labriola
@@ -27,6 +36,9 @@ unmoving
 IntelliJ
 monorepo
 PSession
+Archytas
+Techlead
+Corretto
 Firestore
 substring
 Rosenthal
@@ -38,6 +50,7 @@ Middleware
 PowerShell
 Asynchrony
 OpenSearch
+filesystem
 scatterplot
 unreputable
 integrators
