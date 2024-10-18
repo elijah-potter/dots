@@ -66,7 +66,7 @@ lazy.setup({
   'theHamsta/nvim-dap-virtual-text',
   'nvim-java/nvim-java',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
-  {'akinsho/git-conflict.nvim', version = "*", config = true}
+  {'akinsho/git-conflict.nvim', version = "*", config = true},
   'NoahTheDuke/vim-just',
   'sindrets/diffview.nvim'
 })
