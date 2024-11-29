@@ -5,7 +5,7 @@ local M = {}
 function M.setup(options)
   lspconfig.harper_ls.setup {
     -- cmd = vim.lsp.rpc.connect("127.0.0.1", 4000),
-    -- filetypes = { "markdown", "text", "lua", "tex" },
+    -- filetypes = { "markdown", "text", "lua", "tex", "nix" },
     on_attach = options.on_attach,
     capabilities = options.capabilities,
     settings = {
@@ -21,8 +21,10 @@ function M.setup(options)
           repeated_words = true,
           spaces = true,
           matcher = true,
-          linking_verbs = true
-        }
+          linking_verbs = true,
+          boring_words = true
+        },
+        isolateEnglish = false
       }
     },
   }
