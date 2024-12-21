@@ -25,6 +25,7 @@ Jacoco
 Viktor
 Frankl
 TikTok
+learnt
 Holmdel
 Grandey
 Sharman
@@ -61,10 +62,14 @@ OpenSearch
 filesystem
 performant
 parasocial
+evolutions
+Automattic
 scatterplot
 unreputable
 integrators
 Logotherapy
 BlasterHacks
+humorography
+Automattic's
 ElasticSearch
 singlehandedly
