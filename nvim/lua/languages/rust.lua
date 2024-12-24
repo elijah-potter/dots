@@ -8,7 +8,10 @@ function M.setup(options)
   vim.g.rustaceanvim = {
     server = {
       on_attach = options.on_attach,
-      capabilities = options.capabilities
+      capabilities = options.capabilities,
+      cmd = function()
+        return { 'rustup', 'run', 'stable', 'rust-analyzer' }
+      end,
     },
   }
 end

@@ -12,7 +12,7 @@ function M.setup(options)
       ["harper-ls"] = {
         linters = {
           spell_check = true,
-          spelled_numbers = false,
+          spelled_numbers = true,
           an_a = true,
           sentence_capitalization = true,
           unclosed_quotes = true,
