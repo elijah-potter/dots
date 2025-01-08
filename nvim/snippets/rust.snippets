@@ -8,3 +8,87 @@ snippet les
 
 snippet uvec
 	Vec::new()
+
+snippet patlint
+  use itertools::Itertools;
+  
+  use crate::{
+      patterns::{Pattern, SequencePattern, WordPatternGroup},
+      Lrc, Token, TokenStringExt,
+  };
+  
+  use super::{Lint, LintKind, PatternLinter, Suggestion};
+  
+  pub struct $1 {
+      pattern: Box<dyn Pattern>,
+  }
+  
+  impl Default for $1 {
+      fn default() -> Self {
+          let mut pattern = todo!();
+  
+          Self {
+              pattern: Box::new(pattern),
+          }
+      }
+  }
+  
+  impl PatternLinter for $1 {
+      fn pattern(&self) -> &dyn Pattern {
+          self.pattern.as_ref()
+      }
+  
+      fn match_to_lint(&self, matched_tokens: &[Token], source: &[char]) -> Lint {
+          unimplemented!()
+      }
+  
+      fn description(&self) -> &'static str {
+          unimplemented!()
+      }
+  }
+  
+  #[cfg(test)]
+  mod tests {
+    use super::$1;
+  }
+
+snippet normlint 
+  use itertools::Itertools;
+  
+  use crate::{
+      patterns::{Pattern, SequencePattern, WordPatternGroup},
+      Lrc, Token, TokenStringExt,
+      Document, Span
+  };
+  
+  use super::{Linter, Lint, LintKind, PatternLinter, Suggestion};
+  
+  pub struct $1 {
+  }
+  
+  impl Linter for $1 {
+    fn lint(&mut self, document: &Document) -> Vec<Lint>{
+
+    }
+
+    fn description(&self) -> &str {
+
+    }
+  }
+  
+  #[cfg(test)]
+  mod tests {
+    use super::$1;
+  }
+
+snippet modtest
+  #[cfg(test)]
+  mod tests {
+    $0
+  }
+
+snippet test
+  #[test]
+  fn $1() {
+    $0
+  }
