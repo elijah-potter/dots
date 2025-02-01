@@ -1,8 +1,8 @@
 set -U fish_greeting
 if not contains cargo $PATH
-  set -x PATH $PATH:$HOME/.cargo/bin
-  set -x PATH $PATH:$HOME/go/bin
-  set -x PATH $PATH:$HOME/.dotnet/tools
+  fish_add_path $HOME/.cargo/bin
+  fish_add_path $HOME/go/bin
+  fish_add_path $HOME/.dotnet/tools
   set -x EDITOR nvim
   set -x PAGER bat
 end

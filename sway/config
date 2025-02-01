@@ -4,7 +4,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term alacritty
+set $term wezterm
 set $browser MOZ_ENABLE_WAYLAND=1 firefox-developer-edition
 
 # Media keys
@@ -96,8 +96,6 @@ input * {
 
 # Cosmetics
 default_border pixel
-
-output * bg ~/.config/planet.png fill
 
 gaps inner 0
 gaps outer 0
