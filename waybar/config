@@ -68,11 +68,11 @@
   "custom/harper_count": {
     "format": {},
     "exec": "$HOME/.config/waybar/harper_count.sh",
-    "interval": 60
+    "interval": 600
   },
   "custom/harper_obsidian_count": {
     "format": {},
     "exec": "$HOME/.config/waybar/harper_obsidian_count.sh",
-    "interval": 60
+    "interval": 600
   }
 }

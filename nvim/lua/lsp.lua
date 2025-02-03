@@ -103,10 +103,10 @@ local on_attach = function(client, bufnr)
   lsp_inlayhints.on_attach(client, bufnr)
 
   utils.map("n", "<C-x>", ":AerialToggle float<CR>")
-  utils.map("n", "<C-f>", ":lua vim.lsp.buf.code_action()<CR>")
-  utils.map("n", "<C-s>", ":lua vim.lsp.buf.hover()<CR>")
-  utils.map("n", "<C-d>", ":lua vim.lsp.buf.definition()<CR>")
-  utils.map("n", "<C-h>", ":lua require(\"telescope.builtin\").lsp_references()<CR>")
+  utils.map("nv", "<C-f>", ":lua vim.lsp.buf.code_action()<CR>")
+  utils.map("nv", "<C-s>", ":lua vim.lsp.buf.hover()<CR>")
+  utils.map("nv", "<C-d>", ":lua vim.lsp.buf.definition()<CR>")
+  utils.map("nv", "<C-h>", ":lua require(\"telescope.builtin\").lsp_references()<CR>")
   utils.map("n", "<C-q>", ":lua vim.diagnostic.goto_prev()<CR>")
   utils.map("n", "<C-e>", ":lua vim.diagnostic.goto_next()<CR>")
 
@@ -115,7 +115,8 @@ local on_attach = function(client, bufnr)
     callback = function()
       pcall(function()
         -- These have special, non-LSP formatters
-        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css", "ps1" }
+        local blacklist = { "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "markdown", "css",
+          "ps1" }
 
         if not utils.contains(blacklist, vim.bo.filetype) then
           vim.lsp.buf.format({ timeout_ms = 200 })

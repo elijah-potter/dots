@@ -9,9 +9,6 @@ function M.setup(options)
     server = {
       on_attach = options.on_attach,
       capabilities = options.capabilities,
-      cmd = function()
-        return { 'rustup', 'run', 'stable', 'rust-analyzer' }
-      end,
     },
   }
 end
