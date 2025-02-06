@@ -92,3 +92,13 @@ snippet test
   fn $1() {
     $0
   }
+
+snippet testsg
+  #[test]
+  fn $1() {
+      assert_suggestion_result(
+          "$2",
+          $3::default(),
+          "$0",
+      );
+  }

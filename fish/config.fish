@@ -13,15 +13,17 @@ if status is-interactive
   if test "7" -le $HOUR && test $HOUR -lt "15"
     set -x GTK_THEME Adwaita:light
     set -x BAT_THEME GitHub
+    modus_operandi
   else
     set -x GTK_THEME Adwaita:dark
+    modus_vivendi
   end
 
   # Use CTRL-Z to go back to background task
   bind \cz 'fg 2>/dev/null; commandline -f repaint'
 
   alias n=nvim
-  alias ls="exa --icons"
+  alias ls="eza --icons"
   alias gzip=pigz
   alias gunzip=unpigz
   alias lg=lazygit

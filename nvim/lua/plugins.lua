@@ -46,7 +46,6 @@ lazy.setup({
   },
   "folke/noice.nvim",
   "windwp/nvim-ts-autotag",
-  "EdenEast/nightfox.nvim",
   "andweeb/presence.nvim",
   "stevearc/aerial.nvim",
   "folke/zen-mode.nvim",
@@ -69,7 +68,7 @@ lazy.setup({
   { 'akinsho/git-conflict.nvim',                version = "*",                                                                                 config = true },
   'NoahTheDuke/vim-just',
   'sindrets/diffview.nvim',
-  { 'wakatime/vim-wakatime', lazy = false },
+  { 'wakatime/vim-wakatime',        lazy = false },
   "sphamba/smear-cursor.nvim",
   {
     "sphamba/smear-cursor.nvim",
@@ -80,5 +79,6 @@ lazy.setup({
       legacy_computing_symbols_support = true,
       smear_insert_mode = true,
     },
-  }
+  },
+  { "miikanissi/modus-themes.nvim", priority = 1000 }
 })

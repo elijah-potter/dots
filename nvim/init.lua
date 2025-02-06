@@ -296,15 +296,13 @@ noice.setup({
   },
 })
 
-local nightfox = require 'nightfox'
-nightfox.setup({
-  options = {
-    transparent = false,
-    styles = {
-      comments = "italic",
-      functions = "bold",
-    }
-  },
+local modus = require 'modus-themes'
+modus.setup({
+  transparent = false,
+  styles = {
+    comments = "italic",
+    functions = "bold",
+  }
 })
 
 if vim.g.neovide then
@@ -324,7 +322,7 @@ vim.keymap.set("n", "<leader>o", function()
 end)
 
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd([[ colorscheme carbonfox ]])
+  vim.cmd([[ colorscheme modus_vivendi ]])
 else
-  vim.cmd([[ colorscheme dayfox ]])
+  vim.cmd([[ colorscheme modus_operandi ]])
 end
