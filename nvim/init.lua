@@ -190,7 +190,7 @@ telescope.setup({
       layout_strategy = "cursor",
       layout_config = {
         width = 80,
-        height = 9,
+        height = 20,
       },
       borderchars = { "", "", "", "", "", "", "", "" },
     },
@@ -268,6 +268,12 @@ utils.map("n", "<leader>p", ":bn<CR>")
 utils.map("nv", "<C-A-j>", "<C-D>")
 utils.map("nv", "<C-A-k>", "<C-U>")
 
+vim.api.nvim_create_user_command("CopyRelPath", function()
+  local path = vim.fn.expand("%")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
+end, {})
+
 -- Reload Neovim
 utils.map("n", "<leader><leader>r", ":source $MYVIMRC<CR>")
 
@@ -277,24 +283,24 @@ presence.setup({
   main_image = "file"
 })
 
--- Make everything look pretty
-local noice = require 'noice'
-noice.setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  presets = {
-    bottom_search = true,
-    command_palette = true,
-    long_message_to_split = true,
-    inc_rename = true,
-    lsp_doc_border = false,
-  },
-})
+-- -- Make everything look pretty
+-- local noice = require 'noice'
+-- noice.setup({
+--   lsp = {
+--     override = {
+--       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--       ["vim.lsp.util.stylize_markdown"] = true,
+--       ["cmp.entry.get_documentation"] = true,
+--     },
+--   },
+--   presets = {
+--     bottom_search = true,
+--     command_palette = true,
+--     long_message_to_split = true,
+--     inc_rename = true,
+--     lsp_doc_border = false,
+--   },
+-- })
 
 local modus = require 'modus-themes'
 modus.setup({
