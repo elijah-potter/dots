@@ -38,7 +38,7 @@ snippet patlint
           self.pattern.as_ref()
       }
   
-      fn match_to_lint(&self, matched_tokens: &[Token], source: &[char]) -> Lint {
+      fn match_to_lint(&self, matched_tokens: &[Token], source: &[char]) -> Option<Lint> {
           unimplemented!()
       }
   
@@ -74,7 +74,7 @@ snippet normlint
     fn description(&self) -> &str {
 
     }
-  }
+ }
   
   #[cfg(test)]
   mod tests {

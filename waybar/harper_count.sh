@@ -1,8 +1,11 @@
-#! /bin/bash
+#!/bin/bash
 
-URL="https://api.github.com/repos/chilipepperhott/harper/releases?per_page=100"
+# Define the URL for the latest release
+URL="https://api.github.com/repos/chilipepperhott/harper/releases/latest"
 
-DATA=`curl -L "$URL" -H "Accept: application/vnd.github.v3+json"`
+# Fetch release data silently
+DATA=$(curl -sL "$URL" -H "Accept: application/vnd.github.v3+json")
 
-# Below prints total for all binaries for all rleases.
-echo $DATA | jq '.[].assets[].download_count' | awk '{s+=$1} END {print s}'
+# Sum download_count for all assets except harper.zip
+TOTAL=$(echo "$DATA" | jq '[.assets[] | select(.name != "harper.zip") | .download_count] | add')
+echo "$TOTAL"

@@ -1,10 +1,11 @@
-#! /bin/bash
+#!/bin/bash
 
-URL="https://api.github.com/repos/elijah-potter/harper-obsidian-plugin/releases?per_page=100"
+# Define the URL for the latest release
+URL="https://api.github.com/repos/automattic/harper-obsidian-plugin/releases/latest"
 
-DATA=`curl -L "$URL" -H "Accept: application/vnd.github.v3+json"`
+# Fetch release data silently
+DATA=$(curl -sL "$URL" -H "Accept: application/vnd.github.v3+json")
 
-# Below prints total for all binaries for all rleases.
-COUNT=$(echo $DATA | jq '.[].assets[].download_count' | awk '{s+=$1} END {print s}')
-
-echo $(($COUNT / 2))
+# Use jq to sum the download_count for all assets
+TOTAL=$(echo "$DATA" | jq '[.assets[].download_count] | add')
+echo $(($TOTAL / 2))

@@ -43,7 +43,7 @@ trouble.setup({
 })
 
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_lines = false,
   virtual_text = true,
   float = {
     focus = false,
@@ -98,10 +98,6 @@ vim.keymap.set("n", "<C-G>", function()
 end, { expr = true })
 
 local on_attach = function(client, bufnr)
-  local lsp_inlayhints = require 'lsp-inlayhints'
-  lsp_inlayhints.setup()
-  lsp_inlayhints.on_attach(client, bufnr)
-
   utils.map("n", "<C-x>", ":AerialToggle float<CR>")
   utils.map("nv", "<C-f>", ":lua vim.lsp.buf.code_action()<CR>")
   utils.map("nv", "<C-s>", ":lua vim.lsp.buf.hover()<CR>")
