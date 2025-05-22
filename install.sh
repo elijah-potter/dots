@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-pacman -Syu --noconfirm base-devel texlive neovim zip unzip zstd gzip pigz ripgrep eza dust fish git rustup nodejs npm starship pandoc wasm-pack go dotnet-sdk aspnet-runtime clang docker docker-buildx mold lazygit bacon xdg-utils tokei openssh gnuplot bat pandoc-plot mdbook fd jq tree-sitter-cli jdk17-openjdk gradle sudo perf man
+pacman -Syu --noconfirm base-devel texlive neovim zip unzip zstd gzip pigz ripgrep eza dust fish git rustup nodejs npm starship pandoc wasm-pack go dotnet-sdk aspnet-runtime clang docker docker-buildx mold lazygit bacon xdg-utils tokei openssh gnuplot bat pandoc-plot mdbook fd jq tree-sitter-cli jdk17-openjdk gradle sudo perf man python-pytorch jupyterlab python-pyarrow
 
 # Create my user, add it to wheel, and give wheel `sudo` permission.
 useradd -m -G wheel -s /usr/bin/fish elijahpotter

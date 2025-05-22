@@ -71,7 +71,7 @@ end
 
 mason.setup({})
 mason_dap.setup({
-  ensure_installed = { "codelldb", "java-debug-adapter" },
+  ensure_installed = { "codelldb" },
   handlers = {},
 })
 mason_lspconfig.setup({
@@ -141,7 +141,7 @@ for _, lsp in ipairs(basic_languages) do
 end
 
 -- Languages that require additional config
-local files = { "rust", "web", "lua", "harper", "powershell", "java" }
+local files = { "rust", "web", "lua", "harper", "powershell" }
 
 for _, file in ipairs(files) do
   local lang = require('languages/' .. file)
