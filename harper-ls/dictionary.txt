@@ -1,13 +1,17 @@
 Asynchrony
+Backman
 Balancers
 CMIS
 DeepSeek
 Disambiguated
 Eghbal
 Frankl's
+Fredrik
 Garmus
 Gladwell
+Haig's
 Hrper's
+IO
 Infographics
 Kladov
 LLM
@@ -35,7 +39,9 @@ parasocial
 pluggable
 singlehandedly
 subreddit
+tooltips
 uncached
+unengaging
 unfixable
 unmoving
 unreputable
