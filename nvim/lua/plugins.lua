@@ -60,7 +60,6 @@ lazy.setup({
   "jay-babu/mason-nvim-dap.nvim",
   "folke/lazydev.nvim",
   "saecki/crates.nvim",
-  'mrcjkb/rustaceanvim',
   'theHamsta/nvim-dap-virtual-text',
   'nvim-java/nvim-java',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },

@@ -106,6 +106,8 @@ local on_attach = function(client, bufnr)
   utils.map("n", "<C-q>", ":lua vim.diagnostic.goto_prev()<CR>")
   utils.map("n", "<C-e>", ":lua vim.diagnostic.goto_next()<CR>")
 
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*" },
     callback = function()

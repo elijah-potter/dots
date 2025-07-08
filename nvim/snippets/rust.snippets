@@ -9,48 +9,8 @@ snippet les
 snippet uvec
 	Vec::new()
 
-snippet patlint
-  use itertools::Itertools;
-  
-  use crate::{
-      patterns::{Pattern, SequencePattern, WordPatternGroup},
-      Lrc, Token, TokenStringExt,
-  };
-  
-  use super::{Lint, LintKind, PatternLinter, Suggestion};
-  
-  pub struct $1 {
-      pattern: Box<dyn Pattern>,
-  }
-  
-  impl Default for $1 {
-      fn default() -> Self {
-          let mut pattern = todo!();
-  
-          Self {
-              pattern: Box::new(pattern),
-          }
-      }
-  }
-  
-  impl PatternLinter for $1 {
-      fn pattern(&self) -> &dyn Pattern {
-          self.pattern.as_ref()
-      }
-  
-      fn match_to_lint(&self, matched_tokens: &[Token], source: &[char]) -> Option<Lint> {
-          unimplemented!()
-      }
-  
-      fn description(&self) -> &'static str {
-          unimplemented!()
-      }
-  }
-  
-  #[cfg(test)]
-  mod tests {
-    use super::$1;
-  }
+snippet tack
+  |tok: &Token, _: &[char]| $0
 
 snippet normlint 
   use itertools::Itertools;
@@ -102,3 +62,46 @@ snippet testsg
           "$0",
       );
   }
+
+snippet explint
+  use crate::expr::Expr;
+  use crate::expr::LongestMatchOf;
+  use crate::expr::SequenceExpr;
+  use crate::{Token, TokenStringExt};
+  
+  use super::{ExprLinter, Lint, LintKind, Suggestion};
+  
+  pub struct $1 {
+      expr: Box<dyn Expr>,
+  }
+  
+  impl Default for $1 {
+      fn default() -> Self {
+        let expr = $2;
+  
+          Self {
+              expr: Box::new(expr),
+          }
+      }
+  }
+  
+  impl ExprLinter for $1 {
+      fn expr(&self) -> &dyn Expr {
+          self.expr.as_ref()
+      }
+  
+      fn match_to_lint(&self, matched_tokens: &[Token], _source: &[char]) -> Option<Lint> {
+          unimplemented!()
+      }
+  
+      fn description(&self) -> &'static str {
+          unimplemented!()
+      }
+  }
+  
+  #[cfg(test)]
+  mod tests {
+  }
+
+snippet asl
+  assert_no_lints($1, $0);
