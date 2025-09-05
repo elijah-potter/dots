@@ -6,6 +6,7 @@ if not contains cargo $PATH
   fish_add_path $HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer
   set -x EDITOR nvim
   set -x PAGER bat
+  set -x SCCACHE_CACHE_SIZE 25G
 end
 
 if status is-interactive

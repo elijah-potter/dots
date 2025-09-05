@@ -1,3 +1,4 @@
+Amdahl's
 Asynchrony
 Backman
 Balancers
@@ -18,13 +19,19 @@ LLM
 LLMs
 Lukas
 Løvetann
+Matt
 OData
 Ollama
 OpenSearch
+PR
+Persig
 Reddit
 RipGrep
 Techlead
+Throughline
+Treebank
 Werner
+WordCamp
 disincentivize
 dogfooding
 endogamy
