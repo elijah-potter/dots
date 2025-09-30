@@ -1,9 +1,8 @@
-local lspconfig = require 'lspconfig'
-
 local M = {}
 
 function M.setup(options)
-  lspconfig.harper_ls.setup {
+  vim.lsp.enable('harper_ls')
+  vim.lsp.config('harper_ls', {
     -- cmd = vim.lsp.rpc.connect("127.0.0.1", 4000),
     on_attach = options.on_attach,
     capabilities = options.capabilities,
@@ -150,7 +149,7 @@ function M.setup(options)
         }
       }
     },
-  }
+  })
 end
 
 return M;

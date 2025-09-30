@@ -1,11 +1,11 @@
-local lspconfig = require 'lspconfig'
 local crates = require 'crates'
 crates.setup({})
 
 local M = {}
 
 function M.setup(options)
-  lspconfig.rust_analyzer.setup {
+  vim.lsp.enable('rust_analyzer')
+  vim.lsp.config('rust_analyzer', {
     capabilities = options.capabilities,
     on_attach = options.on_attach,
     cmd = { "/home/elijahpotter/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer" },
@@ -27,7 +27,7 @@ function M.setup(options)
         },
       }
     }
-  }
+  })
 end
 
 return M;

@@ -139,7 +139,8 @@ local basic_languages = { "gopls", "pyright", "bashls", "cssls", "html", "jsonls
   "clangd", "yamlls", "gradle_ls", "marksman" }
 
 for _, lsp in ipairs(basic_languages) do
-  lspconfig[lsp].setup(options)
+  vim.lsp.enable(lsp)
+  vim.lsp.config(lsp, options);
 end
 
 -- Languages that require additional config

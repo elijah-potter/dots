@@ -1,4 +1,3 @@
-local lspconfig = require 'lspconfig'
 local typescript_tools = require 'typescript-tools'
 
 local M = {}
@@ -8,7 +7,7 @@ function M.setup(options)
     on_attach = options.on_attach
   })
 
-  lspconfig.biome.setup {}
+  vim.lsp.enable('biome')
 end
 
 return M;
