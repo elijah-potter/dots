@@ -30,6 +30,8 @@ if status is-interactive
   alias gunzip=unpigz
   alias lg=lazygit
   alias cdo="cargo doc --open"
+  alias hh 'hyprland'
+  alias mh 'env HYPRLAND_CONFIG=/home/elijahpotter/.config/hypr/hyprland-minimal.conf hyprland'
   
   fish_user_key_bindings
 

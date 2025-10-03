@@ -327,6 +327,7 @@ vim.keymap.set("n", "<leader>o", function()
   vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
 end)
 
+local theme = os.getenv("GTK_THEME") or ""
 if os.getenv("GTK_THEME"):find "dark" then
   vim.cmd([[ colorscheme modus_vivendi ]])
 else
