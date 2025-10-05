@@ -66,7 +66,7 @@ lazy.setup({
   { 'akinsho/git-conflict.nvim',                version = "*",                                                                                 config = true },
   'NoahTheDuke/vim-just',
   'sindrets/diffview.nvim',
-  { 'wakatime/vim-wakatime',        lazy = false },
+  { 'wakatime/vim-wakatime', lazy = false },
   "sphamba/smear-cursor.nvim",
   {
     "sphamba/smear-cursor.nvim",
@@ -78,29 +78,5 @@ lazy.setup({
       smear_insert_mode = true,
     },
   },
-  { "miikanissi/modus-themes.nvim", priority = 1000 },
-  -- {
-  --   "yetone/avante.nvim",
-  --   event = "VeryLazy",
-  --   lazy = false,
-  --   version = "*",
-  --   opts = {
-  --     provider = "ollama",
-  --     vendors = {
-  --       ollama = {
-  --         __inherited_from = "openai",
-  --         api_key_name = "",
-  --         endpoint = "http://127.0.0.1:11434/v1",
-  --         model = "qwen2.5-coder",
-  --       },
-  --     },
-  --   },
-  --   build = "make",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --   },
-  -- }
+  { "catppuccin/nvim",       name = "catppuccin", priority = 1000 }
 })

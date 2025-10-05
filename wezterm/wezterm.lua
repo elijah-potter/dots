@@ -2,8 +2,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
-local dark_theme = "Modus Vivendi"
-local light_theme = "Modus Operandi"
+local dark_theme = "Catppuccin Mocha"
+local light_theme = "Catppuccin Latte"
 
 -- Set the color scheme based on the system theme l
 if os.getenv("GTK_THEME"):find "dark" then

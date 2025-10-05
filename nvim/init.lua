@@ -302,15 +302,6 @@ presence.setup({
 --   },
 -- })
 
-local modus = require 'modus-themes'
-modus.setup({
-  transparent = false,
-  styles = {
-    comments = "italic",
-    functions = "bold",
-  }
-})
-
 if vim.g.neovide then
   vim.o.guifont = "MonaspiceNe NFM:h12"
   vim.g.neovide_scroll_animation_length = 0.1
@@ -329,7 +320,13 @@ end)
 
 local theme = os.getenv("GTK_THEME") or ""
 if os.getenv("GTK_THEME"):find "dark" then
-  vim.cmd([[ colorscheme modus_vivendi ]])
+  require("catppuccin").setup({
+    flavour = "mocha"
+  })
 else
-  vim.cmd([[ colorscheme modus_operandi ]])
+  require("catppuccin").setup({
+    flavour = "latte"
+  })
 end
+
+vim.cmd.colorscheme "catppuccin"
