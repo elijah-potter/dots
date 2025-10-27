@@ -215,7 +215,8 @@ oil.setup()
 
 -- Leaping
 local leap = require 'leap'
-leap.add_default_mappings()
+vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
+vim.keymap.set('n',             'S', '<Plug>(leap-backward)')
 
 -- File Explorer
 g.loaded = 1
