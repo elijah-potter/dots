@@ -5,7 +5,8 @@
     "clock",
     "custom/weather",
     "custom/uptime",
-    "custom/time-rem"
+    "custom/time-rem",
+    "custom/prs_per_day"
   ],
   "modules-center": [
     "custom/mpris"
@@ -14,6 +15,7 @@
     "tray",
     "custom/harper_count",
     "custom/harper_obsidian_count",
+    "custom/acwi",
     "network",
     "battery",
     "pulseaudio"
@@ -74,5 +76,15 @@
     "format": {},
     "exec": "$HOME/.config/waybar/harper_obsidian_count.sh",
     "interval": 600
+  },
+  "custom/acwi": {
+    "format": {},
+    "exec": "$HOME/.config/waybar/get_acwi.sh",
+    "interval": 120
+  },
+  "custom/prs_per_day": {
+    "format": {},
+    "exec": "$HOME/.config/waybar/get_avg_prs_per_day.sh",
+    "interval": 1200
   }
 }
