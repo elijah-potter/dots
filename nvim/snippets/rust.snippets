@@ -63,6 +63,25 @@ snippet testsg
       );
   }
 
+snippet testasl
+  #[test]
+  fn $1() {
+      assert_no_lints(
+          "$2",
+          $3::default(),
+      );
+  }
+
+snippet testalc
+  #[test]
+  fn $1() {
+      assert_lint_count(
+          "$2",
+          $3::default(),
+          $4
+      );
+  }
+
 snippet explint
   use crate::expr::Expr;
   use crate::expr::LongestMatchOf;

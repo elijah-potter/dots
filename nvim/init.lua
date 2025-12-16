@@ -163,6 +163,36 @@ utils.map("nv", "<leader><leader>s", function()
   knap.toggle_autopreviewing()
 end)
 
+local octo = require 'octo'
+octo.setup({
+  mappings = {
+    pull_request = {
+      merge_pr = { lhs = "<leader>om", desc = "merge PR" }
+    },
+    submit_win = {
+      approve_review = { lhs = "<leader>a", desc = "approve review", mode = { "n" } },
+      request_changes = { lhs = "<leader>e", desc = "approve review", mode = { "n" } },
+      comment_review = { lhs = "<leader>c", desc = "approve review", mode = { "n" } },
+    }
+  }
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "octo",
+  callback = function ()
+    utils.map("i", "@", "@<C-x><C-o>")
+    utils.map("i", "#", "#<C-x><C-o>")
+    utils.map("n", "<leader>oc", "<CMD>Octo comment add<CR>")
+    utils.map("n", "<leader>or", "<CMD>Octo review<CR>")
+    utils.map("n", "<leader>of", "<CMD>Octo review submit<CR>")
+    utils.map("n", "<leader>on", "<CMD>Octo notification list add<CR>")
+  end,
+})
+utils.map("n", "<leader>oi", "<CMD>Octo issue list<CR>")
+utils.map("n", "<leader>op", "<CMD>Octo pr list<CR>")
+
+
 -- Telescope
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
@@ -215,6 +245,9 @@ oil.setup()
 
 -- Leaping
 local leap = require 'leap'
+leap.setup({
+  case_sensitivity = false
+})
 vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
 vim.keymap.set('n',             'S', '<Plug>(leap-backward)')
 
@@ -315,9 +348,9 @@ if vim.g.neovide then
   end
 end
 
-vim.keymap.set("n", "<leader>o", function()
-  vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
-end)
+-- vim.keymap.set("n", "<leader>o", function()
+--   vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
+-- end)
 
 local theme = os.getenv("GTK_THEME") or ""
 if os.getenv("GTK_THEME"):find "dark" then

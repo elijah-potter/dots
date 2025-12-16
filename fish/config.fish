@@ -7,6 +7,7 @@ if not contains cargo $PATH
   set -x EDITOR nvim
   set -x PAGER bat
   set -x SCCACHE_CACHE_SIZE 25G
+  set -x DISABLE_WASM_OPT 1
 end
 
 if status is-interactive
@@ -25,6 +26,7 @@ if status is-interactive
   bind \cz 'fg 2>/dev/null; commandline -f repaint'
 
   alias n=nvim
+  alias cwt="cargo watch test"
   alias ls="eza --icons"
   alias gzip=pigz
   alias gunzip=unpigz
