@@ -236,20 +236,11 @@ telescope.load_extension('frecency')
 
 utils.map("n", "<leader>f", ":Telescope frecency workspace=CWD<CR>")
 utils.map("n", "<leader>g", ":Telescope live_grep<CR>")
-utils.map("n", "<leader>t", ":Telescope treesitter<CR>")
 utils.map("n", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>")
 
 -- Oil
 local oil = require 'oil'
 oil.setup()
-
--- Leaping
-local leap = require 'leap'
-leap.setup({
-  case_sensitivity = false
-})
-vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward)')
-vim.keymap.set('n',             'S', '<Plug>(leap-backward)')
 
 -- File Explorer
 g.loaded = 1
@@ -348,9 +339,9 @@ if vim.g.neovide then
   end
 end
 
--- vim.keymap.set("n", "<leader>o", function()
---   vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
--- end)
+vim.keymap.set("n", "<leader>t", function()
+  vim.fn.jobstart({ "tatum", "serve", "--open", vim.fn.expand('%') }, { noremap = true, silent = true })
+end)
 
 local theme = os.getenv("GTK_THEME") or ""
 if os.getenv("GTK_THEME"):find "dark" then
