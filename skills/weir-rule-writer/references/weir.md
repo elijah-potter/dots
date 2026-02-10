@@ -42,7 +42,7 @@ The remaining lines describe:
 
 1. The message to be shown to the user when the error in encountered.
 1. A description of the rule itself, explaining why it exists.
-1. What kind of rule it is.
+1. What kind of rule it is. 
 1. What corrections to provide to the user.
 
 ## Comments
@@ -85,7 +85,7 @@ We'll get to the test notation later in this document.
 ### Sequences
 
 A sequence, notated with round braces `()`, is exactly what it sounds like.
-It is a sequence of other expressions.
+It is a sequence of other expressions. 
 In order for a portion of a document to match against a sequence, all child expressions must match, in the sequence they are declared.
 
 It's common to see expressions that string words together in a sequence to match against specific phrases.
@@ -158,7 +158,7 @@ See the testing section of this document for a more detailed description of the 
 
 ### UPOS
 
-Weir allows you to require that certain words assume a specific role in the sentence by writing the Universal Part-Of-Speech tag, literally, in the position you wish to require it.
+Weir allows you to require that certain words assume a specific role in the sentence by writing the [Universal Part-Of-Speech tag](https://universaldependencies.org/u/pos/index.html), literally, in the position you wish to require it..
 For example, if you wanted to locate phrases that start with a determiner and are succeeded by a noun, you can write:
 
 ```plaintext
@@ -219,6 +219,16 @@ let kind "Punctuation"
 let becomes "-"
 ```
 
+### Expression References
+
+You can refer back to a previous expression you've defined using the `@` symbol.
+This is useful for creating lists of words or patterns that might be used in multiple places in the rule.
+
+```
+expr vehicles [bikes, trains, automobiles]
+expr main @vehicles aren't fast enough
+```
+
 ## Replacement Strategies
 
 You can dictate how Harper will suggest a replacement using the `strategy` tag.
@@ -250,7 +260,7 @@ The syntax is pretty simple:
 test "A" "B"
 ```
 
-You can also assert that the rule will not change anything.
+You can also assert that the rule _will not_ change anything.
 
 ```plaintext
 # I don't expect the rule to change anything
@@ -263,8 +273,8 @@ If you have `harper-cli` available, you can run the tests in a given Weir file b
 
 ## See Also:
 
-- Building the Weir Language (https://elijahpotter.dev/articles/building-the-weir-language)
-- Updates on the Weir Language (https://elijahpotter.dev/articles/updates-on-the-weir-language)
+- [Building the Weir Language](https://elijahpotter.dev/articles/building-the-weir-language)
+- [Updates on the Weir Language](https://elijahpotter.dev/articles/updates-on-the-weir-language)
 
 ## Additional Examples
 

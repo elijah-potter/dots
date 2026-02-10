@@ -13,6 +13,7 @@ Create correct, test-heavy Weir rules for Harper with clear messages, descriptio
 1. Draft the core expression
 - Encode the match with `expr main` using words, sequences, alternatives, filters, exceptions, POS tags, wildcards, or punctuation.
 - Keep the expression minimal but precise; avoid overmatching.
+- If a wordlist is needed, include it as its own expression, used with an expression reference.
 
 2. Add rule metadata
 - `let message`, `let description`, `let kind`, `let becomes` (and `let strategy` if needed).
