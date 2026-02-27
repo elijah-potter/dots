@@ -19,6 +19,8 @@ Kladov
 LLM
 LLMs
 LTO
+Linkarzu
+Linkarzu's
 Lukas
 Løvetann
 Matt
@@ -27,6 +29,7 @@ Ollama
 OpenSearch
 PR
 Persig
+Phaedrus
 Reddit
 RipGrep
 SvelteKit
@@ -40,6 +43,9 @@ Weirpacks
 Werner
 WordCamp
 Zendesk
+brainrot
+brainrotted
+clanker
 codegen
 disincentivize
 dogfooding
@@ -47,10 +53,12 @@ endogamy
 enrolled
 filetype
 humorography
+indefinitely
 integrations
 jitter
 learnt
 mise
+operant
 parasocial
 pluggable
 singlehandedly
