@@ -1,0 +1,4 @@
+interface:
+  display_name: "Harper Rule Fuzzing"
+  short_description: "Fuzz one Harper rule against the corpus"
+  default_prompt: "Use $harper-rule-fuzzing to fuzz a specific Harper rule against the local corpus and inspect false positives."
