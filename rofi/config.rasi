@@ -1,0 +1,8 @@
+@theme "/usr/share/rofi/themes/Paper.rasi"
+
+configuration {
+ modi: "window,drun,ssh,combi";
+ font: "MonaspiceRn 14";
+ combi-modi: "window,drun,ssh";
+}
+
