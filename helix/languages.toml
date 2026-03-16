@@ -1,0 +1,10 @@
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[[language]]
+name = "markdown"
+language-servers = ["harper-ls"]
+
+[language-server.harper-ls.config.harper-ls.linters]
+Matcher = false
