@@ -1,6 +1,6 @@
 ---
 name: harper-rule-fuzzing
-description: Run a single Harper rule against the local `~/Projects/harper-llm-fuzz` corpus to surface likely false positives. Use this skill when a user wants to fuzz or validate one specific Harper rule, inspect corpus hits, or sanity-check a rule against broadly grammatical text without interference from unrelated rules.
+description: Run a single Harper rule against the local `~/Projects/harper-llm-fuzz` corpus to surface likely false positives. By default, fuzz the full corpus for that one rule unless the user explicitly asks for a narrower file subset. Use this skill when a user wants to fuzz or validate one specific Harper rule, inspect corpus hits, or sanity-check a rule against broadly grammatical text without interference from unrelated rules.
 ---
 
 # Harper Rule Fuzzing
@@ -8,6 +8,7 @@ description: Run a single Harper rule against the local `~/Projects/harper-llm-f
 ## Overview
 
 Use this skill to fuzz one Harper rule against the local corpus in `~/Projects/harper-llm-fuzz`.
+By default, run the target rule across the full `perfection/*.md` corpus.
 The goal is to find likely false positives in a large body of mostly grammatical text while avoiding noise from unrelated rules.
 
 ## Workflow
@@ -28,10 +29,18 @@ just install
 
 3. Run only the target rule.
 Always fuzz a single rule with `--only`. Do not run the whole rule set, because unrelated lints like spelling can pollute the results.
+Default to the full corpus unless the user explicitly asks for a smaller sample or specific files.
 
 ```bash
 cd ~/Projects/harper-llm-fuzz
 ./check.sh <RULE_NAME>
+```
+
+If the user explicitly wants a scoped run, pass file arguments after the rule name:
+
+```bash
+cd ~/Projects/harper-llm-fuzz
+./check.sh <RULE_NAME> perfection/file-a.md perfection/file-b.md
 ```
 
 4. Inspect the failures.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Harper Lint Issue Batch Fix"
+  short_description: "Fix recent Harper false pos/neg issues"
+  default_prompt: "Use $batch-fix-harper-lint-issues to fix five recent Harper false-positive or false-negative issues, run the Rust checks, fuzz the touched rules, and draft PR.md without committing."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub PR Triage"
+  short_description: "Find GitHub PRs worth reviewing now"
+  default_prompt: "Use $gh-pr-triage to identify the three easiest open PRs to review and one bigger high-value PR in this repository."
