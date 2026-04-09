@@ -13,7 +13,7 @@ lock_dir="$cache_dir/${repo_key}-prs.lock"
 refresh_prs() {
   local tmp
   tmp="$(mktemp)"
-  gh pr list --repo "$repo" --limit 200 --state all --json number,title,state,url > "$tmp" && mv "$tmp" "$json_cache" || rm -f "$tmp"
+  gh pr list --repo "$repo" --limit 2000 --state open --json number,title,state,url > "$tmp" && mv "$tmp" "$json_cache" || rm -f "$tmp"
 }
 
 if mkdir "$lock_dir" 2>/dev/null; then

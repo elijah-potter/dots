@@ -13,7 +13,7 @@ lock_dir="$cache_dir/${repo_key}-issues.lock"
 refresh_issues() {
   local tmp
   tmp="$(mktemp)"
-  gh issue list --repo "$repo" --limit 350 --state all --json number,title,state,url > "$tmp" && mv "$tmp" "$json_cache" || rm -f "$tmp"
+  gh issue list --repo "$repo" --limit 2000 --state all --json number,title,state,url > "$tmp" && mv "$tmp" "$json_cache" || rm -f "$tmp"
 }
 
 if mkdir "$lock_dir" 2>/dev/null; then

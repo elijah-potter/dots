@@ -1,6 +1,6 @@
 ---
 name: gh-pr-triage
-description: Prioritize open GitHub pull requests using gh CLI and direct code inspection. Use when Codex needs to scan a repository's PR backlog, identify three low-effort "slam dunk" reviews, identify one larger high-value PR worth sustained attention, include direct GitHub links, and explain what to look at in the code before handing the list to a human reviewer.
+description: Prioritize open GitHub pull requests using gh CLI and direct code inspection. Use when Codex needs to scan a repository's PR backlog, identify nine low-effort "slam dunk" reviews, identify three larger high-value PRs worth sustained attention, include direct GitHub links, and explain what to look at in the code before handing the list to a human reviewer.
 ---
 
 # GitHub PR Triage
@@ -20,10 +20,12 @@ Read [references/gh-cli-prs.md](references/gh-cli-prs.md) for a brief gh CLI gui
 2. Gather the open PR set.
 - Start with `gh pr list --state open --limit 200 --json ...` to collect URL, title, author, update time, diff size, labels, draft status, review state, and checks.
 - If the repository has a large queue, sort or filter by freshness and reviewability before deeper inspection. Ignore stale drafts unless the user explicitly wants them.
+- If the reviewer has commented on any open PRs in this repository, read the PR comments to identify the timestamp of the latest review feedback and use that as a freshness floor. Ignore PRs whose `updatedAt` is not newer than that point. This keeps the triage focused on PRs that have moved since the last review.
 
 3. Build an initial shortlist from metadata.
 - Favor candidates with small to moderate churn, narrow scope, clear titles, clear PR descriptions, and visible tests or checks.
 - Penalize huge diffs, vague descriptions, stacked PRs that depend on unmerged work, broken checks, or work that obviously requires domain-specific coordination.
+- When the freshness floor from step 2 applies, only shortlist PRs that have new activity after the last review comment.
 - Do not stop here. Metadata is only the filter, not the conclusion.
 
 4. Read the actual code for the shortlisted PRs.
@@ -33,10 +35,10 @@ Read [references/gh-cli-prs.md](references/gh-cli-prs.md) for a brief gh CLI gui
 - Look for risk concentration: auth, migrations, concurrency, state transitions, caches, feature flags, error handling, config surface, and backwards compatibility.
 - Prefer concrete file-level observations over generic statements.
 
-5. Select exactly four PRs unless the repo genuinely does not have enough viable candidates.
-- Pick three "slam dunks": PRs that should be fast to review and likely need minimal back-and-forth.
-- Pick one "big" PR: a larger or more involved change that still looks worth focused review time.
-- If there are fewer than three credible slam dunks, say so plainly and return the best available set rather than forcing weak picks.
+5. Select exactly twelve PRs unless the repo genuinely does not have enough viable candidates.
+- Pick nine "slam dunks": PRs that should be fast to review and likely need minimal back-and-forth.
+- Pick three "big" PRs: larger or more involved changes that still look worth focused review time.
+- If there are fewer than nine credible slam dunks or fewer than three credible big PRs, say so plainly and return the best available set rather than forcing weak picks.
 
 ## Selection Rubric
 
@@ -60,7 +62,7 @@ Return two sections in this order.
 
 ### Slam Dunks
 
-Provide exactly three items when possible. For each item include:
+Provide exactly nine items when possible. For each item include:
 - PR title and number
 - Direct GitHub link
 - One short paragraph on why it is a slam dunk
@@ -69,7 +71,7 @@ Provide exactly three items when possible. For each item include:
 
 ### Big PR
 
-Provide exactly one item. Include:
+Provide exactly three items when possible. For each item include:
 - PR title and number
 - Direct GitHub link
 - Why it is worth the time

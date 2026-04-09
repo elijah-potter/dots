@@ -2,15 +2,18 @@ Amdahl's
 Asynchrony
 Backman
 Balancers
+Butterick's
 CMIS
 DeepSeek
 Disambiguated
+Drucker
 Eghbal
 Frankl's
 Fredrik
 Garmus
 Gladwell
 Haig's
+Hashimoto's
 Hrper's
 IO
 IUPAC
@@ -23,6 +26,7 @@ Linkarzu
 Linkarzu's
 Lukas
 Løvetann
+METR
 Matt
 OData
 Ollama
@@ -54,6 +58,7 @@ enrolled
 filetype
 humorography
 indefinitely
+instilled
 integrations
 jitter
 learnt
@@ -61,6 +66,7 @@ mise
 operant
 parasocial
 pluggable
+prescriptivist
 singlehandedly
 subprotocols
 subreddit
