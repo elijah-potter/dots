@@ -35,7 +35,6 @@ local utils = require 'utils'
 
 -- Load programming language support
 require 'lsp'
-require 'treesitter'
 
 --- Statusline
 local lualine = require 'lualine'
@@ -265,45 +264,6 @@ local gitblame = require 'gitblame'
 gitblame.setup({
   enabled = false
 })
-
-local mc = require 'minuet.config'
-
-require('minuet').setup {
-  provider = "openai_fim_compatible",
-  context_window = 1024,
-  n_completions = 1,
-  virtualtext = {
-    auto_trigger_ft = {},
-    keymap = {
-        -- accept whole completion
-        accept = '<C-f>',
-        -- accept one line
-        accept_line = '<C-A>',
-        -- accept n lines (prompts for number)
-        -- e.g. "A-z 2 CR" will accept 2 lines
-        accept_n_lines = '<A-z>',
-        -- Cycle to prev completion item, or manually invoke completion
-        prev = '<A-[>',
-        -- Cycle to next completion item, or manually invoke completion
-        next = '<A-]>',
-        dismiss = '<A-e>',
-    },
-  },
-  provider_options = {
-      openai_fim_compatible = {
-          model = 'qwen2.5-coder:1.5b',
-          end_point = 'http://localhost:11434/v1/completions',
-          api_key = 'TERM',
-          stream = true,
-          name = 'ollama',
-          optional = {
-            max_tokens = 64,
-            top_p = 0.9,
-          },
-      }
-  }
-}
-vim.cmd(":Minuet virtualtext enable")
 
 utils.map("n", "<leader>i", ":GitBlameToggle<CR>")
 

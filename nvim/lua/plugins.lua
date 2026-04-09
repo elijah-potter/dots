@@ -27,7 +27,7 @@ lazy.setup({
   { "L3MON4D3/LuaSnip",                         build = "make install_jsregexp" },
   "kyazdani42/nvim-tree.lua",
   "nvim-lualine/lualine.nvim",
-  "nvim-treesitter/nvim-treesitter",
+  { "nvim-treesitter/nvim-treesitter", branch = "main"},
   "nvim-treesitter/nvim-treesitter-context",
   "nvim-lua/plenary.nvim",
   "nvim-telescope/telescope.nvim",
@@ -93,7 +93,6 @@ lazy.setup({
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  'milanglacier/minuet-ai.nvim',
 })
 
 
