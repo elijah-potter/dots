@@ -13,7 +13,7 @@ end
 if status is-interactive
   set HOUR (date '+%H')
 
-  if test "7" -le $HOUR && test $HOUR -lt "21"
+  if test "7" -le $HOUR && test $HOUR -lt "18"
     set -x GTK_THEME Adwaita:light
     set -x BAT_THEME GitHub
     modus_operandi
