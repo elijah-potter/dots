@@ -41,6 +41,7 @@ function M.setup(options)
       ["harper-ls"] = {
         dialect = "American",
         linters = {
+          AvoidContractions = true
         },
       }
     },
