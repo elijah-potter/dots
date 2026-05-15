@@ -71,6 +71,7 @@ singlehandedly
 subprotocols
 subreddit
 tooltips
+uBlock
 uncached
 unengaging
 unfixable
