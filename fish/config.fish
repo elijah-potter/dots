@@ -34,6 +34,9 @@ if status is-interactive
   alias cdo="cargo doc --open"
   alias hh 'hyprland'
   alias mh 'env HYPRLAND_CONFIG=/home/elijahpotter/.config/hypr/hyprland-minimal.conf hyprland'
+  alias mtl "mytime log --logfile ~/mytime.csv"
+  alias mtd "mytime done --logfile ~/mytime.csv"
+  alias ad "agent-deck"
   
   fish_user_key_bindings
 
