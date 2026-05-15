@@ -20,12 +20,10 @@ Read [references/gh-cli-prs.md](references/gh-cli-prs.md) for a brief gh CLI gui
 2. Gather the open PR set.
 - Start with `gh pr list --state open --limit 200 --json ...` to collect URL, title, author, update time, diff size, labels, draft status, review state, and checks.
 - If the repository has a large queue, sort or filter by freshness and reviewability before deeper inspection. Ignore stale drafts unless the user explicitly wants them.
-- If the reviewer has commented on any open PRs in this repository, read the PR comments to identify the timestamp of the latest review feedback and use that as a freshness floor. Ignore PRs whose `updatedAt` is not newer than that point. This keeps the triage focused on PRs that have moved since the last review.
 
 3. Build an initial shortlist from metadata.
 - Favor candidates with small to moderate churn, narrow scope, clear titles, clear PR descriptions, and visible tests or checks.
 - Penalize huge diffs, vague descriptions, stacked PRs that depend on unmerged work, broken checks, or work that obviously requires domain-specific coordination.
-- When the freshness floor from step 2 applies, only shortlist PRs that have new activity after the last review comment.
 - Do not stop here. Metadata is only the filter, not the conclusion.
 
 4. Read the actual code for the shortlisted PRs.
