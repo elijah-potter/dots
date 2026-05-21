@@ -21,3 +21,5 @@ Review the unmerged changes to the repository and apply simplification improveme
 
 Do NOT add new features, change public APIs, or refactor code outside the listed files.
 Avoid changing the behavior of code that is not the subject of any tests.
+
+A big part of simplification is removal of code. Is there a way we can reduce amount of code by consolidating shared logic?
