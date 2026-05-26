@@ -34,3 +34,4 @@ selection="$(
 
 url="$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')"
 [ -n "$url" ] && xdg-open "$url"
+xdg-open "$url/changes"
