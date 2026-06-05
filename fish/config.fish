@@ -6,9 +6,11 @@ if not contains cargo $PATH
   fish_add_path $HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer
   set -x EDITOR nvim
   set -x PAGER bat
-  set -x SCCACHE_CACHE_SIZE 25G
+  set -x SCCACHE_CACHE_SIZE 100G
   set -x DISABLE_WASM_OPT 1
 end
+
+set -e WEZTERM_PANE
 
 if status is-interactive
   set HOUR (date '+%H')
@@ -36,7 +38,7 @@ if status is-interactive
   alias mh 'env HYPRLAND_CONFIG=/home/elijahpotter/.config/hypr/hyprland-minimal.conf hyprland'
   alias mtl "mytime log --logfile ~/mytime.csv"
   alias mtd "mytime done --logfile ~/mytime.csv"
-  alias ad "agent-deck"
+  alias ad "workmux"
   
   fish_user_key_bindings
 

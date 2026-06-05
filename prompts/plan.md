@@ -15,4 +15,6 @@ If I respond to your plan with approval or just say "go" you may make the change
 
 If there is any ambiguity or information that you need from me, ask any questions immediately so we can refine the plan together before making changes.
 
+Your plan should include which new structures, functions, classes, or interfaces are large enough that they need doc-comments.
+
 Plan $@
