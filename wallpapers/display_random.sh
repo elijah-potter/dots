@@ -1,5 +1,18 @@
-#!/bin/bash
-#
-SELECTED=$(find ~/.config/wallpapers -type f -name "*.jpg" | shuf -n 1)
+#!/usr/bin/env bash
+set -euo pipefail
 
-swaybg -m fill -i $(realpath $SELECTED)
+cd /home/elijahpotter/.config/wallpapers
+
+SELECTED=$(find . -maxdepth 1 -type f -name "*.jpg" ! -name "output.jpg" | shuf -n 1)
+OUTPUT="./output.jpg"
+FONT="./Domine.ttf"
+
+magick "$SELECTED" \
+  -gravity center \
+  -font "$FONT" \
+  -pointsize 128 \
+  -fill white \
+  -annotate +0+0 "Harden Harper Desktop" \
+  "$OUTPUT"
+
+swaybg -m fill -i "$OUTPUT"
