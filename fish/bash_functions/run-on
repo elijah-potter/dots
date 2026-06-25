@@ -1,0 +1,11 @@
+#! /bin/bash
+
+git ls-files -z --cached --others --exclude-standard |
+  rsync -avz --files-from=- --from0 ./ "$1"
+
+HOST=`echo "$1" | cut -d':' -f1`
+TARGET_PATH=`echo "$1" | cut -d':' -f2`
+
+cmd=("${@:2}")
+
+ssh $HOST "cd $TARGET_PATH && ${cmd[@]}"
