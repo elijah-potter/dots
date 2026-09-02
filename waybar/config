@@ -2,6 +2,7 @@
   "spacing": 20,
   "layer": "top",
   "modules-left": [
+    "sway/workspaces",
     "clock",
     "custom/weather",
     "custom/uptime",

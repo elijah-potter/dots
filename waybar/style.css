@@ -15,10 +15,19 @@ window {
   background: transparent;
 }
 
-#pulseaudio, #cpu, #network, #clock, #battery{
+#pulseaudio, #cpu, #network, #clock, #battery, #workspaces{
   padding: 0px 10px;
 }
 
 #tray menu {
   background-color: #303030;
+}
+
+#workspaces button {
+  padding: 0px;
+  border-bottom: 2px solid transparent;
+}
+
+#workspaces button.focused {
+  border-bottom: 2px solid;
 }
