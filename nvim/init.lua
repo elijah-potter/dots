@@ -248,6 +248,8 @@ g.loaded = 1
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
+require("arborist").setup()
+
 local nvim_tree = require 'nvim-tree'
 
 nvim_tree.setup({
