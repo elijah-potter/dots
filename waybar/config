@@ -15,6 +15,7 @@
     "tray",
     "custom/harper_count",
     "custom/harper_obsidian_count",
+    "custom/prs",
     "network",
     "battery",
     "pulseaudio"
@@ -74,6 +75,11 @@
   "custom/harper_obsidian_count": {
     "format": {},
     "exec": "$HOME/.config/waybar/harper_obsidian_count.sh",
+    "interval": 600
+  },
+  "custom/prs": {
+    "format": {},
+    "exec": "node $HOME/.config/waybar/prs.js",
     "interval": 600
   }
 }
