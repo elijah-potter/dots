@@ -17,6 +17,7 @@
     "custom/harper_obsidian_count",
     "custom/prs",
     "network",
+    "custom/wattage",
     "battery",
     "pulseaudio"
   ],
@@ -81,5 +82,10 @@
     "format": {},
     "exec": "node $HOME/.config/waybar/prs.js",
     "interval": 600
-  }
+  },
+  "custom/wattage": {
+    "exec": "awk 'BEGIN { getline c < \"/sys/class/power_supply/BAT0/current_now\"; getline v < \"/sys/class/power_supply/BAT0/voltage_now\"; printf \"%.1f W\\n\", c*v/1000000000000 }'",
+    "interval": 2,
+    "format": "󰚥 {}"
+  },
 }
