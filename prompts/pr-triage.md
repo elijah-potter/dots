@@ -25,7 +25,7 @@ Provide:
 If a PR is written by an agent, it is in-policy to declare so in the description.
 Do not include PRs written primarily agents, unless there are no other PRs remaining to fill the quota.
 
-Prioritize PRs that will close many issues.
+Prioritize PRs that will close many issues and prioritize PRs for which my attention has been specifically requested.
 
 The goal here is to sample from the Pareto frontier of PRs that take time to review but also have the highest impact.
 Please use judgment to identify PRs that (for the given amount of effort needed to review) return the highest end-impact for the user.
