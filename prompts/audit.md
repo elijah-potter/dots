@@ -10,7 +10,7 @@ Check that the following are true, one by one.
     - Report by providing a list of artifacts with a check mark or "X" for whether they are built.
 - There are no production secrets in the repository.
 - There are no obvious security problems. Do not spend too much time on this.
+- The documentation matches the implementation.
 
 If any are not true, please report where work must be done.
 Do not do any work yourself. Consider this an audit.
-
