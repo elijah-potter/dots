@@ -1,3 +1,6 @@
 gui:
   expandFocusedSidePanel: true
   nerdFontsVersion: "3"
+git:
+  diffRenderers:
+    - command: delta --paging=never --side-by-side --width={{width}}
