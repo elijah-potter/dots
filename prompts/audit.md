@@ -11,6 +11,7 @@ Check that the following are true, one by one.
 - There are no production secrets in the repository.
 - There are no obvious security problems. Do not spend too much time on this.
 - The documentation matches the implementation.
+- That the site looks equally good in both dark and light mode.
 
 If any are not true, please report where work must be done.
 Do not do any work yourself. Consider this an audit.

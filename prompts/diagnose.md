@@ -5,6 +5,7 @@ argument-hint: "<PROBLEM>"
 
 Please do an investigation into the problem I have listed below.
 If possible, find the underlying cause.
+At bare minimum (if applicable) replicate the problem as a new test.
 Most issues are the result of a single problem, not an intersection of problems. 
 
 Tell me: the exact location of the problem.
