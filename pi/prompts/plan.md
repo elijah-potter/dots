@@ -17,4 +17,7 @@ If there is any ambiguity or information that you need from me, ask any question
 
 Your plan should include which new structures, functions, classes, or interfaces are large enough that they need doc-comments.
 
+The plan should be produced while the model is set to GPT-6 Astra. Switch to that before youstart planning if you aren't already there.
+After I approve the plan, do any extra final detail work to finalize it in that same big model, then switch to the latest GPT Terra model for implementation and iteration.
+
 Plan $@
